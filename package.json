@@ -1,0 +1,46 @@
+{
+  "name": "skill-tree-ai",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Your AI collaboration style — skill tree visualization with character archetype cards and growth recommendations, grounded in the AI Fluency Framework. MCP server for Claude Code.",
+  "bin": {
+    "skill-tree-ai": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "skills",
+    ".claude-plugin",
+    ".mcp.json",
+    "hooks",
+    "hooks-handlers"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start:remote": "SKILL_TREE_REMOTE=1 node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "dev:remote": "SKILL_TREE_REMOTE=1 tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "claude-code",
+    "skill-tree",
+    "ai-fluency",
+    "mcp-server",
+    "education"
+  ],
+  "license": "MIT",
+  "author": "Robert Nowell",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
