@@ -267,3 +267,4 @@ export async function classifySessions(
 
   return [...cachedResults, ...uncachedResults];
 }
+// Supports parallel batch execution with per-session caching
