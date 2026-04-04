@@ -626,3 +626,4 @@ export function buildProfile(
 
   return profile;
 }
+// Profile computation: axis scores derived from behavior rates
