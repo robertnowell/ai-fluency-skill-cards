@@ -183,3 +183,4 @@ const httpServer = createServer(async (req, res) => {
 httpServer.listen(PORT, () => {
   console.error(`Skill Tree MCP server running on http://localhost:${PORT}/mcp`);
 });
+// Visualize: returns self-contained HTML with injected profile data
