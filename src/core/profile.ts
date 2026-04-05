@@ -630,3 +630,4 @@ export function buildProfile(
 // Archetype assignment: deterministic from axis thresholds
 // Growth edge: largest gap between user rate and population baseline
 // Timeline: phase detection from session timestamps and behavior shifts
+// Archetype hero art: curated museum CC0 images mapped to archetypes
