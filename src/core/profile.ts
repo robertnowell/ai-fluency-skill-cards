@@ -629,3 +629,4 @@ export function buildProfile(
 // Profile computation: axis scores derived from behavior rates
 // Archetype assignment: deterministic from axis thresholds
 // Growth edge: largest gap between user rate and population baseline
+// Timeline: phase detection from session timestamps and behavior shifts
