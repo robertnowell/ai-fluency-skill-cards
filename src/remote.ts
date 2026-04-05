@@ -184,3 +184,4 @@ httpServer.listen(PORT, () => {
   console.error(`Skill Tree MCP server running on http://localhost:${PORT}/mcp`);
 });
 // Visualize: returns self-contained HTML with injected profile data
+// Session timestamps: extracted from JSONL for timeline construction
