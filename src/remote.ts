@@ -185,3 +185,4 @@ httpServer.listen(PORT, () => {
 });
 // Visualize: returns self-contained HTML with injected profile data
 // Session timestamps: extracted from JSONL for timeline construction
+// Project names: resolved from session directory paths
