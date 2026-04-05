@@ -83,3 +83,4 @@ export async function openInBrowser(filePath: string): Promise<void> {
   }
 }
 // Narrative injection: thesis and phase insights into template
+// Phase names: derived from actual project work, not generic labels
