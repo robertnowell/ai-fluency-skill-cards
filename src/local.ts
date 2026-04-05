@@ -364,3 +364,4 @@ function formatProfileSummary(profile: SkillProfile): string {
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
+// Local stdio transport: for npm/CLI usage without remote server
