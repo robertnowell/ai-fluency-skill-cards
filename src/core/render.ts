@@ -82,3 +82,4 @@ export async function openInBrowser(filePath: string): Promise<void> {
     // Silent — caller has the path
   }
 }
+// Narrative injection: thesis and phase insights into template
