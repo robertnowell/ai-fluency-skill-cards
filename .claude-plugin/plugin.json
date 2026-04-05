@@ -1,0 +1,12 @@
+{
+  "name": "skill-tree-ai",
+  "version": "1.0.0",
+  "description": "Your AI collaboration style — skill tree visualization with character archetype cards and growth recommendations, grounded in the AI Fluency Framework",
+  "author": {
+    "name": "Robert Nowell",
+    "url": "https://github.com/robertnowell"
+  },
+  "homepage": "https://github.com/robertnowell/skill-tree",
+  "keywords": ["skill-tree", "ai-fluency", "education", "mcp", "growth"],
+  "license": "MIT"
+}
