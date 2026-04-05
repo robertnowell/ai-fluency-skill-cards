@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Tree — AI Fluency Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      background: #0a0908;
+      color: #e8e4df;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(160,128,64,0.4);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════════════════
+       1. TAROT CARD (with flip reveal)
+       ══════════════════════════════════════════ */
+
+    .card-wrapper {
+      max-width: 390px;
+      margin: 0 auto 2rem;
+      perspective: 1200px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+    }
+    .card-inner {
+      position: relative;
+      aspect-ratio: 7 / 12;
+      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-style: preserve-3d;
+    }
+    .card-wrapper.revealed .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-wrapper.revealed {
+      cursor: pointer;
+    }
+
+    /* Card back (face-down — visible first) */
+    .card-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      border-radius: 13px;
+      border: 4px solid #2a2520;
+      background: radial-gradient(ellipse at 50% 40%, #1a1714 0%, #0e0d0b 70%);
+      box-shadow: 0 10px 42px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      overflow: hidden;
+    }
+    /* Ornate double border */
+    .card-back::before {
+      content: '';
+      position: absolute; inset: 8px;
+      border: 1px solid rgba(160,128,64,0.3);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .card-back::after {
+      content: '';
+      position: absolute; inset: 13px;
+      border: 1px solid rgba(160,128,64,0.15);
+      border-radius: 5px;
+      pointer-events: none;
+    }
+    /* Corner ornaments on the back */
+    .card-back .corner {
+      position: absolute; width: 26px; height: 26px; z-index: 2;
+      border-color: rgba(160,128,64,0.35); border-style: solid; border-width: 0;
+    }
+    .card-back .corner.tl { top: 16px; left: 16px; border-top-width: 1px; border-left-width: 1px; }
+    .card-back .corner.tr { top: 16px; right: 16px; border-top-width: 1px; border-right-width: 1px; }
+    .card-back .corner.bl { bottom: 16px; left: 16px; border-bottom-width: 1px; border-left-width: 1px; }
+    .card-back .corner.br { bottom: 16px; right: 16px; border-bottom-width: 1px; border-right-width: 1px; }
+    /* Decorative cross pattern */
+    .card-back-pattern {
+      position: absolute; inset: 30px;
+      border: 1px solid rgba(160,128,64,0.06);
+      border-radius: 3px;
+      pointer-events: none;
+    }
+    .card-back-pattern::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 20%; right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(160,128,64,0.1), transparent);
+    }
+    .card-back-pattern::after {
+      content: '';
+      position: absolute;
+      left: 50%; top: 25%; bottom: 25%;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(160,128,64,0.1), transparent);
+    }
+    .card-back-glyph {
+      width: 100px; height: 100px;
+      color: rgba(160,128,64,0.5);
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 0 20px rgba(160,128,64,0.15));
+    }
+    @keyframes glyphBreathe {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.03); }
+    }
+    .card-back-glyph {
+      animation: glyphBreathe 4s ease-in-out infinite;
+    }
+    .card-back-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .card-back-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #e8d8b0;
+      text-shadow: 0 0 20px rgba(160,128,64,0.2);
+    }
+    .card-back-sessions {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(160,128,64,0.5);
+    }
+    .card-back-btn {
+      margin-top: 2rem;
+      padding: 0.65rem 2.2rem;
+      border: 1px solid rgba(160,128,64,0.4);
+      border-radius: 6px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: #e8d8b0;
+      background: rgba(160,128,64,0.06);
+      transition: all 0.3s;
+    }
+    .card-wrapper:hover .card-back-btn {
+      background: rgba(160,128,64,0.14);
+      border-color: rgba(160,128,64,0.55);
+      box-shadow: 0 0 24px rgba(160,128,64,0.1);
+    }
+    .card-wrapper:hover .card-back {
+      border-color: #3a3020;
+    }
+    .card-wrapper:hover .card-back-glyph {
+      color: rgba(160,128,64,0.7);
+    }
+    .card-wrapper:hover .card-back-text {
+      text-shadow: 0 0 30px rgba(160,128,64,0.3);
+    }
+
+    /* Card front (revealed) */
+    .card {
+      --ap: #9e9589; --aa: #d4cec6;
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
+      border-radius: 13px;
+      border: 4px solid #2a2520;
+      overflow: hidden;
+      background: #0e0d0b;
+      box-shadow: 0 10px 42px rgba(0,0,0,0.5);
+    }
+
+    .card[data-archetype="catalyst"]    { --ap: #d4584a; --aa: #e8a090; }
+    .card[data-archetype="compass"]     { --ap: #4a7ba3; --aa: #a3c4db; }
+    .card[data-archetype="forgemaster"] { --ap: #b8860b; --aa: #e8d4a8; }
+    .card[data-archetype="illuminator"] { --ap: #3d8a5a; --aa: #a8d4b8; }
+    .card[data-archetype="architect"]   { --ap: #6a8094; --aa: #b0c0d0; }
+    .card[data-archetype="conductor"]   { --ap: #8b3a62; --aa: #d4a0b8; }
+    .card[data-archetype="polymath"]    { --ap: #a08040; --aa: #e8d8b0; }
+
+    .card::before {
+      content: '';
+      position: absolute; inset: 8px; z-index: 1;
+      border: 1px solid rgba(160,128,64,0.25);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .card::after {
+      content: '';
+      position: absolute; inset: 13px; z-index: 1;
+      border: 1px solid rgba(160,128,64,0.12);
+      border-radius: 5px;
+      pointer-events: none;
+    }
+
+    .corner {
+      position: absolute; width: 26px; height: 26px; z-index: 2;
+      border-color: rgba(160,128,64,0.3); border-style: solid; border-width: 0;
+    }
+    .corner.tl { top: 16px; left: 16px; border-top-width: 1px; border-left-width: 1px; }
+    .corner.tr { top: 16px; right: 16px; border-top-width: 1px; border-right-width: 1px; }
+    .corner.bl { bottom: 16px; left: 16px; border-bottom-width: 1px; border-left-width: 1px; }
+    .corner.br { bottom: 16px; right: 16px; border-bottom-width: 1px; border-right-width: 1px; }
+
+    .card-art { position: absolute; inset: 0; z-index: 0; }
+    .card-art img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+    }
+
+    .card-top {
+      position: relative; z-index: 2; text-align: center;
+      padding: 1.3rem 1.56rem 0.65rem;
+      background: linear-gradient(180deg, rgba(14,13,11,0.9) 0%, transparent 100%);
+    }
+    .card-header-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.3rem;
+    }
+    .card-user-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600; font-size: 0.65rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(160,128,64,0.7);
+    }
+    .card-brand {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400; font-size: 0.55rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(160,128,64,0.35);
+    }
+    .card-numeral {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.845rem; color: rgba(160,128,64,0.5); letter-spacing: 0.3em;
+      margin-bottom: 0.26rem;
+    }
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.82rem; font-weight: 600; color: #e8d8b0;
+      letter-spacing: 0.04em; text-shadow: 0 2px 12px rgba(0,0,0,0.8); line-height: 1.1;
+    }
+
+    .card-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      text-align: center;
+      padding: 2rem 1.5rem 1.3rem;
+      background: linear-gradient(to top, rgba(14,13,11,0.98) 0%, rgba(14,13,11,0.92) 50%, rgba(14,13,11,0.5) 75%, transparent 100%);
+    }
+    .card-tagline {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem; color: rgba(232,228,223,0.85); line-height: 1.5; margin-bottom: 0.3rem;
+    }
+    .card-sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem; color: rgba(160,128,64,0.5); font-style: italic;
+      letter-spacing: 0.03em;
+    }
+    .card-divider { width: 52px; height: 1px; background: rgba(160,128,64,0.3); margin: 0.52rem auto; }
+    .card-axes { display: flex; justify-content: center; gap: 1.56rem; margin-bottom: 0.65rem; }
+    .card-ax {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.845rem; color: rgba(160,128,64,0.6); letter-spacing: 0.05em;
+    }
+    .card-power {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.78rem; color: rgba(232,216,176,0.5); font-style: italic; line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════
+       2. RADAR (4-axis diamond)
+       ══════════════════════════════════════════ */
+
+    .radar-section {
+      background: #1a1918;
+      border: 1px solid #2a2826;
+      border-radius: 1rem;
+      overflow: visible;
+      margin-bottom: 1.5rem;
+    }
+
+    .radar-header {
+      padding: 1.5rem 2rem 0.5rem;
+      border-bottom: 1px solid #2a2826;
+    }
+    .radar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600; color: #e8e4df;
+    }
+    .radar-sub { font-size: 0.875rem; color: #6b6560; margin-top: 0.25rem; }
+
+    .radar-body {
+      padding: 1.5rem 1rem 0.5rem;
+      display: flex; flex-direction: column; align-items: center;
+      position: relative;
+    }
+
+    .radar-svg {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1;
+    }
+
+    .sector-hit {
+      fill: transparent;
+      cursor: pointer;
+      transition: fill 0.15s;
+    }
+    .sector-hit:hover {
+      fill: rgba(160,128,64,0.04);
+    }
+    .sector-hit.selected {
+      fill: rgba(160,128,64,0.06);
+    }
+
+    .drilldown {
+      width: 100%;
+      padding: 0 2rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s, padding 0.3s;
+      opacity: 0;
+    }
+    .drilldown.visible {
+      max-height: 300px;
+      opacity: 1;
+      padding: 1rem 2rem 1.25rem;
+    }
+    .drilldown.preview { opacity: 0.7; }
+
+    .drilldown-header {
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem;
+    }
+    .drilldown-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .drilldown-name { font-weight: 500; font-size: 1rem; color: #e8e4df; }
+    .drilldown-desc { font-size: 0.875rem; color: #6b6560; margin-left: 0.2rem; }
+    .drilldown-locked {
+      margin-left: auto;
+      font-size: 0.55rem; color: rgba(160,128,64,0.4);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    .behavior-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+    .behavior-name { width: 150px; font-size: 0.875rem; color: #8a8580; text-align: right; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 5px; background: #2a2826; border-radius: 3px; overflow: hidden; position: relative; }
+    .bar-fill { height: 100%; border-radius: 3px; width: 0%; transition: width 0.6s cubic-bezier(0.22,1,0.36,1); }
+    .bar-baseline { position: absolute; top: -2px; height: 9px; width: 2px; background: #e8e4df; opacity: 0.12; border-radius: 1px; }
+    .behavior-pct { width: 45px; font-size: 0.875rem; color: #8a8580; font-variant-numeric: tabular-nums; }
+    .behavior-cmp { width: 18px; font-size: 0.875rem; text-align: center; }
+    .above { color: #5a9e6f; } .below { color: #c4836e; } .at { color: #4a4540; }
+
+    .diligence-note {
+      font-size: 0.875rem; color: #6b6560; line-height: 1.5; font-style: italic;
+    }
+
+    .gateway {
+      padding: 0.8rem 2rem;
+      border-top: 1px solid #2a2826;
+      display: flex; align-items: center; gap: 0.75rem;
+      width: 100%;
+    }
+    .gateway-label { font-size: 0.875rem; color: #8a8580; font-weight: 500; white-space: nowrap; }
+    .gateway-bar { flex: 1; height: 4px; background: #2a2826; border-radius: 2px; overflow: hidden; }
+    .gateway-fill { height: 100%; background: #4a4540; border-radius: 2px; width: 0%; transition: width 1s cubic-bezier(0.22,1,0.36,1); }
+    .gateway-pct { font-size: 0.875rem; color: #8a8580; font-variant-numeric: tabular-nums; }
+
+    /* ══════════════════════════════════════════
+       3. EVIDENCE DRILLDOWN
+       ══════════════════════════════════════════ */
+
+    /* ══════════════════════════════════════════
+       3. DEEP DIVE (replaces old evidence section)
+       ══════════════════════════════════════════ */
+
+    .evidence-section {
+      background: #1a1918;
+      border: 1px solid #2a2826;
+      border-radius: 1rem;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .deep-dive-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600; color: #e8e4df;
+      margin-bottom: 0.2rem;
+    }
+    .deep-dive-sub {
+      font-size: 0.875rem; color: #6b6560; margin-bottom: 0.75rem;
+    }
+    .deep-dive-thesis {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: #b0aca6;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      padding-left: 0.75rem;
+      border-left: 2px solid #3a3530;
+    }
+
+    .phase {
+      margin-bottom: 1.75rem;
+      padding-left: 1.25rem;
+      border-left: 3px solid #4a4540;
+    }
+    .phase:last-child { margin-bottom: 0.5rem; }
+
+    .phase-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+    .phase-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 600;
+    }
+    .phase-meta {
+      font-size: 0.875rem; color: #6b6560;
+    }
+
+    .phase-insight {
+      font-size: 0.8rem;
+      color: #8a8580;
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+
+    .moment {
+      margin-bottom: 0.85rem;
+      padding: 0.5rem 0.75rem;
+      background: #151413;
+      border-radius: 0.5rem;
+      border: 1px solid #1e1d1c;
+    }
+    .moment:last-child { margin-bottom: 0; }
+
+    .moment-context {
+      font-size: 0.875rem;
+      color: #5a5550;
+      font-style: italic;
+      margin-bottom: 0.25rem;
+    }
+
+    .moment-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #9a9590;
+      line-height: 1.5;
+    }
+
+    .moment-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.35rem;
+    }
+
+    .moment-pill {
+      font-size: 0.55rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.45rem;
+      border-radius: 0.25rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .moment-project {
+      font-size: 0.55rem;
+      font-weight: 400;
+      padding: 0.15rem 0.45rem;
+      border-radius: 0.25rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #6b6560;
+    }
+
+    .phase-projects {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin-top: 0.15rem;
+    }
+    .project-tag {
+      font-size: 0.6rem;
+      font-weight: 400;
+      padding: 0.1rem 0.4rem;
+      border-radius: 0.2rem;
+      background: rgba(255,255,255,0.04);
+      color: #7a7570;
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .growth-transition {
+      font-size: 0.75rem;
+      color: #5a5550;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #1e1d1c;
+      font-style: italic;
+    }
+    .growth-transition strong {
+      color: #8a8580;
+      font-weight: 400;
+    }
+
+    .evidence-empty {
+      font-size: 0.8rem; color: #4a4540;
+      font-style: italic;
+      padding: 0.5rem 0;
+    }
+
+    /* ══════════════════════════════════════════
+       4. GROWTH QUEST
+       ══════════════════════════════════════════ */
+
+    .quest {
+      background: #1a1918;
+      border: 1px solid #2a2826;
+      border-radius: 1rem;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .quest-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(160,128,64,0.6); margin-bottom: 0.5rem;
+    }
+    .quest-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600; color: #e8e4df; margin-bottom: 0.4rem;
+    }
+    .quest-text { font-size: 1rem; color: #8a8580; line-height: 1.6; }
+    .quest-edge {
+      margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #2a2826;
+      font-size: 0.875rem; color: #6b6560;
+    }
+    .quest-edge strong { color: #8a8580; font-weight: 500; }
+    .quest-evidence {
+      margin-top: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #6b6560;
+      border-left: 2px solid rgba(160,128,64,0.25);
+      padding-left: 0.75rem;
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════
+       5. STRENGTHS
+       ══════════════════════════════════════════ */
+
+    .strengths {
+      background: #1a1918;
+      border: 1px solid #2a2826;
+      border-radius: 1rem;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .strengths-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(160,128,64,0.6); margin-bottom: 0.5rem;
+    }
+    .strengths-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600; color: #e8e4df; margin-bottom: 0.75rem;
+    }
+
+    .strength-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(42,40,38,0.5);
+    }
+    .strength-item:last-child { border-bottom: none; }
+    .strength-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .strength-label { font-size: 1rem; color: #b0aca6; flex: 1; }
+    .strength-stat {
+      font-size: 0.875rem; font-weight: 500; color: #5a9e6f;
+      font-variant-numeric: tabular-nums; white-space: nowrap;
+    }
+
+    .strengths-empty {
+      font-size: 1rem; color: #4a4540;
+      font-style: italic;
+    }
+
+    /* ══════════════════════════════════════════
+       6. PROGRESSION / ROADMAP
+       ══════════════════════════════════════════ */
+
+    .progression {
+      background: #1a1918;
+      border: 1px solid #2a2826;
+      border-radius: 1rem;
+      padding: 1.5rem 2rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .progression-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(160,128,64,0.6); margin-bottom: 0.5rem;
+    }
+    .progression-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600; color: #e8e4df; margin-bottom: 0.5rem;
+    }
+
+    .graph-container { position: relative; width: 100%; }
+    .graph-svg { width: 100%; height: auto; }
+
+    .prog-card-preview {
+      max-width: 200px;
+      margin: 0 auto 1rem;
+      aspect-ratio: 7 / 10;
+      border-radius: 8px;
+      border: 2px solid #2a2520;
+      overflow: hidden;
+      position: relative;
+      background: #0e0d0b;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+      transition: border-color 0.3s;
+    }
+    .prog-card-preview img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: filter 0.4s;
+    }
+    .prog-card-preview.is-locked img {
+      filter: blur(8px) brightness(0.35) saturate(0.5);
+    }
+    .prog-card-preview .pcp-overlay {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 1rem;
+      background: linear-gradient(to top, rgba(14,13,11,0.85) 0%, rgba(14,13,11,0.3) 50%, rgba(14,13,11,0.6) 100%);
+    }
+    .prog-card-preview .pcp-numeral {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.5rem; color: rgba(160,128,64,0.5);
+      letter-spacing: 0.3em; margin-bottom: 0.25rem;
+    }
+    .prog-card-preview .pcp-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600; color: #e8d8b0;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      margin-bottom: 0.2rem;
+    }
+    .prog-card-preview .pcp-tag {
+      font-size: 0.75rem; color: #8a8580;
+    }
+    .prog-card-preview.is-locked .pcp-tag {
+      color: #4a4540;
+    }
+
+    .g-node { cursor: pointer; }
+    .g-node:hover { filter: brightness(1.15); }
+    .g-node-ring { fill: none; stroke-width: 1.5; opacity: 0.3; }
+    .g-node-fill { opacity: 0.08; }
+    .g-node-glyph { opacity: 0.12; }
+    .g-node-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; fill: #e8e4df; text-anchor: middle; font-weight: 600;
+    }
+    .g-node-sub {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px; fill: #6b6560; text-anchor: middle;
+    }
+
+    .g-node.is-current .g-node-ring { opacity: 0.7; stroke-width: 2.5; }
+    .g-node.is-current .g-node-fill { opacity: 0.18; }
+    .g-node.is-current .g-node-glyph { opacity: 0.25; }
+    .g-node.is-current .g-node-name { font-size: 18px; }
+
+    .g-node.is-dim .g-node-ring { opacity: 0.1; }
+    .g-node.is-dim .g-node-fill { opacity: 0.03; }
+    .g-node.is-dim .g-node-name { fill: #4a4540; }
+    .g-node.is-dim .g-node-sub { fill: #2a2826; }
+
+    .prog-detail {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #2a2826;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s;
+    }
+    .prog-detail.visible { max-height: 500px; opacity: 1; }
+
+    .prog-detail-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 600; color: #e8e4df; margin-bottom: 0.2rem;
+    }
+    .prog-detail-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1rem; color: #8a8580; margin-bottom: 0.6rem;
+    }
+    .prog-detail-desc {
+      font-size: 1rem; color: #6b6560; line-height: 1.6; margin-bottom: 0.6rem;
+    }
+    .prog-gap-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #4a4540; margin-bottom: 0.4rem;
+    }
+    .prog-gap-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
+    .prog-gap-axis { width: 100px; font-size: 0.875rem; color: #8a8580; text-align: right; flex-shrink: 0; }
+    .prog-gap-bar { flex: 1; height: 5px; background: #2a2826; border-radius: 3px; position: relative; }
+    .prog-gap-fill { height: 100%; border-radius: 3px; position: absolute; left: 0; top: 0; }
+    .prog-gap-threshold { position: absolute; top: -3px; height: 11px; width: 2px; border-radius: 1px; opacity: 0.5; }
+    .prog-gap-pct { width: 65px; font-size: 0.875rem; color: #8a8580; font-variant-numeric: tabular-nums; }
+    .prog-gap-ok { color: #5a9e6f; }
+    .prog-gap-need { color: #c4836e; }
+
+    /* ── Staged reveal ── */
+    .stage {
+      display: none;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    .stage.visible {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: stageIn 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes stageIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .stage-gate {
+      display: none;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .stage-gate.visible {
+      display: block;
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .stage-gate-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.8rem;
+      background: transparent;
+      border: 1px solid rgba(160,128,64,0.3);
+      border-radius: 2rem;
+      color: rgba(232,216,176,0.7);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .stage-gate-btn:hover {
+      border-color: rgba(160,128,64,0.6);
+      color: #e8d8b0;
+      background: rgba(160,128,64,0.06);
+    }
+    .stage-gate-btn .arrow {
+      transition: transform 0.3s;
+    }
+    .stage-gate-btn:hover .arrow {
+      transform: translateY(2px);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center; margin-top: 1rem;
+      opacity: 0; transition: opacity 0.6s 0.3s;
+    }
+    .stage.visible .footer { opacity: 1; }
+    .footer-text { font-size: 0.75rem; color: #4a4540; }
+    .footer-text a { color: #4a4540; text-decoration: none; }
+    .footer-text a:hover { color: #6b6560; }
+
+    @media (max-width: 480px) {
+      .page { padding: 1.5rem 1rem 3rem; }
+      .card { max-width: 100%; }
+      .card-name { font-size: 1.5rem; }
+      .evidence-section, .quest, .strengths, .progression { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .prog-card { flex: 0 0 140px; }
+      .phase { padding-left: 1rem; }
+      .moment { padding: 0.4rem 0.6rem; }
+      .axis-legend { gap: 1rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="mark">Skill Tree &middot; AI Fluency</div>
+
+    <div class="card-wrapper" id="card-wrapper">
+      <div class="card-inner">
+        <div class="card-back" id="card-back">
+          <div class="corner tl"></div><div class="corner tr"></div>
+          <div class="corner bl"></div><div class="corner br"></div>
+          <div class="card-back-pattern"></div>
+          <svg class="card-back-glyph"><use href="#glyph-polymath"/></svg>
+          <div class="card-back-cta">
+            <div class="card-back-text">Reveal Your Archetype</div>
+            <div class="card-back-sessions"></div>
+          </div>
+          <div class="card-back-btn">Tap to reveal</div>
+        </div>
+        <div class="card" id="character-card"></div>
+      </div>
+    </div>
+    <div class="archetype-explain" id="archetype-explain" style="text-align:center; font-size:0.75rem; color:#4a4540; margin:-1rem auto 1.5rem; max-width:390px; opacity:0; transition: opacity 0.6s 0.3s;"></div>
+
+    <!-- Gate 1 → Stage 2 -->
+    <div class="stage-gate" id="gate-deepdive">
+      <button class="stage-gate-btn" id="btn-deepdive">
+        Explore your skill radar <span class="arrow">&#8595;</span>
+      </button>
+    </div>
+
+    <!-- Stage 2: The Deep Dive -->
+    <div class="stage" id="stage-deepdive">
+      <div class="radar-section" id="radar-section">
+        <div class="radar-header">
+          <div class="radar-title">Skill Radar</div>
+          <div class="radar-sub">4 dimensions &middot; click to explore &middot; dashed = population avg</div>
+        </div>
+        <div class="radar-body">
+          <svg class="radar-svg" viewBox="0 0 600 600" id="radar-svg"></svg>
+        </div>
+        <div class="drilldown" id="drilldown"></div>
+        <div class="gateway" id="gateway"></div>
+      </div>
+
+      <div class="evidence-section" id="evidence"></div>
+      <div class="strengths" id="strengths"></div>
+    </div>
+
+    <!-- Gate 2 → Stage 3 -->
+    <div class="stage-gate" id="gate-growth">
+      <button class="stage-gate-btn" id="btn-growth">
+        See your growth path <span class="arrow">&#8595;</span>
+      </button>
+    </div>
+
+    <!-- Stage 3: Growth & Next Steps -->
+    <div class="stage" id="stage-growth">
+      <div class="quest" id="growth-quest"></div>
+      <div class="progression" id="progression">
+        <div class="progression-label">&#9670; Your Road</div>
+        <div class="progression-title">Growth path</div>
+        <div id="prog-card-slot"></div>
+        <div class="graph-container">
+          <svg class="graph-svg" id="prog-graph" viewBox="0 0 600 560"></svg>
+        </div>
+        <div class="prog-detail" id="prog-detail"></div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-text">
+          <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic AI Fluency Index</a>
+          &middot; <a href="https://aifluencyframework.org/">Dakan &amp; Feller</a>
+          &middot; <a href="https://github.com/robertnowell">Robert Nowell</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glyph defs -->
+    <svg style="display:none">
+      <defs>
+        <symbol id="glyph-catalyst" viewBox="0 0 200 200"><g stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><line x1="100" y1="20" x2="100" y2="180"/><line x1="20" y1="100" x2="180" y2="100"/><line x1="40" y1="40" x2="160" y2="160"/><line x1="160" y1="40" x2="40" y2="160"/><circle cx="100" cy="100" r="6" fill="currentColor" opacity="0.3"/></g></symbol>
+        <symbol id="glyph-compass" viewBox="0 0 200 200"><g stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="4" fill="currentColor" opacity="0.3"/><polygon points="100,30 108,90 100,80 92,90" fill="currentColor" opacity="0.15"/><line x1="100" y1="28" x2="100" y2="172" opacity="0.2"/><line x1="28" y1="100" x2="172" y2="100" opacity="0.2"/></g></symbol>
+        <symbol id="glyph-forgemaster" viewBox="0 0 200 200"><g stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M60,120 L60,90 Q60,70 80,70 L140,70 Q160,70 160,90 L160,120" fill="currentColor" opacity="0.06"/><line x1="50" y1="120" x2="170" y2="120"/><rect x="80" y="120" width="60" height="20" rx="2" fill="currentColor" opacity="0.06"/></g></symbol>
+        <symbol id="glyph-illuminator" viewBox="0 0 200 200"><g stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><polygon points="100,40 50,150 150,150" fill="currentColor" opacity="0.05"/><line x1="30" y1="100" x2="75" y2="100" opacity="0.4"/><line x1="130" y1="80" x2="175" y2="60" opacity="0.3"/></g></symbol>
+        <symbol id="glyph-architect" viewBox="0 0 200 200"><g stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"><rect x="40" y="40" width="120" height="120" rx="2"/><line x1="40" y1="80" x2="160" y2="80"/><line x1="40" y1="120" x2="160" y2="120"/><line x1="80" y1="40" x2="80" y2="160"/><line x1="120" y1="40" x2="120" y2="160"/><circle cx="80" cy="80" r="3" fill="currentColor" opacity="0.5"/></g></symbol>
+        <symbol id="glyph-conductor" viewBox="0 0 200 200"><g stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M20,100 Q45,40 70,100 Q95,160 120,100 Q145,40 170,100" opacity="0.4"/><path d="M20,100 Q45,60 70,100 Q95,140 120,100 Q145,60 170,100" opacity="0.2"/><circle cx="70" cy="100" r="3" fill="currentColor" opacity="0.3"/></g></symbol>
+        <symbol id="glyph-polymath" viewBox="0 0 200 200"><g stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="100" cy="72" r="35" fill="currentColor" opacity="0.04"/><circle cx="72" cy="120" r="35" fill="currentColor" opacity="0.04"/><circle cx="128" cy="120" r="35" fill="currentColor" opacity="0.04"/><circle cx="100" cy="100" r="8" fill="currentColor" opacity="0.1"/></g></symbol>
+      </defs>
+    </svg>
+
+  </div>
+
+  <script>
+    const PROFILE = __PROFILE_DATA__;
+    const ARCHETYPES = __ARCHETYPES_DATA__;
+    const NARRATIVE = __NARRATIVE_DATA__;
+    const NUMERALS = { catalyst:'I', compass:'II', forgemaster:'III', conductor:'IV', illuminator:'V', architect:'VI', polymath:'VII' };
+    const AXIS_COLORS = {
+      Description: '#cca67b', Discernment: '#7bcc96',
+      Diligence: '#9b8ec4', Delegation: '#7ba3cc'
+    };
+
+    // ── Mini radar for tarot card ─────────────────────────────────
+    function renderMiniRadar(descPct, discPct, delegPct, color) {
+      const cx = 70, cy = 70, r = 48;
+      function ptAt(angleDeg, pct) {
+        const rad = (angleDeg - 90) * Math.PI / 180;
+        const v = r * Math.max(pct / 100, 0.08);
+        return { x: cx + v * Math.cos(rad), y: cy + v * Math.sin(rad) };
+      }
+      const pts = [ptAt(0, descPct), ptAt(90, discPct), ptAt(180, 0), ptAt(270, delegPct)];
+      const userPoly = pts.map(p => `${p.x},${p.y}`).join(' ');
+      const grid = [ptAt(0,100), ptAt(90,100), ptAt(180,100), ptAt(270,100)];
+      const gridPoly = grid.map(p => `${p.x},${p.y}`).join(' ');
+
+      const labels = [
+        { angle: 0, label: 'Desc', pct: descPct, anchor: 'middle', dx: 0, dy: -6 },
+        { angle: 90, label: 'Disc', pct: discPct, anchor: 'start', dx: 4, dy: 4 },
+        { angle: 270, label: 'Deleg', pct: delegPct, anchor: 'end', dx: -4, dy: 4 },
+      ];
+      let labelsSvg = '';
+      for (const l of labels) {
+        const lp = ptAt(l.angle, 125);
+        labelsSvg += `<text x="${lp.x + l.dx}" y="${lp.y + l.dy}" text-anchor="${l.anchor}" font-family="'Cormorant Garamond', serif" font-size="11" fill="rgba(232,216,176,0.7)" font-weight="600">${l.label} ${l.pct}%</text>`;
+      }
+
+      return `<div style="display:flex;justify-content:center;margin:0.4rem 0;position:relative">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(14,13,11,0.7) 0%,rgba(14,13,11,0.4) 50%,transparent 75%);pointer-events:none"></div>
+        <svg viewBox="0 0 140 140" width="140" height="140" style="overflow:visible;position:relative">
+          <polygon points="${gridPoly}" fill="none" stroke="rgba(232,216,176,0.12)" stroke-width="0.75"/>
+          <line x1="${cx}" y1="${cy-r}" x2="${cx}" y2="${cy+r}" stroke="rgba(232,216,176,0.08)" stroke-width="0.5"/>
+          <line x1="${cx-r}" y1="${cy}" x2="${cx+r}" y2="${cy}" stroke="rgba(232,216,176,0.08)" stroke-width="0.5"/>
+          <polygon points="${userPoly}" fill="${color}" fill-opacity="0.35" stroke="rgba(232,216,176,0.7)" stroke-width="1.5"/>
+          <circle cx="${pts[0].x}" cy="${pts[0].y}" r="2.5" fill="rgba(232,216,176,0.8)"/>
+          <circle cx="${pts[1].x}" cy="${pts[1].y}" r="2.5" fill="rgba(232,216,176,0.8)"/>
+          <circle cx="${pts[3].x}" cy="${pts[3].y}" r="2.5" fill="rgba(232,216,176,0.8)"/>
+          ${labelsSvg}
+        </svg>
+      </div>`;
+    }
+
+    // ── Axis signatures ────────────────────────────────────────────
+    const AXIS_SIGS = {
+      catalyst: 'No axes above average',
+      compass: 'High Delegation',
+      forgemaster: 'High Description',
+      illuminator: 'High Discernment',
+      conductor: 'High Description + Delegation',
+      architect: 'High Discernment + Delegation',
+      polymath: 'High Description + Discernment',
+    };
+
+    // ── 1. Tarot Card ───────────────────────────────────────────────
+    function renderCard(p) {
+      const a = p.archetype || {};
+      const el = document.getElementById('character-card');
+      const key = a.key || 'catalyst';
+      el.setAttribute('data-archetype', key);
+
+      const url = a.hero_art?.url || '';
+      const pos = a.hero_art?.position || 'center center';
+      const descPct = Math.round((a.axis_scores?.description || 0) * 100);
+      const discPct = Math.round((a.axis_scores?.discernment || 0) * 100);
+      const delegPct = Math.round((a.axis_scores?.delegation || 0) * 100);
+      const sig = AXIS_SIGS[key] || '';
+
+      el.innerHTML = `
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="card-art">${url ? `<img src="${url}" alt="" style="object-position:${pos}">` : ''}</div>
+        <div class="card-top">
+          <div class="card-header-row">
+            <div class="card-user-name">${p.user_name || ''}</div>
+            <div class="card-brand">AI Fluency Card</div>
+          </div>
+          <div class="card-numeral">${NUMERALS[key] || ''}</div>
+          <div class="card-name">${a.name || 'Unknown'}</div>
+        </div>
+        <div class="card-bottom">
+          ${renderMiniRadar(descPct, discPct, delegPct, a.color || '#a08040')}
+          <div class="card-divider"></div>
+          <div class="card-tagline">${a.tagline || ''}</div>
+          <div class="card-sig">${sig}</div>
+        </div>
+      `;
+    }
+
+    // ── 2. Radar (4-axis diamond) ──────────────────────────────────
+    const AXES_ORDER = ['Description', 'Discernment', 'Diligence', 'Delegation'];
+    const AXIS_ANGLES = [0, 90, 180, 270];
+    const AXIS_DESCS = {
+      Description: 'How you shape output',
+      Discernment: 'How you assess reasoning',
+      Diligence: 'Ethics, transparency & safety',
+      Delegation: 'How you set up collaboration'
+    };
+    // Axes already use the 4D framework names directly
+
+    const CX = 300, CY = 300, R = 150;
+    const MIN_DISPLAY = 0.08;
+    let selectedAxis = null, hoveredAxis = null;
+
+    function polarToCartesian(cx, cy, radius, angleDeg) {
+      const rad = (angleDeg - 90) * Math.PI / 180;
+      return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) };
+    }
+
+    function quadPoints(values) {
+      return values.map((v, i) => {
+        const p = polarToCartesian(CX, CY, R * Math.max(v, MIN_DISPLAY), AXIS_ANGLES[i]);
+        return `${p.x},${p.y}`;
+      }).join(' ');
+    }
+
+    function sectorPath(startAngle, endAngle) {
+      const r = R + 15;
+      const p1 = polarToCartesian(CX, CY, r, startAngle);
+      const p2 = polarToCartesian(CX, CY, r, endAngle);
+      return `M${CX},${CY} L${p1.x},${p1.y} A${r},${r} 0 0 1 ${p2.x},${p2.y} Z`;
+    }
+
+    function renderRadar(p) {
+      const svg = document.getElementById('radar-svg');
+      const archetypeColor = p.archetype?.color || '#a08040';
+
+      const scores = AXES_ORDER.map(name => name === 'Diligence' ? 0 : (p.branches?.[name]?.score || 0));
+      const baselines = AXES_ORDER.map(name => name === 'Diligence' ? 0 : (p.branches?.[name]?.baseline || 0));
+
+      let html = `
+        <defs>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <radialGradient id="user-gradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="${archetypeColor}" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="${archetypeColor}" stop-opacity="0.08"/>
+          </radialGradient>
+        </defs>`;
+
+      // Grid diamonds
+      html += '<g class="grid-layer">';
+      [0.33, 0.66, 1.0].forEach(pct => {
+        html += `<polygon points="${quadPoints([pct,pct,pct,pct])}" fill="none" stroke="rgba(160,128,64,0.10)" stroke-width="1"/>`;
+      });
+
+      // Spokes
+      AXIS_ANGLES.forEach((angle, i) => {
+        const pt = polarToCartesian(CX, CY, R, angle);
+        const isDiligence = AXES_ORDER[i] === 'Diligence';
+        html += `<line x1="${CX}" y1="${CY}" x2="${pt.x}" y2="${pt.y}"
+          stroke="${isDiligence ? 'rgba(155,142,196,0.08)' : 'rgba(160,128,64,0.08)'}"
+          stroke-width="1" stroke-dasharray="${isDiligence ? '2 4' : '3 5'}"/>`;
+      });
+      html += '</g>';
+
+      // Baseline polygon
+      html += `<polygon points="${quadPoints(baselines)}" fill="none" stroke="rgba(232,228,223,0.30)" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+
+      // User polygon
+      html += `<polygon id="user-poly" points="${quadPoints([0,0,0,0])}" fill="url(#user-gradient)" stroke="${archetypeColor}" stroke-width="2" filter="url(#glow)"/>`;
+
+      // Vertex dots
+      AXES_ORDER.forEach((name, i) => {
+        const isDiligence = name === 'Diligence';
+        html += `<circle id="vertex-${i}" cx="${CX}" cy="${CY}" r="${isDiligence ? 3 : 4}"
+          fill="${AXIS_COLORS[name]}" opacity="${isDiligence ? 0.3 : 0.8}"
+          ${isDiligence ? 'stroke="'+AXIS_COLORS[name]+'" stroke-width="1" stroke-dasharray="2 2" fill-opacity="0.15"' : ''}/>`;
+      });
+
+      // Labels — clickable, trigger sector selection
+      html += '<g class="label-layer">';
+      AXES_ORDER.forEach((name, i) => {
+        const angle = AXIS_ANGLES[i];
+        const labelR = R + 38;
+        const pt = polarToCartesian(CX, CY, labelR, angle);
+        const isDiligence = name === 'Diligence';
+        const pctText = isDiligence ? '\u2014' : Math.round(scores[i] * 100) + '%';
+        const color = AXIS_COLORS[name];
+        let anchor = 'middle', dx = 0;
+        if (angle === 90) { anchor = 'start'; dx = 4; }
+        if (angle === 270) { anchor = 'end'; dx = -4; }
+
+        html += `<g class="axis-label-hit" data-axis="${name}" style="cursor:pointer">`;
+        if (angle === 0) {
+          html += `<text x="${pt.x}" y="${pt.y - 10}" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="16" fill="#e8e4df" font-weight="500">${pctText}</text>`;
+          html += `<text x="${pt.x}" y="${pt.y + 6}" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="17" fill="${color}" font-weight="600">${name}</text>`;
+        } else if (angle === 180) {
+          html += `<text x="${pt.x}" y="${pt.y + 2}" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="17" fill="${color}" font-weight="600" ${isDiligence ? 'opacity="0.5"' : ''}>${name}</text>`;
+          html += `<text x="${pt.x}" y="${pt.y + 20}" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="16" fill="${isDiligence ? '#6b6560' : '#e8e4df'}" font-weight="${isDiligence ? 300 : 500}">${pctText}</text>`;
+          if (isDiligence) html += `<text x="${pt.x}" y="${pt.y + 38}" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" fill="#6b6560" font-weight="300">not observable in-chat</text>`;
+        } else {
+          html += `<text x="${pt.x + dx}" y="${pt.y - 6}" text-anchor="${anchor}" font-family="'Cormorant Garamond', serif" font-size="17" fill="${color}" font-weight="600">${name}</text>`;
+          html += `<text x="${pt.x + dx}" y="${pt.y + 12}" text-anchor="${anchor}" font-family="'Outfit', sans-serif" font-size="16" fill="#e8e4df" font-weight="500">${pctText}</text>`;
+        }
+        html += `</g>`;
+      });
+
+      html += '</g>'; // close labels group
+
+      // Click/hover sectors
+      html += '<g class="sectors-layer">';
+      AXES_ORDER.forEach((name, i) => {
+        html += `<path class="sector-hit" data-axis="${name}" data-index="${i}" d="${sectorPath(AXIS_ANGLES[i]-45, AXIS_ANGLES[i]+45)}"/>`;
+      });
+      html += '</g>';
+
+      svg.innerHTML = html;
+
+      // Animate polygon
+      const userPoly = document.getElementById('user-poly');
+      const toVals = scores.map(v => Math.max(v, MIN_DISPLAY));
+      const animStart = performance.now();
+      function tick(now) {
+        const t = Math.min((now - animStart) / 900, 1);
+        const e = 1 - Math.pow(1 - t, 3);
+        const cur = toVals.map(v => v * e);
+        userPoly.setAttribute('points', quadPoints(cur));
+        cur.forEach((v, i) => {
+          const pt = polarToCartesian(CX, CY, R * v, AXIS_ANGLES[i]);
+          const dot = document.getElementById(`vertex-${i}`);
+          dot.setAttribute('cx', pt.x);
+          dot.setAttribute('cy', pt.y);
+        });
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(() => requestAnimationFrame(tick));
+
+      // Drilldown interaction
+      const drilldown = document.getElementById('drilldown');
+      document.querySelectorAll('.sector-hit').forEach(sector => {
+        sector.addEventListener('mouseenter', () => {
+          const ax = sector.dataset.axis;
+          hoveredAxis = ax;
+          if (selectedAxis !== ax) showDrilldown(ax, p, true);
+        });
+        sector.addEventListener('mouseleave', () => {
+          hoveredAxis = null;
+          if (selectedAxis) showDrilldown(selectedAxis, p, false);
+          else { drilldown.classList.remove('visible'); drilldown.classList.remove('preview'); }
+        });
+        sector.addEventListener('click', () => {
+          const ax = sector.dataset.axis;
+          if (selectedAxis === ax) {
+            selectedAxis = null;
+            document.querySelectorAll('.sector-hit').forEach(s => s.classList.remove('selected'));
+            drilldown.classList.remove('visible');
+            drilldown.classList.remove('preview');
+          } else {
+            selectedAxis = ax;
+            document.querySelectorAll('.sector-hit').forEach(s => s.classList.remove('selected'));
+            sector.classList.add('selected');
+            showDrilldown(ax, p, false);
+          }
+        });
+      });
+
+      // Label click handlers (same behavior as sector click)
+      svg.querySelectorAll('.axis-label-hit').forEach(label => {
+        label.addEventListener('click', () => {
+          const ax = label.dataset.axis;
+          if (selectedAxis === ax) {
+            selectedAxis = null;
+            document.querySelectorAll('.sector-hit').forEach(s => s.classList.remove('selected'));
+            drilldown.classList.remove('visible');
+            drilldown.classList.remove('preview');
+          } else {
+            selectedAxis = ax;
+            document.querySelectorAll('.sector-hit').forEach(s => s.classList.remove('selected'));
+            const matchingSector = svg.querySelector(`.sector-hit[data-axis="${ax}"]`);
+            if (matchingSector) matchingSector.classList.add('selected');
+            showDrilldown(ax, p, false);
+          }
+        });
+      });
+
+      // Gateway
+      const gw = document.getElementById('gateway');
+      const iterPct = Math.round((p.behaviors?.iterative_improvement?.rate || 0) * 100);
+      gw.innerHTML = `
+        <div class="gateway-label">Iteration</div>
+        <div class="gateway-bar"><div class="gateway-fill" data-width="${iterPct}"></div></div>
+        <div class="gateway-pct">${iterPct}%</div>
+      `;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        gw.querySelector('.gateway-fill').style.width = iterPct + '%';
+      }));
+    }
+
+    function showDrilldown(axisName, p, isPreview) {
+      const drilldown = document.getElementById('drilldown');
+      const color = AXIS_COLORS[axisName];
+      const isDiligence = axisName === 'Diligence';
+
+      let html = `<div class="drilldown-header">
+        <div class="drilldown-dot" style="background:${color}"></div>
+        <div class="drilldown-name">${axisName}</div>
+        <span class="drilldown-desc">\u2014 ${AXIS_DESCS[axisName]}</span>
+      </div>`;
+
+      if (isDiligence) {
+        ['Transparent about AI\u2019s role', 'Considers sharing consequences', 'Deploys AI responsibly'].forEach(label => {
+          html += `<div class="behavior-row">
+            <div class="behavior-name" style="color:#4a4540">${label}</div>
+            <div class="bar-track"><div class="bar-fill" style="background:${color}; width:0%; opacity:0.15"></div></div>
+            <div class="behavior-pct" style="color:#3a3835">\u2014</div>
+            <div class="behavior-cmp at">&nbsp;</div>
+          </div>`;
+        });
+        html += `<div class="diligence-note" style="margin-top:0.5rem">These behaviors happen outside the conversation and cannot be measured from chat data.</div>`;
+      } else {
+        const branch = p.branches?.[axisName];
+        if (branch) {
+          (branch.behaviors || []).forEach(key => {
+            const b = p.behaviors[key];
+            if (!b) return;
+            const pct = Math.round(b.rate * 100);
+            const bl = Math.round(b.baseline * 100);
+            const c = pct > bl ? 'above' : pct < bl ? 'below' : 'at';
+            const arrow = pct > bl ? '\u2191' : pct < bl ? '\u2193' : '=';
+            html += `<div class="behavior-row">
+              <div class="behavior-name">${b.label}</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="background:${color}; width:${pct}%"></div>
+                <div class="bar-baseline" style="left:${bl}%"></div>
+              </div>
+              <div class="behavior-pct">${pct}%</div>
+              <div class="behavior-cmp ${c}">${arrow}</div>
+            </div>`;
+          });
+        }
+      }
+
+      drilldown.innerHTML = html;
+      drilldown.classList.add('visible');
+      if (isPreview) drilldown.classList.add('preview');
+      else drilldown.classList.remove('preview');
+    }
+
+    // ── 3. Deep Dive ─────────────────────────────────────────────────
+    function renderDeepDive(p, narrative) {
+      const el = document.getElementById('evidence');
+      const timeline = p.timeline;
+
+      // No timeline or evidence — show waiting state
+      if (!timeline || !timeline.phases || timeline.phases.length === 0) {
+        let hasAny = false;
+        for (const b of Object.values(p.behaviors || {})) {
+          if (b.evidence && b.evidence.length > 0) { hasAny = true; break; }
+        }
+        if (!hasAny) {
+          el.innerHTML = `
+            <div class="deep-dive-title">Your Story</div>
+            <div class="evidence-empty">Keep using Claude \u2014 patterns will emerge and we'll show you the moments that shaped your profile.</div>
+          `;
+          return;
+        }
+      }
+
+      const phases = timeline?.phases || [];
+      const n = narrative || {};
+
+      function fmtDate(iso) {
+        if (!iso) return '';
+        const d = new Date(iso);
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      }
+
+      // Thesis
+      const thesis = n.thesis || '';
+      const thesisHtml = thesis
+        ? `<div class="deep-dive-thesis">${thesis}</div>`
+        : '';
+
+      // Build phases
+      let phasesHtml = '';
+      for (let i = 0; i < phases.length; i++) {
+        const phase = phases[i];
+        const color = phase.axisColor || AXIS_COLORS[phase.dominantAxis] || '#8a8580';
+
+        const start = fmtDate(phase.startDate);
+        const end = fmtDate(phase.endDate);
+        const dateStr = start === end ? start : `${start}\u2013${end}`;
+
+        const insight = n.phaseInsights?.[String(i)] || n.phaseInsights?.[i] || '';
+        const insightHtml = insight
+          ? `<div class="phase-insight">${insight}</div>`
+          : '';
+
+        let momentsHtml = '';
+        for (const m of (phase.keyMoments || [])) {
+          const projectPill = m.project
+            ? `<span class="moment-project">${m.project}</span>`
+            : '';
+          momentsHtml += `
+            <div class="moment">
+              <div class="moment-context">${m.sessionSummary || ''}</div>
+              <div class="moment-quote">\u201c${m.quote}\u201d</div>
+              <div class="moment-footer">
+                ${projectPill}
+                <span class="moment-pill" style="color:${color};border-color:${color}30">${m.behaviorLabel || ''}</span>
+              </div>
+            </div>`;
+        }
+
+        // Prefer narrative-provided phase name, fall back to auto-generated
+        const phaseName = n.phaseNames?.[String(i)] || n.phaseNames?.[i] || phase.name;
+
+        // Show project tags if there are multiple projects or if name doesn't already show the project
+        const projects = phase.projects || [];
+        const projectsHtml = projects.length > 0
+          ? `<div class="phase-projects">${projects.map(p => `<span class="project-tag">${p}</span>`).join('')}</div>`
+          : '';
+
+        phasesHtml += `
+          <div class="phase" style="border-left-color:${color}">
+            <div class="phase-header">
+              <div class="phase-name" style="color:${color}">${phaseName}</div>
+              <div class="phase-meta">${dateStr} \u00b7 ${phase.sessionCount} session${phase.sessionCount !== 1 ? 's' : ''}</div>
+              ${projectsHtml}
+            </div>
+            ${insightHtml}
+            ${momentsHtml}
+          </div>`;
+      }
+
+      // Growth transition
+      const ge = p.growth_edge || {};
+      const gePct = Math.round((ge.rate || 0) * 100);
+      const geBasePct = Math.round((ge.baseline || 0) * 100);
+      const growthHtml = ge.label
+        ? `<div class="growth-transition">Your frontier: <strong>${ge.label}</strong> \u2014 ${gePct}% vs ${geBasePct}% population average</div>`
+        : '';
+
+      el.innerHTML = `
+        <div class="deep-dive-title">Your Story</div>
+        <div class="deep-dive-sub">How your AI collaboration style emerged across ${p.total_sessions || 0} sessions</div>
+        ${thesisHtml}
+        ${phasesHtml}
+        ${growthHtml}
+      `;
+    }
+
+    // ── 4. Growth Quest ─────────────────────────────────────────────
+    function renderQuest(p) {
+      const el = document.getElementById('growth-quest');
+      const a = p.archetype || {};
+      const ge = p.growth_edge || {};
+
+      // Check for evidence on the growth edge behavior
+      let evidenceHtml = '';
+      const geBehavior = p.behaviors?.[ge.behavior];
+      if (geBehavior?.evidence?.[0]?.text) {
+        evidenceHtml = `<div class="quest-evidence">\u201c${geBehavior.evidence[0].text}\u201d</div>`;
+      }
+
+      el.innerHTML = `
+        <div class="quest-label">\u25C6 Next Unlock</div>
+        <div class="quest-title">${a.growth_unlock || ''}</div>
+        <div class="quest-text">${a.growth_quest || ''}</div>
+        <div class="quest-edge">
+          <strong>Growth edge:</strong> ${ge.label || ''} \u2014
+          ${Math.round((ge.rate||0)*100)}% vs ${Math.round((ge.baseline||0)*100)}% avg
+          ${evidenceHtml}
+        </div>
+      `;
+    }
+
+    // ── 5. Strengths ────────────────────────────────────────────────
+    function renderStrengths(p) {
+      const el = document.getElementById('strengths');
+      const above = [];
+
+      for (const [key, b] of Object.entries(p.behaviors || {})) {
+        if (b.above_baseline && key !== 'iterative_improvement') {
+          let color = '#a08040';
+          for (const [axisName, branch] of Object.entries(p.branches || {})) {
+            if (branch.behaviors.includes(key)) { color = AXIS_COLORS[axisName]; break; }
+          }
+          above.push({ ...b, key, color });
+        }
+      }
+
+      above.sort((a, b) => (b.rate - b.baseline) - (a.rate - a.baseline));
+
+      if (above.length === 0) {
+        el.innerHTML = `
+          <div class="strengths-label">\u25C6 Your Strengths</div>
+          <div class="strengths-empty">Your profile is still developing. Keep using Claude and patterns will emerge.</div>
+        `;
+        return;
+      }
+
+      let listHtml = above.map(b => {
+        const pct = Math.round(b.rate * 100);
+        const bl = Math.round(b.baseline * 100);
+        return `<div class="strength-item">
+          <div class="strength-dot" style="background:${b.color}"></div>
+          <div class="strength-label">${b.label}</div>
+          <div class="strength-stat">+${pct - bl}pp above avg</div>
+        </div>`;
+      }).join('');
+
+      el.innerHTML = `
+        <div class="strengths-label">\u25C6 Your Strengths</div>
+        <div class="strengths-title">Where you exceed the population average</div>
+        ${listHtml}
+      `;
+    }
+
+    // ── 6. Progression Graph ────────────────────────────────────────
+    const GRAPH_NODES = {
+      catalyst:    { x: 100, y: 470 },
+      compass:     { x: 145, y: 335 },
+      forgemaster: { x: 390, y: 335 },
+      illuminator: { x: 500, y: 470 },
+      conductor:   { x: 210, y: 195 },
+      architect:   { x: 415, y: 195 },
+      polymath:    { x: 300, y: 65 },
+    };
+    const GRAPH_EDGES = [
+      ['catalyst','compass'], ['compass','conductor'], ['forgemaster','conductor'],
+      ['illuminator','architect'], ['conductor','polymath'], ['architect','polymath'],
+    ];
+    const GRAPH_R = 36;
+    const AXIS_BASELINES = { Description: 0.28, Discernment: 0.15, Delegation: 0.30 };
+    const ARCHETYPE_REQUIRES = {
+      catalyst:{desc:false,disc:false,deleg:false}, compass:{desc:false,disc:false,deleg:true},
+      forgemaster:{desc:true,disc:false,deleg:false}, illuminator:{desc:false,disc:true,deleg:false},
+      conductor:{desc:true,disc:false,deleg:true}, architect:{desc:false,disc:true,deleg:true},
+      polymath:{desc:true,disc:true,deleg:false},
+    };
+
+    function getGraphPath(fromKey, toKey) {
+      const a = GRAPH_NODES[fromKey], b = GRAPH_NODES[toKey];
+      const dx = b.x - a.x, dy = b.y - a.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const sx = a.x + (dx/dist)*GRAPH_R, sy = a.y + (dy/dist)*GRAPH_R;
+      const ex = b.x - (dx/dist)*(GRAPH_R+6), ey = b.y - (dy/dist)*(GRAPH_R+6);
+      const mx = (sx+ex)/2, my = (sy+ey)/2 - Math.abs(dx)*0.08;
+      return `M${sx},${sy} Q${mx},${my} ${ex},${ey}`;
+    }
+
+    function getFullPath(key) {
+      const path = [key];
+      let cur = key;
+      while (ARCHETYPES[cur]?.target_archetype) { cur = ARCHETYPES[cur].target_archetype; path.push(cur); }
+      return path;
+    }
+
+    let progSelectedNode = null;
+
+    function renderProgGraph(p, highlightKey) {
+      const svg = document.getElementById('prog-graph');
+      const currentKey = p.archetype?.key;
+
+      const activePath = getFullPath(highlightKey || currentKey);
+      const activeEdgeSet = new Set();
+      for (let i = 0; i < activePath.length - 1; i++) activeEdgeSet.add(activePath[i]+'->'+activePath[i+1]);
+
+      let html = `<defs>
+        <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#4a4540"/></marker>
+        <marker id="arr-active" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#8a8580"/></marker>
+        <filter id="art-blur"><feGaussianBlur stdDeviation="4"/></filter>
+      </defs>`;
+
+      // Edges
+      for (const [from, to] of GRAPH_EDGES) {
+        const d = getGraphPath(from, to);
+        const isActive = activeEdgeSet.has(from+'->'+to);
+        const isDim = !isActive;
+        if (isActive) {
+          html += `<path d="${d}" fill="none" stroke="${ARCHETYPES[to]?.color||'#4a4540'}" stroke-width="6" opacity="0.15" filter="blur(4px)"/>`;
+        }
+        html += `<path d="${d}" fill="none" stroke="${isActive ? '#6b6560' : '#2a2826'}" stroke-width="${isActive ? 2.5 : 1.5}" marker-end="url(#${isActive ? 'arr-active' : 'arr'})" ${isDim ? 'opacity="0.35"' : ''}/>`;
+        if (isActive) {
+          html += `<circle r="2.5" fill="${ARCHETYPES[to]?.color||'#8a8580'}" opacity="0.6"><animateMotion dur="2.5s" repeatCount="indefinite" path="${d}"/></circle>`;
+        }
+      }
+
+      // Nodes
+      for (const [key, pos] of Object.entries(GRAPH_NODES)) {
+        const arch = ARCHETYPES[key];
+        if (!arch) continue;
+        const isCurrent = key === currentKey;
+        const isSelected = key === highlightKey;
+        const isOnPath = activePath.includes(key);
+        const isDim = !isOnPath;
+        const color = arch.color || '#6b6560';
+        const cls = `g-node ${isCurrent ? 'is-current' : ''} ${isDim ? 'is-dim' : ''} ${isSelected ? 'is-selected' : ''}`;
+        const artUrl = arch.hero_art?.url || '';
+
+        html += `<clipPath id="clip-${key}"><circle cx="${pos.x}" cy="${pos.y}" r="${GRAPH_R - 2}"/></clipPath>`;
+        html += `<g class="${cls}" data-key="${key}">`;
+
+        // Glow for current or selected
+        if (isCurrent || isSelected) html += `<circle cx="${pos.x}" cy="${pos.y}" r="${GRAPH_R + 12}" fill="${color}" opacity="${isCurrent ? 0.08 : 0.05}" filter="blur(10px)"/>`;
+
+        // Art
+        if (artUrl) {
+          const showClear = isCurrent || isSelected;
+          html += `<image href="${artUrl}" x="${pos.x - GRAPH_R}" y="${pos.y - GRAPH_R}" width="${GRAPH_R*2}" height="${GRAPH_R*2}" clip-path="url(#clip-${key})" preserveAspectRatio="xMidYMid slice" ${showClear ? 'opacity="0.7"' : 'filter="url(#art-blur)" opacity="0.3"'}/>`;
+        } else {
+          html += `<circle cx="${pos.x}" cy="${pos.y}" r="${GRAPH_R}" fill="${color}" class="g-node-fill"/>`;
+        }
+
+        // Ring — thicker for selected
+        const ringWidth = isSelected ? 2.5 : isCurrent ? 2.5 : 1.5;
+        const ringOpacity = isSelected ? 0.7 : isCurrent ? 0.7 : 0.3;
+        html += `<circle cx="${pos.x}" cy="${pos.y}" r="${GRAPH_R}" stroke="${color}" stroke-width="${ringWidth}" stroke-opacity="${ringOpacity}" fill="none"/>`;
+
+        if (!isCurrent && !isSelected) html += `<use href="#glyph-${key}" x="${pos.x-18}" y="${pos.y-18}" width="36" height="36" color="${color}" class="g-node-glyph"/>`;
+
+        html += `<text x="${pos.x}" y="${pos.y + GRAPH_R + 22}" class="g-node-name">${arch.name}</text>`;
+        const isTarget = ARCHETYPES[currentKey]?.target_archetype === key;
+        const sub = isCurrent ? 'You are here' : isTarget ? 'Your next unlock' : '';
+        if (sub) html += `<text x="${pos.x}" y="${pos.y + GRAPH_R + 36}" class="g-node-sub" fill="${isCurrent ? '#8a8580' : '#6b6560'}">${sub}</text>`;
+        html += `</g>`;
+      }
+
+      svg.innerHTML = html;
+
+      // Re-attach click handlers
+      svg.querySelectorAll('.g-node').forEach(node => {
+        node.addEventListener('click', () => {
+          const key = node.dataset.key;
+          const detail = document.getElementById('prog-detail');
+          const scores = {
+            Description: p.branches?.Description?.score || 0,
+            Discernment: p.branches?.Discernment?.score || 0,
+            Delegation: p.branches?.Delegation?.score || 0,
+          };
+
+          const slot = document.getElementById('prog-card-slot');
+
+          if (progSelectedNode === key) {
+            // Deselect — go back to current archetype's path
+            progSelectedNode = null;
+            renderProgGraph(p, null);
+            slot.innerHTML = renderProgCardPreview(p.archetype, currentKey, true);
+            detail.innerHTML = renderCurrentDetail(p);
+            detail.classList.add('visible');
+            return;
+          }
+
+          progSelectedNode = key;
+          // Re-render graph with this node's path highlighted
+          renderProgGraph(p, key);
+
+          // Update card preview — show selected archetype (obfuscated if not yours)
+          const selectedArch = ARCHETYPES[key];
+          if (selectedArch) {
+            slot.innerHTML = renderProgCardPreview(selectedArch, key, key === currentKey);
+          }
+
+          if (key === currentKey) {
+            detail.innerHTML = renderCurrentDetail(p);
+          } else {
+            detail.innerHTML = renderTargetDetail(selectedArch, key, ARCHETYPE_REQUIRES[key], scores, p);
+          }
+          detail.classList.add('visible');
+        });
+      });
+    }
+
+    function renderProgCardPreview(arch, key, isCurrent) {
+      const url = arch.hero_art?.url || '';
+      const pos = arch.hero_art?.position || 'center center';
+      const locked = !isCurrent ? 'is-locked' : '';
+      return `<div class="prog-card-preview ${locked}">
+        ${url ? `<img src="${url}" alt="" style="object-position:${pos}">` : ''}
+        <div class="pcp-overlay">
+          <div class="pcp-numeral">${NUMERALS[key] || ''}</div>
+          <div class="pcp-name">${arch.name}</div>
+          <div class="pcp-tag">${isCurrent ? 'Your archetype' : (arch.tagline || '')}</div>
+        </div>
+      </div>`;
+    }
+
+    function renderProgression(p) {
+      const currentKey = p.archetype?.key;
+      if (!currentKey || !ARCHETYPES) return;
+
+      // Show tarot card preview for current archetype
+      const slot = document.getElementById('prog-card-slot');
+      slot.innerHTML = renderProgCardPreview(p.archetype, currentKey, true);
+
+      // Initial render with current archetype's path
+      renderProgGraph(p, null);
+
+      // Auto-show current archetype detail
+      const detail = document.getElementById('prog-detail');
+      detail.innerHTML = renderCurrentDetail(p);
+      detail.classList.add('visible');
+    }
+
+    function renderCurrentDetail(p) {
+      const a = p.archetype;
+      let gapsHtml = '';
+      for (const [full, bl] of Object.entries(AXIS_BASELINES)) {
+        const score = p.branches?.[full]?.score || 0;
+        const pct = Math.round(score*100), blPct = Math.round(bl*100);
+        const color = AXIS_COLORS[full];
+        gapsHtml += `<div class="prog-gap-row"><div class="prog-gap-axis">${full}</div><div class="prog-gap-bar"><div class="prog-gap-fill" style="width:${pct}%;background:${color};border-radius:3px"></div><div class="prog-gap-threshold" style="left:${blPct}%;background:${color}"></div></div><div class="prog-gap-pct ${score>bl?'prog-gap-ok':''}">${pct}%</div></div>`;
+      }
+      return `<div class="prog-detail-name">${a.name}</div><div class="prog-detail-tagline">${a.tagline}</div><div class="prog-detail-desc">${a.description}</div><div class="prog-gap-label">Your current axes</div>${gapsHtml}`;
+    }
+
+    function renderTargetDetail(arch, key, reqs, scores, p) {
+      const axes = [['desc','Description'],['disc','Discernment'],['deleg','Delegation']];
+      let gapsHtml = '', behaviorsHtml = '';
+      for (const [short, full] of axes) {
+        if (!reqs[short]) continue;
+        const score = scores[full]||0, bl = AXIS_BASELINES[full];
+        const pct = Math.round(score*100), blPct = Math.round(bl*100), met = score > bl;
+        const color = AXIS_COLORS[full];
+        gapsHtml += `<div class="prog-gap-row"><div class="prog-gap-axis">${full}</div><div class="prog-gap-bar"><div class="prog-gap-fill" style="width:${pct}%;background:${color};border-radius:3px"></div><div class="prog-gap-threshold" style="left:${blPct}%;background:${color}"></div></div><div class="prog-gap-pct ${met?'prog-gap-ok':'prog-gap-need'}">${met?pct+'% \u2713':pct+'% \u2192 '+blPct+'%'}</div></div>`;
+        if (!met) {
+          const bh = (p.branches?.[full]?.behaviors||[]).map(k=>{const b=p.behaviors[k];if(!b)return'';const g=Math.round(b.baseline*100)-Math.round(b.rate*100);return g>0?`<span style="color:#b0aca6">${b.label}</span> <span style="color:#c4836e">(+${g}pp)</span>`:'';}).filter(Boolean);
+          if (bh.length) behaviorsHtml += `<div style="font-size:0.7rem;color:#6b6560;margin-top:0.3rem">Grow: ${bh.join(' \u00b7 ')}</div>`;
+        }
+      }
+      // Rewrite "you" to "they" for archetypes that aren't yours
+      const desc3p = (arch.description||'').replace(/\bYou\b/g,'They').replace(/\byou\b/g,'they').replace(/\byour\b/g,'their').replace(/\bYour\b/g,'Their');
+      const tag3p = (arch.tagline||'').replace(/\bYou\b/g,'They').replace(/\byou\b/g,'they').replace(/\byour\b/g,'their');
+      return `<div class="prog-detail-name" style="color:${arch.color||'#e8e4df'}">${arch.name}</div><div class="prog-detail-tagline">${tag3p}</div><div class="prog-detail-desc">${desc3p}</div><div class="prog-gap-label">What it takes</div>${gapsHtml}${behaviorsHtml}`;
+    }
+
+    // ── Card flip reveal ────────────────────────────────────────────
+    function setupCardReveal(p) {
+      const wrapper = document.getElementById('card-wrapper');
+      const back = document.getElementById('card-back');
+      const key = p.archetype?.key || 'polymath';
+
+      // Set the glyph to match archetype
+      back.querySelector('.card-back-glyph use').setAttribute('href', `#glyph-${key}`);
+
+      // Show session count
+      const sessionsEl = back.querySelector('.card-back-sessions');
+      sessionsEl.textContent = `${p.total_sessions} sessions analyzed`;
+
+      // Click to reveal
+      wrapper.addEventListener('click', function reveal() {
+        wrapper.classList.add('revealed');
+        wrapper.removeEventListener('click', reveal);
+
+        // After reveal, clicking the card opens stage 2
+        wrapper.addEventListener('click', () => {
+          const btn = document.getElementById('btn-deepdive');
+          if (btn) btn.click();
+        });
+
+        // Show gate CTA after flip completes
+        setTimeout(() => {
+          document.getElementById('gate-deepdive').classList.add('visible');
+        }, 1200);
+
+        // Show archetype explanation after flip completes
+        setTimeout(() => {
+          const explain = document.getElementById('archetype-explain');
+          const a = p.archetype;
+          const scores = a?.axis_scores || {};
+
+          // Build explanation: which axes are above baseline
+          const aboveAxes = [];
+          const belowAxes = [];
+          for (const [name, branch] of Object.entries(p.branches || {})) {
+            if (branch.above_baseline) aboveAxes.push(name);
+            else belowAxes.push(name);
+          }
+
+          let text = '';
+          if (aboveAxes.length > 0) {
+            text = `High ${aboveAxes.join(' + High ')}`;
+          }
+          if (belowAxes.length > 0 && belowAxes.length <= 2) {
+            text += ` \u2192 ${a.name}. ${belowAxes[0]} is your growth frontier.`;
+          } else {
+            text += ` \u2192 ${a.name}.`;
+          }
+          explain.textContent = text;
+          explain.style.opacity = '1';
+        }, 900);
+      });
+    }
+
+    // ── Stage gates ───────────────────────────────────────────────────
+    function revealStage(stageId, gateId) {
+      const stage = document.getElementById(stageId);
+      stage.classList.add('visible');
+      setTimeout(() => {
+        stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+      // Show the next gate after this stage is visible
+      if (gateId) {
+        setTimeout(() => {
+          document.getElementById(gateId).classList.add('visible');
+        }, 800);
+      }
+    }
+
+    document.getElementById('btn-deepdive').addEventListener('click', () => {
+      revealStage('stage-deepdive', 'gate-growth');
+    });
+    document.getElementById('btn-growth').addEventListener('click', () => {
+      revealStage('stage-growth', null);
+    });
+
+    // ── Init ─────────────────────────────────────────────────────────
+    if (PROFILE?.behaviors) {
+      renderCard(PROFILE);
+      setupCardReveal(PROFILE);
+      renderRadar(PROFILE);
+      renderDeepDive(PROFILE, NARRATIVE);
+      renderStrengths(PROFILE);
+      renderQuest(PROFILE);
+      renderProgression(PROFILE);
+    }
+  </script>
+</body>
+</html>
