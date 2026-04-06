@@ -177,3 +177,4 @@ Present the key findings:
 Baselines from [Anthropic's AI Fluency Index](https://www.anthropic.com/research/AI-fluency-index) (Feb 2026, N=9,830).
 # Phase names: work-grounded, not abstract
 # Project names available in session data
+# Axis naming: Description, Discernment, Delegation
