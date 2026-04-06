@@ -17,3 +17,4 @@ The skill instructions (SKILL.md) define the full step-by-step flow. In brief:
 
 The narrative step is critical — it transforms raw behavior rates into an interpretive story. See SKILL.md for detailed guidance on what makes a good narrative.
 `;
+// Axis naming: Description, Discernment, Delegation (consistent throughout)
