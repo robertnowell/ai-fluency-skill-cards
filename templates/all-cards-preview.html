@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Archetype Cards — Skill Tree</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      background: #0a0908;
+      color: #e8e4df;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600; color: #e8d8b0;
+      text-align: center; margin-bottom: 0.4rem;
+    }
+    .page-sub {
+      font-size: 0.875rem; color: #6b6560;
+      text-align: center; margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    /* ── Card styles (copied from skill-tree.html — single source of truth) ── */
+
+    .card {
+      --ap: #9e9589; --aa: #d4cec6;
+      width: 390px;
+      aspect-ratio: 7 / 12;
+      border-radius: 13px;
+      border: 4px solid #2a2520;
+      overflow: hidden;
+      position: relative;
+      background: #0e0d0b;
+      box-shadow: 0 10px 42px rgba(0,0,0,0.5);
+    }
+
+    .card[data-archetype="catalyst"]    { --ap: #d4584a; --aa: #e8a090; }
+    .card[data-archetype="compass"]     { --ap: #4a7ba3; --aa: #a3c4db; }
+    .card[data-archetype="forgemaster"] { --ap: #b8860b; --aa: #e8d4a8; }
+    .card[data-archetype="illuminator"] { --ap: #3d8a5a; --aa: #a8d4b8; }
+    .card[data-archetype="architect"]   { --ap: #6a8094; --aa: #b0c0d0; }
+    .card[data-archetype="conductor"]   { --ap: #8b3a62; --aa: #d4a0b8; }
+    .card[data-archetype="polymath"]    { --ap: #a08040; --aa: #e8d8b0; }
+
+    .card::before {
+      content: '';
+      position: absolute; inset: 8px; z-index: 1;
+      border: 1px solid rgba(160,128,64,0.25);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .card::after {
+      content: '';
+      position: absolute; inset: 13px; z-index: 1;
+      border: 1px solid rgba(160,128,64,0.12);
+      border-radius: 5px;
+      pointer-events: none;
+    }
+
+    .corner {
+      position: absolute; width: 26px; height: 26px; z-index: 2;
+      border-color: rgba(160,128,64,0.3); border-style: solid; border-width: 0;
+    }
+    .corner.tl { top: 16px; left: 16px; border-top-width: 1px; border-left-width: 1px; }
+    .corner.tr { top: 16px; right: 16px; border-top-width: 1px; border-right-width: 1px; }
+    .corner.bl { bottom: 16px; left: 16px; border-bottom-width: 1px; border-left-width: 1px; }
+    .corner.br { bottom: 16px; right: 16px; border-bottom-width: 1px; border-right-width: 1px; }
+
+    .card-art { position: absolute; inset: 0; z-index: 0; }
+    .card-art img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 55%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 55%, transparent 100%);
+    }
+
+    .card-top {
+      position: relative; z-index: 2; text-align: center;
+      padding: 1.3rem 1.56rem 0.65rem;
+      background: linear-gradient(180deg, rgba(14,13,11,0.9) 0%, transparent 100%);
+    }
+    .card-brand {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400; font-size: 0.55rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(160,128,64,0.35); text-align: right;
+      margin-bottom: 0.3rem;
+    }
+    .card-header-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.3rem;
+    }
+    .card-user-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600; font-size: 0.65rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(160,128,64,0.7);
+    }
+    .card-numeral {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.845rem; color: rgba(160,128,64,0.5); letter-spacing: 0.3em;
+      margin-bottom: 0.26rem;
+    }
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.82rem; font-weight: 600; color: #e8d8b0;
+      letter-spacing: 0.04em; text-shadow: 0 2px 12px rgba(0,0,0,0.8); line-height: 1.1;
+    }
+
+    .card-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      text-align: center;
+      padding: 2rem 1.5rem 1.3rem;
+      background: linear-gradient(to top, rgba(14,13,11,0.98) 0%, rgba(14,13,11,0.92) 50%, rgba(14,13,11,0.5) 75%, transparent 100%);
+    }
+    .card-tagline {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem; color: rgba(232,228,223,0.85); line-height: 1.5;
+      margin-bottom: 0.3rem;
+    }
+    .card-sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem; color: rgba(160,128,64,0.5); font-style: italic;
+      letter-spacing: 0.03em;
+    }
+    .card-divider { width: 52px; height: 1px; background: rgba(160,128,64,0.3); margin: 0.4rem auto; }
+
+    .footer {
+      text-align: center; margin-top: 2rem;
+      font-size: 0.75rem; color: #4a4540;
+    }
+    .footer a { color: #4a4540; text-decoration: none; }
+    .footer a:hover { color: #6b6560; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="page-title">The Seven Archetypes</div>
+    <div class="page-sub">Each shape is unique — the radar diamond is your fingerprint</div>
+    <div class="grid" id="grid"></div>
+    <div class="footer">
+      <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic AI Fluency Index</a>
+      &middot; <a href="https://aifluencyframework.org/">Dakan &amp; Feller</a>
+    </div>
+  </div>
+
+  <script>
+    const ARCHETYPES = __ARCHETYPES_DATA__;
+    const NUMERALS = { catalyst:'I', compass:'II', forgemaster:'III', conductor:'IV', illuminator:'V', architect:'VI', polymath:'VII' };
+    const USER_NAME = 'ROBERT NOWELL';
+
+    // Mock axis scores for each archetype (based on what axes they require being "high")
+    const MOCK_SCORES = {
+      catalyst:    { description: 0.12, discernment: 0.05, delegation: 0.08 },
+      compass:     { description: 0.15, discernment: 0.08, delegation: 0.42 },
+      forgemaster: { description: 0.45, discernment: 0.10, delegation: 0.22 },
+      illuminator: { description: 0.18, discernment: 0.35, delegation: 0.15 },
+      conductor:   { description: 0.33, discernment: 0.13, delegation: 0.46 },
+      architect:   { description: 0.20, discernment: 0.28, delegation: 0.38 },
+      polymath:    { description: 0.39, discernment: 0.25, delegation: 0.35 },
+    };
+
+    // ── Mini radar (same as skill-tree.html) ────────────────────────
+    function renderMiniRadar(descPct, discPct, delegPct, color) {
+      const cx = 70, cy = 70, r = 48;
+      function ptAt(angleDeg, pct) {
+        const rad = (angleDeg - 90) * Math.PI / 180;
+        const v = r * Math.max(pct / 100, 0.08);
+        return { x: cx + v * Math.cos(rad), y: cy + v * Math.sin(rad) };
+      }
+      const pts = [ptAt(0, descPct), ptAt(90, discPct), ptAt(180, 0), ptAt(270, delegPct)];
+      const userPoly = pts.map(p => `${p.x},${p.y}`).join(' ');
+      const grid = [ptAt(0,100), ptAt(90,100), ptAt(180,100), ptAt(270,100)];
+      const gridPoly = grid.map(p => `${p.x},${p.y}`).join(' ');
+
+      const labels = [
+        { angle: 0, label: 'Desc', pct: descPct, anchor: 'middle', dx: 0, dy: -6 },
+        { angle: 90, label: 'Disc', pct: discPct, anchor: 'start', dx: 4, dy: 4 },
+        { angle: 270, label: 'Deleg', pct: delegPct, anchor: 'end', dx: -4, dy: 4 },
+      ];
+      let labelsSvg = '';
+      for (const l of labels) {
+        const lp = ptAt(l.angle, 125);
+        labelsSvg += `<text x="${lp.x + l.dx}" y="${lp.y + l.dy}" text-anchor="${l.anchor}" font-family="'Cormorant Garamond', serif" font-size="11" fill="rgba(232,216,176,0.7)" font-weight="600">${l.label} ${l.pct}%</text>`;
+      }
+
+      return `<div style="display:flex;justify-content:center;margin:0.4rem 0;position:relative">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(14,13,11,0.7) 0%,rgba(14,13,11,0.4) 50%,transparent 75%);pointer-events:none"></div>
+        <svg viewBox="0 0 140 140" width="130" height="130" style="overflow:visible;position:relative">
+          <polygon points="${gridPoly}" fill="none" stroke="rgba(232,216,176,0.12)" stroke-width="0.75"/>
+          <line x1="${cx}" y1="${cy-r}" x2="${cx}" y2="${cy+r}" stroke="rgba(232,216,176,0.08)" stroke-width="0.5"/>
+          <line x1="${cx-r}" y1="${cy}" x2="${cx+r}" y2="${cy}" stroke="rgba(232,216,176,0.08)" stroke-width="0.5"/>
+          <polygon points="${userPoly}" fill="${color}" fill-opacity="0.35" stroke="rgba(232,216,176,0.7)" stroke-width="1.5"/>
+          <circle cx="${pts[0].x}" cy="${pts[0].y}" r="2.5" fill="rgba(232,216,176,0.8)"/>
+          <circle cx="${pts[1].x}" cy="${pts[1].y}" r="2.5" fill="rgba(232,216,176,0.8)"/>
+          <circle cx="${pts[3].x}" cy="${pts[3].y}" r="2.5" fill="rgba(232,216,176,0.8)"/>
+          ${labelsSvg}
+        </svg>
+      </div>`;
+    }
+
+    const AXIS_SIGS = {
+      catalyst: 'No axes above average',
+      compass: 'High Delegation',
+      forgemaster: 'High Description',
+      illuminator: 'High Discernment',
+      conductor: 'High Description + Delegation',
+      architect: 'High Discernment + Delegation',
+      polymath: 'High Description + Discernment',
+    };
+
+    // ── Render card into a container element ─────────────────────────
+    function renderCardInto(el, key, arch, scores) {
+      el.setAttribute('data-archetype', key);
+
+      const url = arch.hero_art?.url || '';
+      const pos = arch.hero_art?.position || 'center center';
+      const descPct = Math.round((scores.description || 0) * 100);
+      const discPct = Math.round((scores.discernment || 0) * 100);
+      const delegPct = Math.round((scores.delegation || 0) * 100);
+      const sig = AXIS_SIGS[key] || '';
+
+      el.innerHTML = `
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="card-art">${url ? `<img src="${url}" alt="" style="object-position:${pos}">` : ''}</div>
+        <div class="card-top">
+          <div class="card-header-row">
+            <div class="card-user-name">${USER_NAME}</div>
+            <div class="card-brand">AI Fluency Card</div>
+          </div>
+          <div class="card-numeral">${NUMERALS[key] || ''}</div>
+          <div class="card-name">${arch.name || 'Unknown'}</div>
+        </div>
+        <div class="card-bottom">
+          ${renderMiniRadar(descPct, discPct, delegPct, arch.color || '#a08040')}
+          <div class="card-divider"></div>
+          <div class="card-tagline">${arch.tagline || ''}</div>
+          <div class="card-sig">${sig}</div>
+        </div>
+      `;
+    }
+
+    // ── Render grid ──────────────────────────────────────────────────
+    const ORDER = ['catalyst', 'compass', 'forgemaster', 'illuminator', 'conductor', 'architect', 'polymath'];
+    const grid = document.getElementById('grid');
+
+    for (const key of ORDER) {
+      const arch = ARCHETYPES[key];
+      if (!arch) continue;
+      const scores = MOCK_SCORES[key] || { description: 0.2, discernment: 0.2, delegation: 0.2 };
+
+      const wrapper = document.createElement('div');
+      const card = document.createElement('div');
+      card.className = 'card';
+      wrapper.appendChild(card);
+      grid.appendChild(wrapper);
+
+      renderCardInto(card, key, arch, scores);
+    }
+  </script>
+</body>
+</html>
