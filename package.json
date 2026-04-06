@@ -1,6 +1,6 @@
 {
   "name": "skill-tree-ai",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Your AI collaboration style — skill tree visualization with character archetype cards and growth recommendations, grounded in the AI Fluency Framework. MCP server for Claude Code.",
   "bin": {
