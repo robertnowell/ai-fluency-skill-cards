@@ -513,7 +513,13 @@
     }
     .progression-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; font-weight: 600; color: #e8e4df; margin-bottom: 0.5rem;
+      font-size: 1.1rem; font-weight: 600; color: #e8e4df; margin-bottom: 0.3rem;
+    }
+    .progression-hint {
+      font-size: 0.7rem;
+      color: #6a6560;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
     }
 
     .graph-container { position: relative; width: 100%; }
@@ -556,6 +562,45 @@
        exists to darken hero art behind the radar on the tarot card, and
        just looks like a stray dim circle inside the tooltip. */
     .graph-tooltip-radar > div > div:first-child { display: none !important; }
+
+    /* Edge tooltip variant — used when hovering an edge between two archetypes */
+    .graph-tooltip-edge-header {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.55rem;
+      flex-wrap: wrap;
+    }
+    .graph-tooltip-edge-arrow {
+      color: #6b6560;
+      font-weight: 400;
+    }
+    .graph-tooltip-edge-add {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+      margin-bottom: 0.5rem;
+    }
+    .graph-tooltip-edge-body {
+      font-size: 0.72rem;
+      color: #b0aca6;
+      line-height: 1.55;
+    }
+
+    /* Invisible hover target for edges — fat transparent stroke makes the
+       thin visible line easy to hit. Pointer-events keep it clickable. */
+    .edge-hit {
+      cursor: help;
+      pointer-events: stroke;
+    }
 
     /* Prog card preview — wraps a full scaled-down .card. The fixed
        width/height matches a 390×668 .card scaled by 0.718 so the
@@ -792,9 +837,10 @@
     }
     .about-overlay.is-open { display: block; }
     .about-content {
-      max-width: 640px; margin: 0 auto; padding: 3rem 2rem 4rem;
+      max-width: 680px; margin: 0 auto; padding: 3rem 2rem 4rem;
       font-family: 'Outfit', sans-serif; font-weight: 300;
       color: #e8e4df; line-height: 1.7;
+      counter-reset: about-section;
     }
     .about-content h1 {
       font-family: 'Cormorant Garamond', serif; font-weight: 400;
@@ -802,12 +848,32 @@
     }
     .about-content h2 {
       font-family: 'Cormorant Garamond', serif; font-weight: 400;
-      font-size: 1.2rem; color: #cca67b; margin-top: 2rem; margin-bottom: 0.5rem;
+      font-size: 1.35rem; color: #cca67b; margin-top: 2.75rem; margin-bottom: 0.6rem;
       letter-spacing: 0.05em;
+      counter-increment: about-section;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(160,128,64,0.12);
     }
-    .about-content p { margin-bottom: 1rem; font-size: 0.88rem; color: #c8c4bf; }
+    .about-content h2::before {
+      content: counter(about-section, upper-roman);
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: rgba(204,166,123,0.45);
+      margin-right: 0.9rem;
+      vertical-align: 0.18em;
+    }
+    /* The "Research Basis" section sits below dividers — don't double-rule it */
+    .about-content h2.about-h2-bare {
+      border-top: none; padding-top: 0;
+    }
+    .about-content h2.about-h2-bare::before { content: none; }
+    .about-content p { margin-bottom: 1rem; font-size: 0.92rem; color: #c8c4bf; }
     .about-content strong { color: #e8e4df; font-weight: 500; }
-    .about-content ul { margin: 0.5rem 0 1rem 1.2rem; font-size: 0.88rem; color: #c8c4bf; }
+    .about-content em { color: #d8d4cf; font-style: italic; }
+    .about-content ul { margin: 0.5rem 0 1rem 1.2rem; font-size: 0.92rem; color: #c8c4bf; }
     .about-content li { margin-bottom: 0.4rem; }
     .about-content a { color: #cca67b; text-decoration: underline; text-underline-offset: 2px; }
     .about-close {
@@ -819,6 +885,127 @@
     }
     .about-close:hover { color: #cca67b; border-color: #cca67b; }
     .about-divider { border: none; border-top: 1px solid #2a2520; margin: 2rem 0; }
+
+    /* Summary box at the top — gives skim-readers the core in three bullets */
+    .about-summary {
+      margin: 1.5rem 0 2rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(204,166,123,0.04);
+      border: 1px solid rgba(204,166,123,0.18);
+      border-radius: 8px;
+    }
+    .about-summary-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(204,166,123,0.6);
+      margin-bottom: 0.6rem;
+    }
+    .about-summary ul {
+      margin: 0; padding: 0;
+      list-style: none;
+      font-size: 0.88rem;
+      color: #d8d4cf;
+    }
+    .about-summary li {
+      padding: 0.35rem 0 0.35rem 1.1rem;
+      position: relative;
+      line-height: 1.55;
+    }
+    .about-summary li::before {
+      content: "◆";
+      position: absolute;
+      left: 0;
+      color: rgba(204,166,123,0.5);
+      font-size: 0.6rem;
+      top: 0.55rem;
+    }
+    .about-summary strong { color: #e8d8b0; }
+
+    /* Table of contents — sits under the title; anchor links to each h2 */
+    .about-toc {
+      margin: 1.5rem 0 2rem;
+      padding: 1rem 1.25rem;
+      background: rgba(10,9,8,0.4);
+      border: 1px solid #2a2520;
+      border-radius: 6px;
+    }
+    .about-toc-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #6a6560;
+      margin-bottom: 0.7rem;
+    }
+    .about-toc ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.35rem 1rem;
+      counter-reset: toc-item;
+    }
+    .about-toc li {
+      counter-increment: toc-item;
+      font-size: 0.78rem;
+    }
+    .about-toc a {
+      color: #908a84;
+      text-decoration: none;
+      display: block;
+      padding: 0.15rem 0;
+      transition: color 0.15s;
+    }
+    .about-toc a::before {
+      content: counter(toc-item, upper-roman) " — ";
+      color: rgba(204,166,123,0.4);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+    .about-toc a:hover { color: #cca67b; }
+    @media (max-width: 600px) {
+      .about-toc ol { grid-template-columns: 1fr; }
+    }
+
+    /* Decision cards — used for both "Why X, not Y" and "What I'd Do Next" */
+    .decision-card {
+      margin: 0.85rem 0;
+      padding: 0.9rem 1.1rem;
+      background: rgba(255,255,255,0.015);
+      border-left: 2px solid rgba(204,166,123,0.4);
+      border-radius: 0 4px 4px 0;
+    }
+    .decision-card-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(204,166,123,0.75);
+      margin-bottom: 0.4rem;
+    }
+    .decision-card-body {
+      font-size: 0.88rem;
+      color: #c8c4bf;
+      line-height: 1.6;
+    }
+
+    /* Pull quotes — extract load-bearing lines into landmark blocks */
+    .about-pullquote {
+      margin: 1.75rem 0;
+      padding: 0.4rem 0 0.4rem 1.25rem;
+      border-left: 3px solid rgba(204,166,123,0.55);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      color: #e8d8b0;
+    }
   </style>
 </head>
 <body>
@@ -830,15 +1017,42 @@
       <p>Your AI collaboration style &mdash; analyzed, visualized, and tracked.</p>
       <p>Built on <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic&rsquo;s AI Fluency Index</a> (Feb 2026), which identified 11 observable behaviors across 9,830 conversations that distinguish how people collaborate with AI. The 3-axis structure (Description, Discernment, Delegation) is drawn from <a href="https://aifluencyframework.org/">Dakan &amp; Feller&rsquo;s 4D AI Fluency Framework</a>.</p>
 
-      <h2>The Problem</h2>
+      <div class="about-summary">
+        <div class="about-summary-label">In short</div>
+        <ul>
+          <li><strong>What it is.</strong> A Claude Code plugin that classifies 11 AI fluency behaviors across your real conversation history and shows how you collaborate.</li>
+          <li><strong>Why it matters.</strong> Polished AI output makes most users <em>less</em> critical &mdash; the artifact effect. Skill Tree makes that invisible drift visible.</li>
+          <li><strong>What got built.</strong> A deterministic classifier on Haiku, 7 character archetypes, a self-reflective visualization, and a growth quest that persists into your next session.</li>
+        </ul>
+      </div>
+
+      <nav class="about-toc" aria-label="Sections">
+        <div class="about-toc-label">Contents</div>
+        <ol>
+          <li><a href="#about-problem">The Problem</a></li>
+          <li><a href="#about-insight">Core Insight</a></li>
+          <li><a href="#about-how">How It Works</a></li>
+          <li><a href="#about-decisions">Design Decisions</a></li>
+          <li><a href="#about-process">The Design Process</a></li>
+          <li><a href="#about-learning">Learning Principles</a></li>
+          <li><a href="#about-agency">Human Agency</a></li>
+          <li><a href="#about-behaviors">The 11 Behaviors</a></li>
+          <li><a href="#about-success">Measuring Success</a></li>
+          <li><a href="#about-scaling">Scaling</a></li>
+          <li><a href="#about-next">What I&rsquo;d Do Next</a></li>
+          <li><a href="#about-research">Research Basis</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="about-problem">The Problem</h2>
       <p>Most users iterate &mdash; 85.7% refine Claude&rsquo;s outputs across turns. But the behaviors that require critical evaluation are far less common: only 15.8% question Claude&rsquo;s reasoning, and 8.7% verify facts. The most provocative finding: when Claude produces polished artifacts, specification behaviors increase while evaluation behaviors <em>decrease</em>. The more capable the tool becomes, the less scrutiny its outputs receive.</p>
       <p>This is not an engagement problem. It&rsquo;s a discernment problem &mdash; and it gets worse as the product improves.</p>
 
-      <h2>Core Insight</h2>
-      <p><strong>You can&rsquo;t improve what you can&rsquo;t see.</strong></p>
+      <h2 id="about-insight">Core Insight</h2>
+      <blockquote class="about-pullquote">You can&rsquo;t improve what you can&rsquo;t see.</blockquote>
       <p>Most people have no visibility into how they collaborate with AI. They don&rsquo;t know whether they&rsquo;re iterating or evaluating, specifying or scrutinizing. Skill Tree makes these patterns visible, measurable, and actionable &mdash; not through instruction, but through reflection on real work the user has already done.</p>
 
-      <h2>How It Works</h2>
+      <h2 id="about-how">How It Works</h2>
       <p>Skill Tree is a Claude Code plugin backed by a remote MCP server. It:</p>
       <ul>
         <li><strong>Extracts</strong> user messages from Claude Code and Cowork session files</li>
@@ -850,31 +1064,47 @@
       </ul>
       <p style="font-size:0.82rem;color:#8a8580;">The hook persists the quest across sessions in both Claude Code and Cowork. Cowork sandboxes have an ephemeral <code>$HOME</code> per session, so the quest is stored in the persistent plugin directory there &mdash; it survives across sessions but resets when the plugin is updated.</p>
 
-      <h2>Design Decisions</h2>
-      <p><strong>Why a plugin, not a web app.</strong> Skill Tree lives where the user already works. The visualization opens in the browser when you need it, but the growth quest persists in the session itself.</p>
-      <p><strong>Why behaviors, not engagement.</strong> Not session count, not message volume. The 11 behaviors are the atoms of AI fluency, and the three observable axes derive from the artifact effect data.</p>
-      <p><strong>Why archetypes, not scores.</strong> &ldquo;You&rsquo;re a Polymath&rdquo; is more motivating than &ldquo;your discernment score is 39%.&rdquo; Identity creates narrative. The seven archetypes form a progression graph, not a hierarchy. A Catalyst isn&rsquo;t worse than a Polymath &mdash; they have a different growth path.</p>
-      <p><strong>Why growth quests, not badges.</strong> One quest at a time, tied to the user&rsquo;s archetype and growth edge. Gentle (&ldquo;if a natural opportunity arises&rdquo;) rather than prescriptive.</p>
-      <p><strong>Why deterministic assignment.</strong> The profile builder uses no LLM call. Axis averages, baseline comparison, priority ordering. Reproducible, inspectable, cheap.</p>
+      <h2 id="about-decisions">Design Decisions</h2>
+      <div class="decision-card">
+        <div class="decision-card-label">Plugin, not web app</div>
+        <div class="decision-card-body">Skill Tree lives where the user already works. The visualization opens in the browser when you need it, but the growth quest persists in the session itself.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-label">Behaviors, not engagement</div>
+        <div class="decision-card-body">Not session count, not message volume. The 11 behaviors are the atoms of AI fluency, and the three observable axes derive from the artifact effect data.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-label">Archetypes, not scores</div>
+        <div class="decision-card-body">&ldquo;You&rsquo;re a Polymath&rdquo; is more motivating than &ldquo;your discernment score is 39%.&rdquo; Identity creates narrative. The seven archetypes form a progression graph, not a hierarchy. A Catalyst isn&rsquo;t worse than a Polymath &mdash; they have a different growth path.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-label">Growth quests, not badges</div>
+        <div class="decision-card-body">One quest at a time, tied to the user&rsquo;s archetype and growth edge. Gentle (&ldquo;if a natural opportunity arises&rdquo;) rather than prescriptive.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-label">Deterministic assignment</div>
+        <div class="decision-card-body">The profile builder uses no LLM call. Axis averages, baseline comparison, priority ordering. Reproducible, inspectable, cheap.</div>
+      </div>
 
-      <h2>The Design Process</h2>
+      <h2 id="about-process">The Design Process</h2>
       <p>33 sessions over four days. The arc matters.</p>
       <p><strong>Days 1&ndash;2: Research before building.</strong> I read the assignment, the job description, the AI Fluency Index, the 4D Framework, the RCT paper on interaction modes and learning outcomes, and the education reports. I refused to start coding until I understood what &ldquo;skill development&rdquo; actually means in this team&rsquo;s vocabulary &mdash; and until I had a specific tension to address, not just a category to build in.</p>
       <p><strong>Day 3: De-risking before committing.</strong> I wrote four standalone scripts to test each assumption: Can I reliably extract clean user messages from JSONL files? Can a classifier detect these 11 behaviors accurately? Does the archetype mapping produce sensible results? What&rsquo;s the API cost at scale? All four passed. The classifier was accurate on 4/4 test sessions. The cost was $0.003 per session with Haiku. I committed to the architecture only after the evidence was in.</p>
       <p><strong>Day 4: Build, deploy, observe.</strong> TypeScript MCP server deployed to Fly.io. Plugin metadata. HTML templates with hand-curated museum art for each archetype. And then I ran my own tool on my own sessions &mdash; saw my profile across 162 sessions &mdash; and the concept locked in. The tool I was building to analyze AI collaboration was itself a product of AI collaboration. The session transcripts <em>are</em> the design process evidence.</p>
 
-      <h2>Learning Principles</h2>
+      <h2 id="about-learning">Learning Principles</h2>
       <p><strong>Metacognition.</strong> Surfaces patterns the user can&rsquo;t see themselves &mdash; a prerequisite for deliberate practice. You can&rsquo;t intentionally develop discernment if you don&rsquo;t know your current discernment rate is 12% against a 15% baseline.</p>
       <p><strong>Zone of Proximal Development.</strong> Growth quests target the behavior just outside current practice. The Catalyst&rsquo;s quest isn&rsquo;t &ldquo;do everything differently&rdquo; &mdash; it&rsquo;s &ldquo;try opening with one sentence.&rdquo; One step. The target archetype system (Catalyst &rarr; Compass &rarr; Conductor &rarr; Polymath) creates a progression path, not a demand.</p>
       <p><strong>Identity-based motivation.</strong> Archetypes create narrative identity around collaboration style. &ldquo;I&rsquo;m a Forgemaster working on strategic setup&rdquo; is more generative than &ldquo;my Setup score is low.&rdquo; The cards use museum art &mdash; hand-curated, not generated &mdash; because aesthetic quality signals the system takes your identity seriously.</p>
       <p><strong>Spaced reflection.</strong> One quest per session, injected via hook. Not a one-time assessment, not a daily digest. The natural unit of AI collaboration is the session, so that&rsquo;s when the nudge appears.</p>
       <p><strong>The Description-Discernment Loop.</strong> Skill Tree itself embodies this loop. You describe your work to Claude across sessions. Skill Tree discerns your collaboration patterns from that work. You see the patterns, adjust your approach, and describe differently next session. The tool is the loop.</p>
 
-      <h2>How This Enhances Human Agency</h2>
+      <h2 id="about-agency">How This Enhances Human Agency</h2>
       <p>Skill Tree doesn&rsquo;t automate collaboration or prescribe a &ldquo;correct&rdquo; style. It reveals <em>your</em> style and <em>your</em> growth edge. The user remains the agent &mdash; more aware, more intentional, more capable.</p>
-      <p>The artifact evaluation gap &mdash; discernment dropping when outputs look polished &mdash; is a threat to agency. It means the better Claude gets, the less users exercise the judgment that makes them effective collaborators. Skill Tree addresses this not by forcing users to evaluate, but by making their evaluation patterns visible and named.</p>
+      <blockquote class="about-pullquote">The better Claude gets, the less users exercise the judgment that makes them effective collaborators.</blockquote>
+      <p>Skill Tree addresses this not by forcing users to evaluate, but by making their evaluation patterns visible and named.</p>
 
-      <h2>The 11 Behaviors</h2>
+      <h2 id="about-behaviors">The 11 Behaviors</h2>
       <ul>
         <li><strong>Description axis:</strong> Provides examples (41%), Specifies format (30%), Expresses tone (23%), Defines audience (18%)</li>
         <li><strong>Discernment axis:</strong> Flags context gaps (20%), Questions reasoning (16%), Verifies facts (9%)</li>
@@ -884,7 +1114,7 @@
       </ul>
       <p style="font-size:0.78rem;color:#8a8580;">Baselines from <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic&rsquo;s AI Fluency Index</a> (Feb 2026, N=9,830).</p>
 
-      <h2>Measuring Success</h2>
+      <h2 id="about-success">Measuring Success</h2>
       <ul>
         <li><strong>Primary:</strong> Behavior diversity increase over time. Do users develop new collaboration behaviors after seeing their profile?</li>
         <li><strong>Secondary:</strong> Axis score progression across snapshots. Does Discernment increase after growth quests targeting it?</li>
@@ -892,18 +1122,28 @@
         <li><strong>Anti-metric:</strong> Not measuring session frequency, message volume, or time-on-site. These are engagement proxies, not capability indicators.</li>
       </ul>
 
-      <h2>Scaling</h2>
+      <h2 id="about-scaling">Scaling</h2>
       <p>Skill Tree works today for any Claude Code or Cowork user &mdash; install the plugin. The remote classifier (Fly.io) scales horizontally; classification is stateless and uses Haiku. The 4D framework is platform-agnostic &mdash; the same 11 behaviors apply whether someone uses Code, Cowork, or claude.ai. Session metadata already exists server-side, so classification could run as a native feature without requiring local file access.</p>
 
-      <h2>What I&rsquo;d Do Next</h2>
-      <p><strong>Progression over time.</strong> Currently single-snapshot. The history directory stores timestamped profiles, but the real version needs thoughtful design &mdash; showing growth without implying a score to optimize.</p>
-      <p><strong>Classifier calibration.</strong> I noticed variance between runs &mdash; a session might show 7/11 behaviors detected on one pass and 10/11 on another. Production would need confidence thresholds, ensemble passes, or a fine-tuned classifier to stabilize.</p>
-      <p><strong>Privacy.</strong> Reading session files raises real questions. A production feature would need explicit opt-in, clear data handling, and probably server-side classification that never exports raw conversation text.</p>
-      <p><strong>Causality.</strong> I can&rsquo;t yet prove that seeing your profile causes behavior change. I believe it does &mdash; the metacognition literature suggests it should &mdash; but confirming this would require a longitudinal study. Which, notably, is exactly the kind of research this team does.</p>
+      <h2 id="about-next">What I&rsquo;d Do Next</h2>
+      <div class="decision-card">
+        <div class="decision-card-label">Progression over time</div>
+        <div class="decision-card-body">Currently single-snapshot. The history directory stores timestamped profiles, but the real version needs thoughtful design &mdash; showing growth without implying a score to optimize.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-label">Classifier calibration</div>
+        <div class="decision-card-body">I noticed variance between runs &mdash; a session might show 7/11 behaviors detected on one pass and 10/11 on another. Production would need confidence thresholds, ensemble passes, or a fine-tuned classifier to stabilize.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-label">Privacy</div>
+        <div class="decision-card-body">Reading session files raises real questions. A production feature would need explicit opt-in, clear data handling, and probably server-side classification that never exports raw conversation text.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-label">Causality</div>
+        <div class="decision-card-body">I can&rsquo;t yet prove that seeing your profile causes behavior change. I believe it does &mdash; the metacognition literature suggests it should &mdash; but confirming this would require a longitudinal study. Which, notably, is exactly the kind of research this team does.</div>
+      </div>
 
-      <hr class="about-divider">
-
-      <h2>Research Basis</h2>
+      <h2 id="about-research" class="about-h2-bare">Research Basis</h2>
       <p><a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic AI Fluency Index</a> &mdash; behavioral taxonomy and population baselines</p>
       <p><a href="https://aifluencyframework.org/">4D AI Fluency Framework</a> &mdash; Dakan &amp; Feller&rsquo;s framework (Description, Discernment, Delegation, Diligence)</p>
 
@@ -974,6 +1214,7 @@
       <div class="progression" id="progression">
         <div class="progression-label">&#9670; Your Road</div>
         <div class="progression-title">Growth path</div>
+        <div class="progression-hint">Hover any node to see an archetype &middot; hover any edge to see what changes between them</div>
         <div id="prog-card-slot"></div>
         <div class="graph-container">
           <svg class="graph-svg" id="prog-graph" viewBox="0 0 600 560"></svg>
@@ -1611,6 +1852,9 @@
         if (isActive) {
           html += `<circle r="2.5" fill="${ARCHETYPES[to]?.color||'#8a8580'}" opacity="0.6"><animateMotion dur="2.5s" repeatCount="indefinite" path="${d}"/></circle>`;
         }
+        // Invisible "fat" hit target on top — gives the edge a usable hover area.
+        // Stroke is transparent but pointer-events: stroke catches the hover.
+        html += `<path class="edge-hit" d="${d}" fill="none" stroke="transparent" stroke-width="20" data-from="${from}" data-to="${to}"/>`;
       }
 
       // Nodes
@@ -1739,6 +1983,80 @@
           }, 350);
         });
         node.addEventListener('mouseleave', () => {
+          if (tipTimer) { clearTimeout(tipTimer); tipTimer = null; }
+          tip.classList.remove('visible');
+        });
+      });
+
+      // Edge tooltips on hover — explain what changes between archetypes.
+      // Reuses the #graph-tooltip element with edge-variant content. The
+      // "+ added axis" is computed by diffing ARCHETYPE_REQUIRES, and the
+      // body text comes from the FROM archetype's growth_unlock field.
+      const AXIS_LABEL_TO_KEY = { Description: 'desc', Discernment: 'disc', Delegation: 'deleg' };
+      function transitionAdds(fromKey, toKey) {
+        const fromR = ARCHETYPE_REQUIRES[fromKey] || {};
+        const toR = ARCHETYPE_REQUIRES[toKey] || {};
+        const added = [];
+        for (const [label, short] of Object.entries(AXIS_LABEL_TO_KEY)) {
+          if (toR[short] && !fromR[short]) added.push(label);
+        }
+        return added;
+      }
+
+      svg.querySelectorAll('.edge-hit').forEach(edge => {
+        edge.addEventListener('mouseenter', () => {
+          if (tipTimer) clearTimeout(tipTimer);
+          tipTimer = setTimeout(() => {
+            const fromKey = edge.dataset.from;
+            const toKey = edge.dataset.to;
+            const fromArch = ARCHETYPES[fromKey];
+            const toArch = ARCHETYPES[toKey];
+            if (!fromArch || !toArch) return;
+
+            // Strip the "Unlock The X's Y \u2014 " prefix from growth_unlock so
+            // the tooltip just shows the actionable change ("add discernment
+            // to your orchestration"). Sentence-case the result.
+            const rawUnlock = fromArch.growth_unlock || '';
+            const stripped = rawUnlock.replace(/^Unlock[^\u2014]*\u2014\s*/i, '');
+            const bodyText = stripped.charAt(0).toUpperCase() + stripped.slice(1) + (stripped.endsWith('.') ? '' : '.');
+
+            const added = transitionAdds(fromKey, toKey);
+            const addedAxis = added[0] || '';
+            const axisColor = AXIS_COLORS[addedAxis] || '#cca67b';
+
+            tip.innerHTML = `
+              <div class="graph-tooltip-edge-header">
+                <span style="color:${fromArch.color || '#e8e4df'}">${fromArch.name}</span>
+                <span class="graph-tooltip-edge-arrow">\u2192</span>
+                <span style="color:${toArch.color || '#e8e4df'}">${toArch.name}</span>
+              </div>
+              ${addedAxis ? `<div class="graph-tooltip-edge-add" style="color:${axisColor};background:${axisColor}1a;border:1px solid ${axisColor}40">+ ${addedAxis}</div>` : ''}
+              <div class="graph-tooltip-edge-body">${bodyText}</div>
+            `;
+
+            // Position tooltip at the visual midpoint of the curved edge.
+            // The path is M(sx,sy) Q(mx,my) (ex,ey); for a quadratic Bezier
+            // at t=0.5 the point is (sx + 2*mx + ex)/4, (sy + 2*my + ey)/4.
+            const fromPos = GRAPH_NODES[fromKey];
+            const toPos = GRAPH_NODES[toKey];
+            const dx = toPos.x - fromPos.x, dy = toPos.y - fromPos.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            const sx = fromPos.x + (dx/dist)*GRAPH_R, sy = fromPos.y + (dy/dist)*GRAPH_R;
+            const ex = toPos.x - (dx/dist)*(GRAPH_R+6), ey = toPos.y - (dy/dist)*(GRAPH_R+6);
+            const mx = (sx+ex)/2, my = (sy+ey)/2 - Math.abs(dx)*0.08;
+            const midx = (sx + 2*mx + ex) / 4;
+            const midy = (sy + 2*my + ey) / 4;
+
+            const svgRect = svg.getBoundingClientRect();
+            const containerRect = svg.parentElement.getBoundingClientRect();
+            const x = (midx / 600) * svgRect.width + (svgRect.left - containerRect.left);
+            const y = (midy / 560) * svgRect.height + (svgRect.top - containerRect.top);
+            tip.style.left = x + 'px';
+            tip.style.top = y + 'px';
+            tip.classList.add('visible');
+          }, 350);
+        });
+        edge.addEventListener('mouseleave', () => {
           if (tipTimer) { clearTimeout(tipTimer); tipTimer = null; }
           tip.classList.remove('visible');
         });

@@ -1,0 +1,23 @@
+{
+  "name": "ai-fluency-skill-cards",
+  "owner": {
+    "name": "Robert Nowell"
+  },
+  "metadata": {
+    "description": "AI fluency analysis for Claude Code and Cowork — assigns one of seven archetype cards based on your collaboration patterns."
+  },
+  "plugins": [
+    {
+      "name": "skill-tree-ai",
+      "source": "./",
+      "description": "AI fluency analysis: classifies 11 collaboration behaviors against Anthropic's AI Fluency Index and assigns an archetype card.",
+      "version": "1.0.2",
+      "author": {
+        "name": "Robert Nowell"
+      },
+      "homepage": "https://github.com/robertnowell/ai-fluency-skill-cards",
+      "license": "MIT",
+      "keywords": ["skill-tree", "ai-fluency", "education", "mcp", "growth"]
+    }
+  ]
+}

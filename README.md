@@ -1,12 +1,19 @@
 # AI Fluency Skill Cards
+### AI fluency analysis for Claude Code and Cowork
 
-Your AI collaboration style — analyzed, visualized, and tracked.
+Anthropic's [AI Fluency Index](https://www.anthropic.com/research/AI-fluency-index) (Feb 2026) studied 9,830 Claude conversations to measure 11 observable collaboration behaviors and establish a population baseline. Skill Tree runs the same classification on your own Claude Code or Cowork sessions, compares you to that baseline, and assigns one of seven archetype cards. Then it picks a behavior you haven't tried and turns it into a growth quest for your next session.
 
-Built on [Anthropic's AI Fluency Index](https://www.anthropic.com/research/AI-fluency-index) (Feb 2026), which identified 11 observable behaviors across 9,830 conversations that distinguish how people collaborate with AI. The 3-axis structure (Description, Discernment, Delegation) is drawn from [Dakan & Feller's 4D AI Fluency Framework](https://aifluencyframework.org/).
+The behavior taxonomy and three measurable axes — Description, Discernment, Delegation — come from [Dakan & Feller's 4D AI Fluency Framework](https://aifluencyframework.org/). The fourth dimension, Diligence, isn't visible in chat logs and is left to you.
+
+Browse the deck to see what's possible. Install to run it on your own sessions.
 
 <p align="center">
   <a href="https://skill-tree-ai.fly.dev/grid">
-    <img src="https://img.shields.io/badge/%E2%9C%A6%20View%20the%20Cards-cca67b?style=for-the-badge&labelColor=2a2520&color=cca67b" alt="View the Cards">
+    <img src="https://img.shields.io/badge/Browse%20the%20Cards-cca67b?style=for-the-badge&labelColor=2a2520&color=cca67b" alt="Browse the Cards">
+  </a>
+  &nbsp;
+  <a href="#install">
+    <img src="https://img.shields.io/badge/Install-cca67b?style=for-the-badge&labelColor=2a2520&color=cca67b" alt="Install">
   </a>
 </p>
 
@@ -33,9 +40,18 @@ Works in **Claude Code** and **Cowork**.
 
 ### Claude Code
 
+In a Claude Code session, run these two slash commands. **Send each as a separate message** — slash commands don't chain on newlines, and pasting both at once will fail with a malformed URL.
+
+**1. Add the marketplace:**
+
 ```
 /plugin marketplace add robertnowell/ai-fluency-skill-cards
-/plugin install skill-tree-ai@robertnowell/ai-fluency-skill-cards
+```
+
+**2. Then install the plugin:**
+
+```
+/plugin install skill-tree-ai@ai-fluency-skill-cards
 ```
 
 Then say "skill tree" or run `/skill-tree`.
