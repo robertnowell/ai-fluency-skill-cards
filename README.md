@@ -2,7 +2,7 @@
 
 Your AI collaboration style — analyzed, visualized, and tracked.
 
-Built on [Anthropic's AI Fluency Index](https://www.anthropic.com/research/AI-fluency-index) (Dakan & Feller, Feb 2026), which identified 11 observable behaviors across 9,830 conversations that distinguish how people collaborate with AI.
+Built on [Anthropic's AI Fluency Index](https://www.anthropic.com/research/AI-fluency-index) (Feb 2026), which identified 11 observable behaviors across 9,830 conversations that distinguish how people collaborate with AI. The 3-axis structure (Description, Discernment, Delegation) is drawn from [Dakan & Feller's 4D AI Fluency Framework](https://aifluencyframework.org/).
 
 ## What it does
 

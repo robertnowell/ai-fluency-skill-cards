@@ -123,6 +123,16 @@
       width: 1px;
       background: linear-gradient(180deg, transparent, rgba(160,128,64,0.1), transparent);
     }
+    .card-back-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(232,216,176,0.85);
+      text-align: center;
+      z-index: 2;
+    }
     .card-back-glyph {
       width: 100px; height: 100px;
       color: rgba(160,128,64,0.5);
@@ -344,9 +354,11 @@
       width: 100%;
       padding: 0 2rem;
       max-height: 0;
-      overflow: hidden;
+      overflow: visible;
       transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s, padding 0.3s;
       opacity: 0;
+      position: relative;
+      z-index: 10;
     }
     .drilldown.visible {
       max-height: 300px;
@@ -417,17 +429,17 @@
     }
     .deep-dive-thesis {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
+      font-size: 1.15rem;
       font-style: italic;
       color: #b0aca6;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
+      line-height: 1.65;
+      margin-bottom: 2rem;
       padding-left: 0.75rem;
       border-left: 2px solid #3a3530;
     }
 
     .phase {
-      margin-bottom: 1.75rem;
+      margin-bottom: 2.25rem;
       padding-left: 1.25rem;
       border-left: 3px solid #4a4540;
     }
@@ -437,26 +449,52 @@
       display: flex;
       align-items: baseline;
       gap: 0.5rem;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
       flex-wrap: wrap;
     }
     .phase-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; font-weight: 600;
+      font-size: 1.05rem; font-weight: 600;
     }
     .phase-meta {
-      font-size: 0.875rem; color: #6b6560;
+      font-size: 0.8rem; color: #6b6560;
     }
 
     .phase-insight {
-      font-size: 0.8rem;
-      color: #8a8580;
-      line-height: 1.55;
-      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+      color: #908a84;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-evidence-toggle {
+      margin-top: 0.25rem;
+    }
+    .phase-evidence-toggle summary {
+      font-size: 0.7rem;
+      color: #5a5550;
+      cursor: pointer;
+      list-style: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .phase-evidence-toggle summary::-webkit-details-marker { display: none; }
+    .phase-evidence-toggle summary::before {
+      content: '\25B8';
+      display: inline-block;
+      margin-right: 0.3rem;
+      transition: transform 0.2s;
+    }
+    .phase-evidence-toggle[open] summary::before {
+      transform: rotate(90deg);
+    }
+    .phase-evidence-toggle summary:hover { color: #8a8580; }
+    .phase-evidence-toggle .moments-container {
+      padding-top: 0.5rem;
     }
 
     .moment {
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.6rem;
       padding: 0.5rem 0.75rem;
       background: #151413;
       border-radius: 0.5rem;
@@ -464,17 +502,10 @@
     }
     .moment:last-child { margin-bottom: 0; }
 
-    .moment-context {
-      font-size: 0.875rem;
-      color: #5a5550;
-      font-style: italic;
-      margin-bottom: 0.25rem;
-    }
-
     .moment-quote {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #9a9590;
       line-height: 1.5;
     }
@@ -483,7 +514,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      margin-top: 0.35rem;
+      margin-top: 0.3rem;
     }
 
     .moment-pill {
@@ -549,26 +580,35 @@
        4. GROWTH QUEST
        ══════════════════════════════════════════ */
 
+    @keyframes quest-enter {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     .quest {
-      background: #1a1918;
+      background: radial-gradient(ellipse at top, rgba(160,128,64,0.1) 0%, #1a1918 60%);
       border: 1px solid #2a2826;
+      border-top: 2px solid rgba(160,128,64,0.5);
       border-radius: 1rem;
-      padding: 1.5rem 2rem;
+      padding: 2.5rem 2rem 2rem;
+      margin-top: 2rem;
       margin-bottom: 1.5rem;
+      box-shadow: 0 0 60px rgba(160,128,64,0.08), inset 0 1px 0 rgba(204,166,123,0.1);
+      animation: quest-enter 0.8s cubic-bezier(0.22,1,0.36,1);
     }
     .quest-label {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(160,128,64,0.6); margin-bottom: 0.5rem;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(204,166,123,0.95); margin-bottom: 0.75rem;
     }
     .quest-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; font-weight: 600; color: #e8e4df; margin-bottom: 0.4rem;
+      font-size: 1.5rem; font-weight: 600; color: #e8e4df; margin-bottom: 0.6rem;
+      line-height: 1.3;
     }
-    .quest-text { font-size: 1rem; color: #8a8580; line-height: 1.6; }
+    .quest-text { font-size: 1.05rem; color: #c8c4bf; line-height: 1.65; }
     .quest-edge {
-      margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #2a2826;
-      font-size: 0.875rem; color: #6b6560;
+      margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #2a2826;
+      font-size: 0.8rem; color: #6b6560;
     }
     .quest-edge strong { color: #8a8580; font-weight: 500; }
     .quest-evidence {
@@ -606,16 +646,55 @@
 
     .strength-item {
       display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.4rem 0;
+      padding: 0.5rem 0;
       border-bottom: 1px solid rgba(42,40,38,0.5);
+      position: relative;
+      cursor: default;
     }
     .strength-item:last-child { border-bottom: none; }
     .strength-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
     .strength-label { font-size: 1rem; color: #b0aca6; flex: 1; }
     .strength-stat {
-      font-size: 0.875rem; font-weight: 500; color: #5a9e6f;
+      font-size: 0.875rem; font-weight: 600; color: #5a9e6f;
       font-variant-numeric: tabular-nums; white-space: nowrap;
     }
+    .strength-tooltip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      right: 0;
+      width: 280px;
+      background: #1e1d1b;
+      border: 1px solid #3a3530;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .strength-item:hover .strength-tooltip { display: block; }
+    .strength-tooltip-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem; font-weight: 600; color: #e8d8b0;
+      margin-bottom: 0.3rem;
+    }
+    .strength-tooltip-desc {
+      font-size: 0.75rem; color: #8a8580; line-height: 1.5;
+      margin-bottom: 0.4rem;
+    }
+    .strength-tooltip-comparison {
+      font-size: 0.7rem; color: #5a9e6f;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 0.3rem;
+    }
+    .strength-tooltip-source {
+      font-size: 0.65rem;
+    }
+    .strength-tooltip-source a {
+      color: #6b6560; text-decoration: none;
+      border-bottom: 1px solid #3a3530;
+      transition: color 0.2s;
+    }
+    .strength-tooltip-source a:hover { color: #b0aca6; }
 
     .strengths-empty {
       font-size: 1rem; color: #4a4540;
@@ -646,6 +725,33 @@
 
     .graph-container { position: relative; width: 100%; }
     .graph-svg { width: 100%; height: auto; }
+
+    .graph-tooltip {
+      display: none;
+      position: absolute;
+      width: 240px;
+      background: #1e1d1b;
+      border: 1px solid #3a3530;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      pointer-events: none;
+      transform: translate(-50%, calc(-100% - 12px));
+    }
+    .graph-tooltip.visible { display: block; }
+    .graph-tooltip-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .graph-tooltip-tagline {
+      font-size: 0.7rem; color: #8a8580;
+      font-style: italic; margin-bottom: 0.4rem;
+    }
+    .graph-tooltip-desc {
+      font-size: 0.7rem; color: #908a84; line-height: 1.5;
+    }
 
     .prog-card-preview {
       max-width: 200px;
@@ -825,11 +931,168 @@
       .moment { padding: 0.4rem 0.6rem; }
       .axis-legend { gap: 1rem; flex-wrap: wrap; }
     }
+
+    /* Tooltips */
+    .tip-wrap { position: relative; cursor: help; }
+    .tip-wrap .tip {
+      visibility: hidden; opacity: 0;
+      position: absolute; z-index: 9999;
+      bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+      background: #1a1916; border: 1px solid #3a3530; border-radius: 6px;
+      padding: 0.5rem 0.7rem; width: max-content; max-width: 260px;
+      font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 0.75rem;
+      color: #c8c4bf; line-height: 1.5; pointer-events: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+      transition: opacity 0.15s ease 0.4s, visibility 0s linear 0.4s;
+    }
+    .tip-wrap .tip a { color: #cca67b; text-decoration: underline; text-underline-offset: 2px; font-size: 0.7rem; }
+    .tip-wrap:hover .tip { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0.4s, 0s; }
+    .tip-wrap.tip-active .tip { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s, 0s; }
+    .behavior-row .tip-wrap .tip { left: 0; transform: none; }
+    .behavior-row .behavior-cmp.tip-wrap .tip { left: auto; right: 0; transform: none; }
+
+    /* About button & modal */
+    .page-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .about-btn {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: #8a8580; background: none; border: 1px solid #3a3530;
+      padding: 0.3rem 0.8rem; border-radius: 3px; cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .about-btn:hover { color: #cca67b; border-color: #cca67b; }
+
+    .about-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(10,9,8,0.92); overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .about-overlay.is-open { display: block; }
+    .about-content {
+      max-width: 640px; margin: 0 auto; padding: 3rem 2rem 4rem;
+      font-family: 'Outfit', sans-serif; font-weight: 300;
+      color: #e8e4df; line-height: 1.7;
+    }
+    .about-content h1 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 400;
+      font-size: 1.8rem; color: #cca67b; margin-bottom: 0.5rem;
+    }
+    .about-content h2 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 400;
+      font-size: 1.2rem; color: #cca67b; margin-top: 2rem; margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+    .about-content p { margin-bottom: 1rem; font-size: 0.88rem; color: #c8c4bf; }
+    .about-content strong { color: #e8e4df; font-weight: 500; }
+    .about-content ul { margin: 0.5rem 0 1rem 1.2rem; font-size: 0.88rem; color: #c8c4bf; }
+    .about-content li { margin-bottom: 0.4rem; }
+    .about-content a { color: #cca67b; text-decoration: underline; text-underline-offset: 2px; }
+    .about-close {
+      position: fixed; top: 1.5rem; right: 1.5rem; z-index: 9001;
+      font-family: 'Outfit', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em;
+      color: #8a8580; background: rgba(10,9,8,0.8); border: 1px solid #3a3530;
+      padding: 0.4rem 1rem; border-radius: 3px; cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .about-close:hover { color: #cca67b; border-color: #cca67b; }
+    .about-divider { border: none; border-top: 1px solid #2a2520; margin: 2rem 0; }
   </style>
 </head>
 <body>
+  <!-- About overlay -->
+  <div class="about-overlay" id="about-overlay">
+    <button class="about-close" onclick="document.getElementById('about-overlay').classList.remove('is-open')">Close</button>
+    <div class="about-content">
+      <h1>Skill Tree</h1>
+      <p>Your AI collaboration style &mdash; analyzed, visualized, and tracked.</p>
+      <p>Built on <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic&rsquo;s AI Fluency Index</a> (Dakan &amp; Feller, Feb 2026), which identified 11 observable behaviors across 9,830 conversations that distinguish how people collaborate with AI.</p>
+
+      <h2>The Problem</h2>
+      <p>Most users iterate &mdash; 85.7% refine Claude&rsquo;s outputs across turns. But the behaviors that require critical evaluation are far less common: only 15.8% question Claude&rsquo;s reasoning, and 8.7% verify facts. The most provocative finding: when Claude produces polished artifacts, specification behaviors increase while evaluation behaviors <em>decrease</em>. The more capable the tool becomes, the less scrutiny its outputs receive.</p>
+      <p>This is not an engagement problem. It&rsquo;s a discernment problem &mdash; and it gets worse as the product improves.</p>
+
+      <h2>Core Insight</h2>
+      <p><strong>You can&rsquo;t improve what you can&rsquo;t see.</strong></p>
+      <p>Most people have no visibility into how they collaborate with AI. They don&rsquo;t know whether they&rsquo;re iterating or evaluating, specifying or scrutinizing. Skill Tree makes these patterns visible, measurable, and actionable &mdash; not through instruction, but through reflection on real work the user has already done.</p>
+
+      <h2>How It Works</h2>
+      <p>Skill Tree is a Claude Code plugin backed by a remote MCP server. It:</p>
+      <ul>
+        <li><strong>Extracts</strong> user messages from Claude Code and Cowork session files</li>
+        <li><strong>Classifies</strong> 11 behaviors from the 4D AI Fluency Framework using Claude Haiku</li>
+        <li><strong>Compares</strong> rates against population baselines from 9,830 conversations</li>
+        <li><strong>Assigns</strong> a character archetype deterministically &mdash; no LLM in the loop</li>
+        <li><strong>Renders</strong> this visualization with archetype card, skill radar, and narrative deep dive</li>
+        <li><strong>Issues</strong> a growth quest that injects into the next session via a hook</li>
+      </ul>
+
+      <h2>Design Decisions</h2>
+      <p><strong>Why a plugin, not a web app.</strong> Skill Tree lives where the user already works. The visualization opens in the browser when you need it, but the growth quest persists in the session itself.</p>
+      <p><strong>Why behaviors, not engagement.</strong> Not session count, not message volume. The 11 behaviors are the atoms of AI fluency, and the three observable axes derive from the artifact effect data.</p>
+      <p><strong>Why archetypes, not scores.</strong> &ldquo;You&rsquo;re a Polymath&rdquo; is more motivating than &ldquo;your discernment score is 39%.&rdquo; Identity creates narrative. The seven archetypes form a progression graph, not a hierarchy. A Catalyst isn&rsquo;t worse than a Polymath &mdash; they have a different growth path.</p>
+      <p><strong>Why growth quests, not badges.</strong> One quest at a time, tied to the user&rsquo;s archetype and growth edge. Gentle (&ldquo;if a natural opportunity arises&rdquo;) rather than prescriptive.</p>
+      <p><strong>Why deterministic assignment.</strong> The profile builder uses no LLM call. Axis averages, baseline comparison, priority ordering. Reproducible, inspectable, cheap.</p>
+
+      <h2>The Design Process</h2>
+      <p>33 sessions over four days. The arc matters.</p>
+      <p><strong>Days 1&ndash;2: Research before building.</strong> I read the assignment, the job description, the AI Fluency Index, the 4D Framework, the RCT paper on interaction modes and learning outcomes, and the education reports. I refused to start coding until I understood what &ldquo;skill development&rdquo; actually means in this team&rsquo;s vocabulary &mdash; and until I had a specific tension to address, not just a category to build in.</p>
+      <p><strong>Day 3: De-risking before committing.</strong> I wrote four standalone scripts to test each assumption: Can I reliably extract clean user messages from JSONL files? Can a classifier detect these 11 behaviors accurately? Does the archetype mapping produce sensible results? What&rsquo;s the API cost at scale? All four passed. The classifier was accurate on 4/4 test sessions. The cost was $0.003 per session with Haiku. I committed to the architecture only after the evidence was in.</p>
+      <p><strong>Day 4: Build, deploy, observe.</strong> TypeScript MCP server deployed to Fly.io. Plugin metadata. HTML templates with hand-curated museum art for each archetype. And then I ran my own tool on my own sessions &mdash; saw my profile across 162 sessions &mdash; and the concept locked in. The tool I was building to analyze AI collaboration was itself a product of AI collaboration. The session transcripts <em>are</em> the design process evidence.</p>
+
+      <h2>Learning Principles</h2>
+      <p><strong>Metacognition.</strong> Surfaces patterns the user can&rsquo;t see themselves &mdash; a prerequisite for deliberate practice. You can&rsquo;t intentionally develop discernment if you don&rsquo;t know your current discernment rate is 12% against a 15% baseline.</p>
+      <p><strong>Zone of Proximal Development.</strong> Growth quests target the behavior just outside current practice. The Catalyst&rsquo;s quest isn&rsquo;t &ldquo;do everything differently&rdquo; &mdash; it&rsquo;s &ldquo;try opening with one sentence.&rdquo; One step. The target archetype system (Catalyst &rarr; Compass &rarr; Conductor &rarr; Polymath) creates a progression path, not a demand.</p>
+      <p><strong>Identity-based motivation.</strong> Archetypes create narrative identity around collaboration style. &ldquo;I&rsquo;m a Forgemaster working on strategic setup&rdquo; is more generative than &ldquo;my Setup score is low.&rdquo; The cards use museum art &mdash; hand-curated, not generated &mdash; because aesthetic quality signals the system takes your identity seriously.</p>
+      <p><strong>Spaced reflection.</strong> One quest per session, injected via hook. Not a one-time assessment, not a daily digest. The natural unit of AI collaboration is the session, so that&rsquo;s when the nudge appears.</p>
+      <p><strong>The Description-Discernment Loop.</strong> Skill Tree itself embodies this loop. You describe your work to Claude across sessions. Skill Tree discerns your collaboration patterns from that work. You see the patterns, adjust your approach, and describe differently next session. The tool is the loop.</p>
+
+      <h2>How This Enhances Human Agency</h2>
+      <p>Skill Tree doesn&rsquo;t automate collaboration or prescribe a &ldquo;correct&rdquo; style. It reveals <em>your</em> style and <em>your</em> growth edge. The user remains the agent &mdash; more aware, more intentional, more capable.</p>
+      <p>The artifact evaluation gap &mdash; discernment dropping when outputs look polished &mdash; is a threat to agency. It means the better Claude gets, the less users exercise the judgment that makes them effective collaborators. Skill Tree addresses this not by forcing users to evaluate, but by making their evaluation patterns visible and named.</p>
+
+      <h2>The 11 Behaviors</h2>
+      <ul>
+        <li><strong>Description axis:</strong> Provides examples (41%), Specifies format (30%), Expresses tone (23%), Defines audience (18%)</li>
+        <li><strong>Discernment axis:</strong> Flags context gaps (20%), Questions reasoning (16%), Verifies facts (9%)</li>
+        <li><strong>Delegation axis:</strong> Clarifies goals (51%), Discusses approach (10%), Sets interaction style (30%)</li>
+        <li><strong>Diligence axis:</strong> Transparent about AI&rsquo;s role, Considers sharing consequences, Deploys AI responsibly &mdash; not observable in chat</li>
+        <li><strong>Gateway:</strong> Iterates on outputs (86%)</li>
+      </ul>
+      <p style="font-size:0.78rem;color:#8a8580;">Baselines from <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic&rsquo;s AI Fluency Index</a> (Feb 2026, N=9,830).</p>
+
+      <h2>Measuring Success</h2>
+      <ul>
+        <li><strong>Primary:</strong> Behavior diversity increase over time. Do users develop new collaboration behaviors after seeing their profile?</li>
+        <li><strong>Secondary:</strong> Axis score progression across snapshots. Does Discernment increase after growth quests targeting it?</li>
+        <li><strong>Leading indicator:</strong> Growth quest adoption. Do users engage with the quest prompt in their next session?</li>
+        <li><strong>Anti-metric:</strong> Not measuring session frequency, message volume, or time-on-site. These are engagement proxies, not capability indicators.</li>
+      </ul>
+
+      <h2>Scaling</h2>
+      <p>Skill Tree works today for any Claude Code or Cowork user &mdash; install the plugin. The remote classifier (Fly.io) scales horizontally; classification is stateless and uses Haiku. The 4D framework is platform-agnostic &mdash; the same 11 behaviors apply whether someone uses Code, Cowork, or claude.ai. Session metadata already exists server-side, so classification could run as a native feature without requiring local file access.</p>
+
+      <h2>What I&rsquo;d Do Next</h2>
+      <p><strong>Progression over time.</strong> Currently single-snapshot. The history directory stores timestamped profiles, but the real version needs thoughtful design &mdash; showing growth without implying a score to optimize.</p>
+      <p><strong>Classifier calibration.</strong> I noticed variance between runs &mdash; a session might show 7/11 behaviors detected on one pass and 10/11 on another. Production would need confidence thresholds, ensemble passes, or a fine-tuned classifier to stabilize.</p>
+      <p><strong>Privacy.</strong> Reading session files raises real questions. A production feature would need explicit opt-in, clear data handling, and probably server-side classification that never exports raw conversation text.</p>
+      <p><strong>Causality.</strong> I can&rsquo;t yet prove that seeing your profile causes behavior change. I believe it does &mdash; the metacognition literature suggests it should &mdash; but confirming this would require a longitudinal study. Which, notably, is exactly the kind of research this team does.</p>
+
+      <hr class="about-divider">
+
+      <h2>Research Basis</h2>
+      <p><a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic AI Fluency Index</a> &mdash; behavioral taxonomy and population baselines</p>
+      <p><a href="https://aifluencyframework.org/">4D AI Fluency Framework</a> &mdash; Dakan &amp; Feller&rsquo;s framework (Description, Discernment, Delegation, Diligence)</p>
+
+      <hr class="about-divider">
+      <p style="font-size:0.78rem;color:#6a6560;">Built by Robert Nowell &middot; <a href="https://github.com/robertnowell/ai-fluency-skill-cards" style="color:#6a6560;">Source</a></p>
+    </div>
+  </div>
+
   <div class="page">
-    <div class="mark">Skill Tree &middot; AI Fluency</div>
+    <div class="page-header">
+      <div class="mark">Skill Tree &middot; AI Fluency</div>
+      <button class="about-btn" onclick="document.getElementById('about-overlay').classList.add('is-open')">About</button>
+    </div>
 
     <div class="card-wrapper" id="card-wrapper">
       <div class="card-inner">
@@ -837,6 +1100,7 @@
           <div class="corner tl"></div><div class="corner tr"></div>
           <div class="corner bl"></div><div class="corner br"></div>
           <div class="card-back-pattern"></div>
+          <div class="card-back-name"></div>
           <svg class="card-back-glyph"><use href="#glyph-polymath"/></svg>
           <div class="card-back-cta">
             <div class="card-back-text">Reveal Your Archetype</div>
@@ -847,7 +1111,7 @@
         <div class="card" id="character-card"></div>
       </div>
     </div>
-    <div class="archetype-explain" id="archetype-explain" style="text-align:center; font-size:0.75rem; color:#4a4540; margin:-1rem auto 1.5rem; max-width:390px; opacity:0; transition: opacity 0.6s 0.3s;"></div>
+    <!-- headline is now inside the card tagline -->
 
     <!-- Gate 1 → Stage 2 -->
     <div class="stage-gate" id="gate-deepdive">
@@ -883,16 +1147,17 @@
 
     <!-- Stage 3: Growth & Next Steps -->
     <div class="stage" id="stage-growth">
-      <div class="quest" id="growth-quest"></div>
       <div class="progression" id="progression">
         <div class="progression-label">&#9670; Your Road</div>
         <div class="progression-title">Growth path</div>
         <div id="prog-card-slot"></div>
         <div class="graph-container">
           <svg class="graph-svg" id="prog-graph" viewBox="0 0 600 560"></svg>
+          <div class="graph-tooltip" id="graph-tooltip"></div>
         </div>
         <div class="prog-detail" id="prog-detail"></div>
       </div>
+      <div class="quest" id="growth-quest"></div>
 
       <div class="footer">
         <div class="footer-text">
@@ -942,9 +1207,9 @@
       const gridPoly = grid.map(p => `${p.x},${p.y}`).join(' ');
 
       const labels = [
-        { angle: 0, label: 'Desc', pct: descPct, anchor: 'middle', dx: 0, dy: -6 },
-        { angle: 90, label: 'Disc', pct: discPct, anchor: 'start', dx: 4, dy: 4 },
-        { angle: 270, label: 'Deleg', pct: delegPct, anchor: 'end', dx: -4, dy: 4 },
+        { angle: 0, label: 'Description', pct: descPct, anchor: 'middle', dx: 0, dy: -6 },
+        { angle: 90, label: 'Discernment', pct: discPct, anchor: 'start', dx: 4, dy: 4 },
+        { angle: 270, label: 'Delegation', pct: delegPct, anchor: 'end', dx: -4, dy: 4 },
       ];
       let labelsSvg = '';
       for (const l of labels) {
@@ -1007,7 +1272,7 @@
         <div class="card-bottom">
           ${renderMiniRadar(descPct, discPct, delegPct, a.color || '#a08040')}
           <div class="card-divider"></div>
-          <div class="card-tagline">${a.tagline || ''}</div>
+          <div class="card-tagline">${(() => { const fn = (p.user_name || '').split(' ')[0]; return (a.headline || a.tagline || '').replace('{name}', fn || 'You'); })()}</div>
           <div class="card-sig">${sig}</div>
         </div>
       `;
@@ -1022,6 +1287,41 @@
       Diligence: 'Ethics, transparency & safety',
       Delegation: 'How you set up collaboration'
     };
+
+    const FLUENCY_URL = 'https://www.anthropic.com/research/AI-fluency-index';
+    const FRAMEWORK_URL = 'https://aifluencyframework.org/';
+
+    const AXIS_TIPS = {
+      Description: `Behaviors that shape Claude's output: examples, format, tone, audience. These <em>increase</em> when Claude produces polished artifacts. <a href="${FLUENCY_URL}" target="_blank">AI Fluency Index</a>`,
+      Discernment: `Behaviors that evaluate Claude's reasoning: flagging gaps, questioning logic, verifying facts. These <em>decrease</em> with polished artifacts — the rarest skill cluster. <a href="${FLUENCY_URL}" target="_blank">AI Fluency Index</a>`,
+      Delegation: `Behaviors that set up the collaboration: clarifying goals, discussing approach, setting interaction style. <a href="${FRAMEWORK_URL}" target="_blank">4D Framework</a>`,
+      Diligence: `The 4th D — ethics, transparency, responsible use. Not observable in chat transcripts. <a href="${FRAMEWORK_URL}" target="_blank">4D Framework</a>`,
+    };
+
+    const BEHAVIOR_TIPS = {
+      iterative_improvement: 'Refines work across turns rather than accepting the first response. 86% of users do this.',
+      clarify_goals: 'States the objective or context before requesting help. 51% of users do this.',
+      show_examples: 'Provides examples of desired output or reference material. 41% of users do this.',
+      specify_format: 'States how output should be organized or structured. 30% of users do this.',
+      set_interactive_mode: 'Requests a specific interaction style (e.g., "be concise", "ask me questions"). 30% of users do this.',
+      express_tone_style: 'Specifies communication tone or writing style preferences. 23% of users do this.',
+      identify_context_gaps: 'Notes gaps in information Claude might need, or proactively provides missing context. 20% of users do this.',
+      define_audience: 'Specifies who the deliverable is for. 18% of users do this.',
+      question_reasoning: "Challenges Claude's explanations, logic, or approach. 16% of users do this.",
+      consult_approach: 'Asks Claude to review or discuss strategy before starting execution. 10% of users do this.',
+      verify_facts: "Fact-checks critical information Claude provides. 9% of users do this — the rarest behavior.",
+    };
+
+    // Find behavior key from label
+    const LABEL_TO_KEY = {};
+    for (const [k, v] of Object.entries(ARCHETYPES.catalyst ? {} : {})) {} // no-op
+    // Build from profile data at render time
+    function behaviorKeyFromLabel(label) {
+      for (const [k, b] of Object.entries(PROFILE.behaviors || {})) {
+        if (b.label === label) return k;
+      }
+      return null;
+    }
     // Axes already use the 4D framework names directly
 
     const CX = 300, CY = 300, R = 150;
@@ -1213,6 +1513,15 @@
       requestAnimationFrame(() => requestAnimationFrame(() => {
         gw.querySelector('.gateway-fill').style.width = iterPct + '%';
       }));
+
+      // Auto-select the highest-scoring axis on load
+      const axisScores = AXES_ORDER.map(a => [a, p.branches?.[a]?.score || 0]);
+      axisScores.sort((a, b) => b[1] - a[1]);
+      const topAxis = axisScores[0][0];
+      selectedAxis = topAxis;
+      const topSector = svg.querySelector(`.sector-hit[data-axis="${topAxis}"]`);
+      if (topSector) topSector.classList.add('selected');
+      showDrilldown(topAxis, p, false);
     }
 
     function showDrilldown(axisName, p, isPreview) {
@@ -1220,9 +1529,10 @@
       const color = AXIS_COLORS[axisName];
       const isDiligence = axisName === 'Diligence';
 
+      const axisTip = AXIS_TIPS[axisName] || '';
       let html = `<div class="drilldown-header">
         <div class="drilldown-dot" style="background:${color}"></div>
-        <div class="drilldown-name">${axisName}</div>
+        <div class="drilldown-name tip-wrap" onclick="this.classList.toggle('tip-active')">${axisName}${axisTip ? `<div class="tip">${axisTip}</div>` : ''}</div>
         <span class="drilldown-desc">\u2014 ${AXIS_DESCS[axisName]}</span>
       </div>`;
 
@@ -1244,16 +1554,23 @@
             if (!b) return;
             const pct = Math.round(b.rate * 100);
             const bl = Math.round(b.baseline * 100);
+            const diff = Math.abs(pct - bl);
             const c = pct > bl ? 'above' : pct < bl ? 'below' : 'at';
             const arrow = pct > bl ? '\u2191' : pct < bl ? '\u2193' : '=';
+            const bTip = BEHAVIOR_TIPS[key] || '';
+            const arrowTip = pct > bl
+              ? `You: ${pct}%. Average: ${bl}%. You do this more often than most.`
+              : pct < bl
+              ? `You: ${pct}%. Average: ${bl}%. You do this less often than most.`
+              : `You: ${pct}%. Right at the population average.`;
             html += `<div class="behavior-row">
-              <div class="behavior-name">${b.label}</div>
+              <div class="behavior-name tip-wrap" onclick="this.classList.toggle('tip-active')">${b.label}${bTip ? `<div class="tip">${bTip} <a href="${FLUENCY_URL}" target="_blank">Learn more</a></div>` : ''}</div>
               <div class="bar-track">
                 <div class="bar-fill" style="background:${color}; width:${pct}%"></div>
                 <div class="bar-baseline" style="left:${bl}%"></div>
               </div>
               <div class="behavior-pct">${pct}%</div>
-              <div class="behavior-cmp ${c}">${arrow}</div>
+              <div class="behavior-cmp ${c} tip-wrap" onclick="this.classList.toggle('tip-active')">${arrow}<div class="tip">${arrowTip}</div></div>
             </div>`;
           });
         }
@@ -1315,20 +1632,28 @@
           ? `<div class="phase-insight">${insight}</div>`
           : '';
 
+        const moments = phase.keyMoments || [];
         let momentsHtml = '';
-        for (const m of (phase.keyMoments || [])) {
-          const projectPill = m.project
-            ? `<span class="moment-project">${m.project}</span>`
-            : '';
-          momentsHtml += `
-            <div class="moment">
-              <div class="moment-context">${m.sessionSummary || ''}</div>
-              <div class="moment-quote">\u201c${m.quote}\u201d</div>
-              <div class="moment-footer">
-                ${projectPill}
-                <span class="moment-pill" style="color:${color};border-color:${color}30">${m.behaviorLabel || ''}</span>
-              </div>
-            </div>`;
+        if (moments.length > 0) {
+          let momentsInner = '';
+          for (const m of moments) {
+            const projectPill = m.project
+              ? `<span class="moment-project">${m.project}</span>`
+              : '';
+            momentsInner += `
+              <div class="moment">
+                <div class="moment-quote">\u201c${m.quote}\u201d</div>
+                <div class="moment-footer">
+                  ${projectPill}
+                  <span class="moment-pill" style="color:${color};border-color:${color}30">${m.behaviorLabel || ''}</span>
+                </div>
+              </div>`;
+          }
+          momentsHtml = `
+            <details class="phase-evidence-toggle">
+              <summary>${moments.length} evidence quote${moments.length !== 1 ? 's' : ''}</summary>
+              <div class="moments-container">${momentsInner}</div>
+            </details>`;
         }
 
         // Prefer narrative-provided phase name, fall back to auto-generated
@@ -1383,7 +1708,7 @@
       }
 
       el.innerHTML = `
-        <div class="quest-label">\u25C6 Next Unlock</div>
+        <div class="quest-label">\u25C6 Your Next Quest</div>
         <div class="quest-title">${a.growth_unlock || ''}</div>
         <div class="quest-text">${a.growth_quest || ''}</div>
         <div class="quest-edge">
@@ -1395,6 +1720,21 @@
     }
 
     // ── 5. Strengths ────────────────────────────────────────────────
+    const BEHAVIOR_DESCRIPTIONS = {
+      clarify_goals: "Stating what you want to accomplish before asking for help. The single biggest predictor of getting useful output on the first try.",
+      consult_approach: "Discussing the strategy with Claude before jumping to execution. Catches misalignments early, when they're cheap to fix.",
+      set_interactive_mode: "Telling Claude how to interact with you — concise, ask questions first, think step by step. Shapes the entire conversation style.",
+      show_examples: "Providing concrete examples of what good output looks like. The fastest way to communicate format and quality expectations.",
+      specify_format: "Defining structure, length, or format requirements. Removes ambiguity that would otherwise lead to revision cycles.",
+      express_tone_style: "Communicating tone preferences — formal, casual, technical. Shapes voice without lengthy explanation.",
+      define_audience: "Telling Claude who the output is for. Audience changes everything: vocabulary, depth, examples.",
+      identify_context_gaps: "Proactively noting what Claude doesn't know about your situation. Prevents wrong-context responses.",
+      question_reasoning: "Pushing back on Claude's logic — 'why do you think that?' One of the rarest behaviors in the data, and one of the most valuable.",
+      verify_facts: "Checking specific claims Claude makes. The artifact effect makes polished output feel trustworthy; verification is the antidote.",
+      iterative_improvement: "Refining outputs across multiple turns. The most common AI behavior — almost everyone does it.",
+    };
+    const RESEARCH_URL = "https://www.anthropic.com/research/AI-fluency-index";
+
     function renderStrengths(p) {
       const el = document.getElementById('strengths');
       const above = [];
@@ -1422,10 +1762,18 @@
       let listHtml = above.map(b => {
         const pct = Math.round(b.rate * 100);
         const bl = Math.round(b.baseline * 100);
+        const delta = pct - bl;
+        const desc = BEHAVIOR_DESCRIPTIONS[b.key] || '';
         return `<div class="strength-item">
           <div class="strength-dot" style="background:${b.color}"></div>
           <div class="strength-label">${b.label}</div>
-          <div class="strength-stat">+${pct - bl}pp above avg</div>
+          <div class="strength-stat">+${delta}% above avg</div>
+          <div class="strength-tooltip">
+            <div class="strength-tooltip-title">${b.label}</div>
+            <div class="strength-tooltip-desc">${desc}</div>
+            <div class="strength-tooltip-comparison">You: ${pct}% \u00b7 Population: ${bl}%</div>
+            <div class="strength-tooltip-source"><a href="${RESEARCH_URL}" target="_blank" rel="noopener">Research \u2192 AI Fluency Index</a></div>
+          </div>
         </div>`;
       }).join('');
 
@@ -1519,7 +1867,7 @@
         const artUrl = arch.hero_art?.url || '';
 
         html += `<clipPath id="clip-${key}"><circle cx="${pos.x}" cy="${pos.y}" r="${GRAPH_R - 2}"/></clipPath>`;
-        html += `<g class="${cls}" data-key="${key}">`;
+        html += `<g class="${cls}" data-key="${key}" data-cx="${pos.x}" data-cy="${pos.y}" style="cursor:pointer">`;
 
         // Glow for current or selected
         if (isCurrent || isSelected) html += `<circle cx="${pos.x}" cy="${pos.y}" r="${GRAPH_R + 12}" fill="${color}" opacity="${isCurrent ? 0.08 : 0.05}" filter="blur(10px)"/>`;
@@ -1589,6 +1937,35 @@
           detail.classList.add('visible');
         });
       });
+
+      // Tooltips on hover
+      const tip = document.getElementById('graph-tooltip');
+      svg.querySelectorAll('.g-node').forEach(node => {
+        node.addEventListener('mouseenter', () => {
+          const key = node.dataset.key;
+          const arch = ARCHETYPES[key];
+          if (!arch) return;
+          tip.innerHTML = `
+            <div class="graph-tooltip-name" style="color:${arch.color || '#e8e4df'}">${arch.name}</div>
+            <div class="graph-tooltip-tagline">${arch.tagline || ''}</div>
+            <div class="graph-tooltip-desc">${arch.description || ''}</div>
+          `;
+          // Position tooltip relative to the node's screen position
+          const svgRect = svg.getBoundingClientRect();
+          const containerRect = svg.parentElement.getBoundingClientRect();
+          const cx = parseFloat(node.dataset.cx);
+          const cy = parseFloat(node.dataset.cy);
+          // Map SVG coords to screen coords (viewBox is 600x560)
+          const x = (cx / 600) * svgRect.width + (svgRect.left - containerRect.left);
+          const y = (cy / 560) * svgRect.height + (svgRect.top - containerRect.top);
+          tip.style.left = x + 'px';
+          tip.style.top = y + 'px';
+          tip.classList.add('visible');
+        });
+        node.addEventListener('mouseleave', () => {
+          tip.classList.remove('visible');
+        });
+      });
     }
 
     function renderProgCardPreview(arch, key, isCurrent) {
@@ -1644,7 +2021,7 @@
         const color = AXIS_COLORS[full];
         gapsHtml += `<div class="prog-gap-row"><div class="prog-gap-axis">${full}</div><div class="prog-gap-bar"><div class="prog-gap-fill" style="width:${pct}%;background:${color};border-radius:3px"></div><div class="prog-gap-threshold" style="left:${blPct}%;background:${color}"></div></div><div class="prog-gap-pct ${met?'prog-gap-ok':'prog-gap-need'}">${met?pct+'% \u2713':pct+'% \u2192 '+blPct+'%'}</div></div>`;
         if (!met) {
-          const bh = (p.branches?.[full]?.behaviors||[]).map(k=>{const b=p.behaviors[k];if(!b)return'';const g=Math.round(b.baseline*100)-Math.round(b.rate*100);return g>0?`<span style="color:#b0aca6">${b.label}</span> <span style="color:#c4836e">(+${g}pp)</span>`:'';}).filter(Boolean);
+          const bh = (p.branches?.[full]?.behaviors||[]).map(k=>{const b=p.behaviors[k];if(!b)return'';const g=Math.round(b.baseline*100)-Math.round(b.rate*100);return g>0?`<span style="color:#b0aca6">${b.label}</span> <span style="color:#c4836e">(${Math.round(b.rate*100)}% → ${Math.round(b.baseline*100)}%)</span>`:'';}).filter(Boolean);
           if (bh.length) behaviorsHtml += `<div style="font-size:0.7rem;color:#6b6560;margin-top:0.3rem">Grow: ${bh.join(' \u00b7 ')}</div>`;
         }
       }
@@ -1659,6 +2036,10 @@
       const wrapper = document.getElementById('card-wrapper');
       const back = document.getElementById('card-back');
       const key = p.archetype?.key || 'polymath';
+
+      // Set user name
+      const nameEl = back.querySelector('.card-back-name');
+      if (p.user_name) nameEl.textContent = p.user_name;
 
       // Set the glyph to match archetype
       back.querySelector('.card-back-glyph use').setAttribute('href', `#glyph-${key}`);
@@ -1683,32 +2064,7 @@
           document.getElementById('gate-deepdive').classList.add('visible');
         }, 1200);
 
-        // Show archetype explanation after flip completes
-        setTimeout(() => {
-          const explain = document.getElementById('archetype-explain');
-          const a = p.archetype;
-          const scores = a?.axis_scores || {};
-
-          // Build explanation: which axes are above baseline
-          const aboveAxes = [];
-          const belowAxes = [];
-          for (const [name, branch] of Object.entries(p.branches || {})) {
-            if (branch.above_baseline) aboveAxes.push(name);
-            else belowAxes.push(name);
-          }
-
-          let text = '';
-          if (aboveAxes.length > 0) {
-            text = `High ${aboveAxes.join(' + High ')}`;
-          }
-          if (belowAxes.length > 0 && belowAxes.length <= 2) {
-            text += ` \u2192 ${a.name}. ${belowAxes[0]} is your growth frontier.`;
-          } else {
-            text += ` \u2192 ${a.name}.`;
-          }
-          explain.textContent = text;
-          explain.style.opacity = '1';
-        }, 900);
+        // headline is rendered inside the card tagline
       });
     }
 
@@ -1732,6 +2088,13 @@
     });
     document.getElementById('btn-growth').addEventListener('click', () => {
       revealStage('stage-growth', null);
+    });
+
+    // ── Dismiss tooltips on outside click ──────────────────────────
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.tip-wrap')) {
+        document.querySelectorAll('.tip-active').forEach(el => el.classList.remove('tip-active'));
+      }
     });
 
     // ── Init ─────────────────────────────────────────────────────────
