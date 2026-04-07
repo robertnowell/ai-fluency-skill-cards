@@ -1,0 +1,32 @@
+name: Release plugin zip
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build plugin zip
+        run: |
+          zip -r skill-tree-ai.zip \
+            .claude-plugin \
+            .mcp.json \
+            skills \
+            hooks \
+            hooks-handlers
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" skill-tree-ai.zip \
+            --title "${GITHUB_REF_NAME}" \
+            --notes "Plugin ZIP for Cowork installation. Download and upload via Customize → Upload a file."
