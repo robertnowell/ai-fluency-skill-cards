@@ -1,0 +1,13 @@
+{
+  "thesis": "You ran direction and detail on the same rails. Claude got it right the first time because you said both the what and the how.",
+  "phaseNames": {
+    "0": "Getting Oriented",
+    "1": "Building the Prototype",
+    "2": "Hardening for Launch"
+  },
+  "phaseInsights": {
+    "0": "You ran on two rails from session one: clear goals upfront AND precise specs for what came back. Both Description and Delegation firing together.",
+    "1": "The combination compounded. Claude got closer on the first try because you'd told it both the what and the how — direction plus detail in the same brief.",
+    "2": "By the end the pattern was textbook: orchestrate the setup, shape the output. The only piece you weren't using was discernment — which is your one growth edge."
+  }
+}

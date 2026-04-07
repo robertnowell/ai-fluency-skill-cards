@@ -1,0 +1,869 @@
+{
+  "total_sessions": 30,
+  "behaviors": {
+    "iterative_improvement": {
+      "label": "Iterates on outputs",
+      "rate": 0.967,
+      "baseline": 0.857,
+      "above_baseline": true,
+      "present_count": 29,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Better. Now do the same pass for the closing line — same energy.",
+          "session_id": "forgemaster-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "The third sentence — too clever. Strip it back.",
+          "session_id": "forgemaster-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Better. Now do the same pass for the closing line — same energy.",
+          "session_id": "forgemaster-02",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "clarify_goals": {
+      "label": "Clarifies goals upfront",
+      "rate": 0.233,
+      "baseline": 0.511,
+      "above_baseline": false,
+      "present_count": 7,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "I'm working on the launch page hero. It has to feel inevitable, not loud.",
+          "session_id": "forgemaster-04",
+          "project": "acme-api"
+        },
+        {
+          "text": "Drafting the welcome email for new subscribers. Want it to feel like a postcard from a friend.",
+          "session_id": "forgemaster-05",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Drafting the welcome email for new subscribers. Want it to feel like a postcard from a friend.",
+          "session_id": "forgemaster-08",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "show_examples": {
+      "label": "Provides examples",
+      "rate": 0.8,
+      "baseline": 0.411,
+      "above_baseline": true,
+      "present_count": 24,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Here's a paragraph from a New Yorker piece — that's the cadence I want.",
+          "session_id": "forgemaster-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "This is the reference draft. Match the line length and the comma rhythm.",
+          "session_id": "forgemaster-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Here's a paragraph from a New Yorker piece — that's the cadence I want.",
+          "session_id": "forgemaster-04",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "specify_format": {
+      "label": "Specifies format",
+      "rate": 0.833,
+      "baseline": 0.3,
+      "above_baseline": true,
+      "present_count": 25,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Two short paragraphs. Bold the verb that does the work.",
+          "session_id": "forgemaster-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "H2 headers, eighty-character line length, em-dashes not hyphens.",
+          "session_id": "forgemaster-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "H2 headers, eighty-character line length, em-dashes not hyphens.",
+          "session_id": "forgemaster-04",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "set_interactive_mode": {
+      "label": "Sets interaction style",
+      "rate": 0.167,
+      "baseline": 0.3,
+      "above_baseline": false,
+      "present_count": 5,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Match my edits — don't reintroduce things I cut.",
+          "session_id": "forgemaster-17",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Match my edits — don't reintroduce things I cut.",
+          "session_id": "forgemaster-18",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Read it aloud in your head before you write it.",
+          "session_id": "forgemaster-21",
+          "project": "growth-experiments"
+        }
+      ]
+    },
+    "express_tone_style": {
+      "label": "Expresses tone prefs",
+      "rate": 0.8,
+      "baseline": 0.227,
+      "above_baseline": true,
+      "present_count": 24,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Plain and slightly crooked — the rhythm of how people actually talk.",
+          "session_id": "forgemaster-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Plain and slightly crooked — the rhythm of how people actually talk.",
+          "session_id": "forgemaster-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Dry, slightly amused. Like Patricia Lockwood in a good mood.",
+          "session_id": "forgemaster-04",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "identify_context_gaps": {
+      "label": "Flags context gaps",
+      "rate": 0.133,
+      "baseline": 0.203,
+      "above_baseline": false,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Quick note — 'Pro' is a deprecated tier name. Use 'Studio.'",
+          "session_id": "forgemaster-06",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Quick note — 'Pro' is a deprecated tier name. Use 'Studio.'",
+          "session_id": "forgemaster-12",
+          "project": "acme-api"
+        },
+        {
+          "text": "Heads up: the testimonials need explicit consent before we use them.",
+          "session_id": "forgemaster-13",
+          "project": "growth-experiments"
+        }
+      ]
+    },
+    "define_audience": {
+      "label": "Defines audience",
+      "rate": 0.867,
+      "baseline": 0.176,
+      "above_baseline": true,
+      "present_count": 26,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Designers who care about typography. They'll notice the kerning of every choice.",
+          "session_id": "forgemaster-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Long-time customers, not new ones. Don't re-explain the brand to them.",
+          "session_id": "forgemaster-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Designers who care about typography. They'll notice the kerning of every choice.",
+          "session_id": "forgemaster-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "question_reasoning": {
+      "label": "Questions Claude's logic",
+      "rate": 0.133,
+      "baseline": 0.158,
+      "above_baseline": false,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Why did you pick that verb? 'Optimize' feels off-brand.",
+          "session_id": "forgemaster-04",
+          "project": "acme-api"
+        },
+        {
+          "text": "Are you sure that adjective is doing work, or is it just there?",
+          "session_id": "forgemaster-06",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "That metaphor doesn't land — what were you going for?",
+          "session_id": "forgemaster-07",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "consult_approach": {
+      "label": "Discusses approach first",
+      "rate": 0.133,
+      "baseline": 0.101,
+      "above_baseline": true,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Should this open with a scene or a claim? Pick one and defend it.",
+          "session_id": "forgemaster-06",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Should this open with a scene or a claim? Pick one and defend it.",
+          "session_id": "forgemaster-08",
+          "project": "acme-api"
+        },
+        {
+          "text": "What if we lead with the testimonial instead of the tagline?",
+          "session_id": "forgemaster-21",
+          "project": "growth-experiments"
+        }
+      ]
+    },
+    "verify_facts": {
+      "label": "Verifies facts",
+      "rate": 0.1,
+      "baseline": 0.087,
+      "above_baseline": true,
+      "present_count": 3,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Double-check that quote — the original is slightly different.",
+          "session_id": "forgemaster-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Verify the year. I don't trust 2018.",
+          "session_id": "forgemaster-15",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Double-check that quote — the original is slightly different.",
+          "session_id": "forgemaster-19",
+          "project": "marketing-site"
+        }
+      ]
+    }
+  },
+  "branches": {
+    "Description": {
+      "score": 0.825,
+      "baseline": 0.278,
+      "above_baseline": true,
+      "color": "#cca67b",
+      "description": "How you shape Claude's output",
+      "behaviors": [
+        "show_examples",
+        "specify_format",
+        "express_tone_style",
+        "define_audience"
+      ]
+    },
+    "Discernment": {
+      "score": 0.122,
+      "baseline": 0.149,
+      "above_baseline": false,
+      "color": "#7bcc96",
+      "description": "How you assess Claude's reasoning",
+      "behaviors": [
+        "identify_context_gaps",
+        "question_reasoning",
+        "verify_facts"
+      ]
+    },
+    "Delegation": {
+      "score": 0.178,
+      "baseline": 0.304,
+      "above_baseline": false,
+      "color": "#7ba3cc",
+      "description": "How you set up the collaboration",
+      "behaviors": [
+        "clarify_goals",
+        "consult_approach",
+        "set_interactive_mode"
+      ]
+    }
+  },
+  "archetype": {
+    "name": "The Forgemaster",
+    "tagline": "Describes output precisely — format, tone, audience",
+    "headline": "{name}, you specify format, tone, and examples that most users leave to chance.",
+    "description": "You lead with description — examples of desired output, format requirements, tone preferences, audience awareness. You don't accept generic responses; you shape them into what you envisioned.",
+    "superpower": "Claude's output matches your vision because you've described it precisely",
+    "growth_unlock": "Unlock The Conductor's vision — add strategic delegation to your craft",
+    "growth_quest": "Next session, before specifying details, try stating your overall goal and asking Claude to propose an approach first.",
+    "target_archetype": "conductor",
+    "color": "#b8860b",
+    "accent": "#e8d4a8",
+    "glyph": "forgemaster",
+    "hero_art": {
+      "url": "https://images.metmuseum.org/CRDImages/as/web-large/DT240.jpg",
+      "credit": "Nataraja, Chola dynasty, Tamil Nadu, 11th c.",
+      "position": "center 30%"
+    },
+    "axis_scores": {
+      "description": 0.825,
+      "discernment": 0.122,
+      "delegation": 0.178
+    },
+    "key": "forgemaster"
+  },
+  "growth_edge": {
+    "behavior": "clarify_goals",
+    "label": "Clarifies goals upfront",
+    "rate": 0.233,
+    "baseline": 0.511,
+    "gap": -0.278
+  },
+  "generated_at": "2026-04-07T07:31:56.778Z",
+  "timeline": {
+    "sessions": [
+      {
+        "sessionId": "forgemaster-00",
+        "timestamp": "2026-02-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "define_audience"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "forgemaster-01",
+        "timestamp": "2026-02-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "forgemaster-02",
+        "timestamp": "2026-02-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "express_tone_style",
+          "define_audience",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "forgemaster-03",
+        "timestamp": "2026-02-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "specify_format",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "forgemaster-04",
+        "timestamp": "2026-02-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience",
+          "question_reasoning"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "forgemaster-05",
+        "timestamp": "2026-03-02T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "express_tone_style"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "forgemaster-06",
+        "timestamp": "2026-03-03T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "forgemaster-07",
+        "timestamp": "2026-03-04T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "express_tone_style",
+          "define_audience",
+          "question_reasoning"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "forgemaster-08",
+        "timestamp": "2026-03-06T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "specify_format",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "forgemaster-09",
+        "timestamp": "2026-03-07T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "define_audience",
+          "question_reasoning"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "forgemaster-10",
+        "timestamp": "2026-03-09T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "forgemaster-11",
+        "timestamp": "2026-03-10T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "forgemaster-12",
+        "timestamp": "2026-03-11T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "identify_context_gaps",
+          "define_audience"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "forgemaster-13",
+        "timestamp": "2026-03-13T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "forgemaster-14",
+        "timestamp": "2026-03-14T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "forgemaster-15",
+        "timestamp": "2026-03-16T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "forgemaster-16",
+        "timestamp": "2026-03-17T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "forgemaster-17",
+        "timestamp": "2026-03-18T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "forgemaster-18",
+        "timestamp": "2026-03-20T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "forgemaster-19",
+        "timestamp": "2026-03-21T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "forgemaster-20",
+        "timestamp": "2026-03-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "forgemaster-21",
+        "timestamp": "2026-03-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format",
+          "set_interactive_mode",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "forgemaster-22",
+        "timestamp": "2026-03-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "forgemaster-23",
+        "timestamp": "2026-03-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "forgemaster-24",
+        "timestamp": "2026-03-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "forgemaster-25",
+        "timestamp": "2026-03-30T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "forgemaster-26",
+        "timestamp": "2026-03-31T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "forgemaster-27",
+        "timestamp": "2026-04-01T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "forgemaster-28",
+        "timestamp": "2026-04-03T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "forgemaster-29",
+        "timestamp": "2026-04-04T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "growth-experiments"
+      }
+    ],
+    "phases": [
+      {
+        "name": "acme-api, growth-experiments, data-pipeline, marketing-site",
+        "startDate": "2026-02-23T00:00:00.000Z",
+        "endDate": "2026-03-23T00:00:00.000Z",
+        "sessionCount": 21,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Double-check that quote — the original is slightly different.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "forgemaster-02",
+            "significance": 0.913,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Should this open with a scene or a claim? Pick one and defend it.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Built the dashboard prototype",
+            "sessionId": "forgemaster-06",
+            "significance": 0.899,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Why did you pick that verb? 'Optimize' feels off-brand.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "forgemaster-04",
+            "significance": 0.842,
+            "project": "acme-api"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments",
+          "data-pipeline",
+          "marketing-site"
+        ]
+      },
+      {
+        "name": "data-pipeline, marketing-site, acme-api, growth-experiments",
+        "startDate": "2026-03-25T00:00:00.000Z",
+        "endDate": "2026-04-04T00:00:00.000Z",
+        "sessionCount": 8,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Should this open with a scene or a claim? Pick one and defend it.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "forgemaster-24",
+            "significance": 0.899,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Designers who care about typography. They'll notice the kerning of every choice.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "forgemaster-22",
+            "significance": 0.8240000000000001,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Warm, confident, no jargon. Aim for spoken-word, not written-word.",
+            "behavior": "express_tone_style",
+            "behaviorLabel": "Expresses tone prefs",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "forgemaster-22",
+            "significance": 0.773,
+            "project": "data-pipeline"
+          }
+        ],
+        "projects": [
+          "data-pipeline",
+          "marketing-site",
+          "acme-api",
+          "growth-experiments"
+        ]
+      }
+    ]
+  },
+  "user_name": "Forgemaster"
+}

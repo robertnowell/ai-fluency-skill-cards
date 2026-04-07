@@ -39,6 +39,8 @@ The user says "analyze my ai fluency" and sees themselves reflected back — wha
 
 **Why deterministic archetype assignment.** The profile builder (`profile.ts`) uses no LLM call. It computes axis averages, compares against baselines, and applies a priority ordering. This makes the system reproducible, inspectable, and cheap. The only LLM call is the classifier (Haiku), which runs once per session and is cached. On a re-run, only new sessions incur API cost.
 
+**Why no "all three high" archetype.** The deterministic assignment stops at two-axis combinations. A user who scores high on Description, Discernment, and Delegation simultaneously is routed to Polymath — the third axis is never checked. This is intentional and empirical, not editorial-by-omission. The AI Fluency Index's artifact effect finding shows Description and Delegation behaviors both *increase* with polished outputs, while Discernment *decreases* — Description and Delegation co-move, Discernment moves opposite. The rare and valuable combination is therefore Description × Discernment together, because it's the one that breaks the anti-correlation. Polymath is the apex by virtue of resisting the artifact effect, not by treating Delegation as a lesser virtue. The 4D framework itself (Dakan & Feller) presents Delegation, Description, Discernment, and Diligence as four equal pillars; this taxonomy is an empirical overlay on the Index's behavioral data, not a hierarchy of skills. Polymath's growth path then points to Diligence — the off-screen 4th D — for the same reason: the in-chat dimensions are foundational, and mastery extends them into the world.
+
 ## The Design Process
 
 I spent 33 sessions over four days on this assignment. The arc matters.
@@ -65,7 +67,7 @@ I spent 33 sessions over four days on this assignment. The arc matters.
 
 Skill Tree doesn't automate collaboration or prescribe a "correct" style. It reveals *your* style and *your* growth edge. The user remains the agent — more aware, more intentional, more capable.
 
-The artifact evaluation gap — discernment dropping when outputs look polished — is a threat to agency. It means the better Claude gets, the less users exercise the judgment that makes them effective collaborators. Skill Tree addresses this not by forcing users to evaluate, but by making their evaluation patterns visible and named. An Illuminator who sees "you question Claude's logic more than 84% of users" has a reason to keep doing it. A Catalyst who sees "you verify facts in 3% of sessions vs. a baseline of 8.7%" has a specific, actionable observation — not a lecture.
+The artifact evaluation gap — discernment dropping when outputs look polished — is a threat to agency. It means the better Claude gets, the less users exercise the judgment that makes them effective collaborators. Skill Tree addresses this not by forcing users to evaluate, but by making their evaluation patterns visible and named. An Illuminator who sees "you question Claude's logic more than 84% of conversations" has a reason to keep doing it. A Catalyst who sees "you verify facts in 3% of sessions vs. a baseline of 8.7%" has a specific, actionable observation — not a lecture.
 
 ## Measuring Success
 
@@ -73,6 +75,14 @@ The artifact evaluation gap — discernment dropping when outputs look polished 
 - **Secondary:** Axis score progression across snapshots. Does Discernment increase after growth quests targeting it?
 - **Leading indicator:** Growth quest adoption. Do users engage with the quest prompt in their next session?
 - **Anti-metric:** Not measuring session frequency, message volume, or time-on-site. These are engagement proxies, not capability indicators.
+
+## Methodology note
+
+Both the population baseline and the user's rate are **per-conversation prevalence**: (conversations exhibiting behavior) / (total conversations). The Anthropic AI Fluency Index reports "85.7% of conversations exhibited iteration and refinement," not "85.7% of users." Anthropic does not publish user-level prevalence and does not disclose unique-user counts, so the source data does not support claims of the form "X% of users do this."
+
+Skill Tree's per-behavior rate in `src/core/profile.ts` is computed as `sessions_with_behavior / total_sessions`, which uses the same unit. The two are directly comparable.
+
+This was caught and corrected on 2026-04-06 after a user flagged the misleading "X% of users do this" framing in the behavior tooltips. The numbers were always right; the words around them weren't. A small but real Diligence win — and a reminder that the units of analysis behind a number matter as much as the number itself.
 
 ## Scaling
 

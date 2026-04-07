@@ -13,6 +13,7 @@
  *   - Parallel dimensions: AI literacy systematic review (PMC, 2024, 16 scales)
  */
 
+import { z } from "zod";
 import {
   BASELINES,
   BEHAVIOR_LABELS,
@@ -36,7 +37,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
   polymath: {
     name: "The Polymath",
     tagline: "Describes with precision and discerns with scrutiny",
-    headline: "{name}, you shape Claude's output AND question its reasoning — the rarest combination.",
+    headline: "{name}, you shape Claude's output and question its reasoning — the rarest combination.",
     description:
       "You've developed fluency across both description and discernment — " +
       "the two dimensions that most users specialize in, not combine. " +
@@ -56,11 +57,12 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
       url: "https://file.rendit.io/brands/jKoZ86bPYIkjeF2leO0tE/7MWjCZIkh_OHYSVwH-nZH.gif",
       credit: "",
     },
+    axis_scores: { description: 0.758, discernment: 0.822, delegation: 0.1 },
   },
   conductor: {
     name: "The Conductor",
     tagline: "Delegates direction and describes detail",
-    headline: "{name}, you set the goal AND describe the output — Claude gets it right the first time.",
+    headline: "{name}, you set the direction and describe the details.",
     description:
       "You combine delegation and description — clear goals upfront, " +
       "then precise specifications for format, examples, and tone. " +
@@ -78,6 +80,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
       url: "https://www.artic.edu/iiif/2/9f08b895-4960-4bc6-5871-dc9bfab4c655/full/843,/0/default.jpg",
       credit: "Maharana Bhim Singh in Procession, Rajasthan, c. 1820",
     },
+    axis_scores: { description: 0.833, discernment: 0.067, delegation: 0.733 },
   },
   architect: {
     name: "The Architect",
@@ -101,6 +104,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
       url: "https://iiif.micr.io/DVZRG/full/800,/0/default.jpg",
       credit: "Saenredam, Sint-Bavokerk, Haarlem",
     },
+    axis_scores: { description: 0.108, discernment: 0.722, delegation: 0.733 },
   },
   forgemaster: {
     name: "The Forgemaster",
@@ -124,6 +128,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
       credit: "Nataraja, Chola dynasty, Tamil Nadu, 11th c.",
       position: "center 30%",
     },
+    axis_scores: { description: 0.825, discernment: 0.122, delegation: 0.178 },
   },
   illuminator: {
     name: "The Illuminator",
@@ -146,6 +151,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
       url: "https://www.artic.edu/iiif/2/39018e31-6200-f4e3-7fc0-17ef919a6723/full/843,/0/default.jpg",
       credit: "Batoni, Time Unveiling Truth, 1740–45",
     },
+    axis_scores: { description: 0.092, discernment: 0.767, delegation: 0.089 },
   },
   compass: {
     name: "The Compass",
@@ -168,6 +174,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
       url: "https://openaccess-cdn.clevelandart.org/1985.320/1985.320_web.jpg",
       credit: "Hiroshige, Moon-Viewing Promontory, 1857",
     },
+    axis_scores: { description: 0.109, discernment: 0.1, delegation: 0.733 },
   },
   catalyst: {
     name: "The Catalyst",
@@ -191,6 +198,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
       credit: "Dancing Dervishes, Divan of Hafiz, Persia, c. 1480",
       position: "center 25%",
     },
+    axis_scores: { description: 0.133, discernment: 0.144, delegation: 0.122 },
   },
 };
 
@@ -213,6 +221,14 @@ interface ArchetypeData {
     credit: string;
     position?: string;
   };
+  /**
+   * Canonical axis scores representing the *shape* of this archetype.
+   * Sourced from the fixture profiles so the radar in archetype previews
+   * (e.g. progression-map tooltips) matches what /grid shows. For a
+   * specific user, `SkillProfile.archetype.axis_scores` overrides this
+   * with the user's computed scores — see buildProfile().
+   */
+  axis_scores: Record<string, number>;
 }
 
 interface BehaviorData {
@@ -290,6 +306,115 @@ export interface SkillProfile {
   // Deep dive timeline
   timeline?: Timeline;
 }
+
+// ─── Zod schema for runtime validation at the visualize boundary ──────────
+// Mirrors the SkillProfile interface above. Used by the MCP server to reject
+// malformed profiles loudly with a clear field path, instead of crashing in
+// the browser template render. Keep this in sync with the interfaces above.
+
+const HeroArtSchema = z.object({
+  url: z.string(),
+  credit: z.string(),
+  position: z.string().optional(),
+});
+
+const ArchetypeSchema = z.object({
+  name: z.string(),
+  tagline: z.string(),
+  headline: z.string(),
+  description: z.string(),
+  superpower: z.string(),
+  growth_unlock: z.string(),
+  growth_quest: z.string(),
+  target_archetype: z.string().nullable(),
+  color: z.string(),
+  accent: z.string(),
+  glyph: z.string(),
+  hero_art: HeroArtSchema,
+  key: z.string(),
+  axis_scores: z.record(z.string(), z.number()),
+});
+
+const EvidenceSchema = z.object({
+  text: z.string(),
+  session_id: z.string(),
+  project: z.string(),
+});
+
+const BehaviorDataSchema = z.object({
+  label: z.string(),
+  rate: z.number(),
+  baseline: z.number(),
+  above_baseline: z.boolean(),
+  present_count: z.number(),
+  total_sessions: z.number(),
+  evidence: z.array(EvidenceSchema),
+});
+
+const BranchDataSchema = z.object({
+  score: z.number(),
+  baseline: z.number(),
+  above_baseline: z.boolean(),
+  color: z.string(),
+  description: z.string(),
+  // The crash that motivated server-side validation: this field MUST be
+  // an array of behavior keys. Claude was reconstructing branches without it.
+  behaviors: z.array(z.string()),
+});
+
+const TimelineMomentSchema = z.object({
+  quote: z.string(),
+  behavior: z.string(),
+  behaviorLabel: z.string(),
+  sessionSummary: z.string(),
+  sessionId: z.string(),
+  significance: z.number(),
+  project: z.string(),
+});
+
+const TimelinePhaseSchema = z.object({
+  name: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
+  sessionCount: z.number(),
+  dominantAxis: z.string(),
+  axisColor: z.string(),
+  keyMoments: z.array(TimelineMomentSchema),
+  projects: z.array(z.string()),
+});
+
+const TimelineSessionSchema = z.object({
+  sessionId: z.string(),
+  timestamp: z.string(),
+  summary: z.string(),
+  dominantAxis: z.string(),
+  behaviorsPresent: z.array(z.string()),
+  project: z.string(),
+});
+
+const TimelineSchema = z.object({
+  sessions: z.array(TimelineSessionSchema),
+  phases: z.array(TimelinePhaseSchema),
+});
+
+export const SkillProfileSchema = z.object({
+  user_name: z.string().optional(),
+  total_sessions: z.number(),
+  behaviors: z.record(z.string(), BehaviorDataSchema),
+  branches: z.record(z.string(), BranchDataSchema),
+  archetype: ArchetypeSchema,
+  growth_edge: z.object({
+    behavior: z.string(),
+    label: z.string(),
+    rate: z.number(),
+    baseline: z.number(),
+    gap: z.number(),
+  }),
+  generated_at: z.string(),
+  previous_archetype: z.string().optional(),
+  previous_generated_at: z.string().optional(),
+  timeline: TimelineSchema.optional(),
+});
 
 // ─── Timeline & Phase Detection ───────────────────────────────────────────
 
@@ -495,6 +620,29 @@ function extractKeyMoments(
 
 // ─── Deterministic archetype assignment ────────────────────────────────────
 
+// Why this taxonomy has no "all three high" archetype:
+//
+// The decision tree stops at two-axis combinations by design. If a user
+// hits all three thresholds, they're routed to "polymath" — the third
+// axis is never checked. This is an empirical reading of the AI Fluency
+// Index's artifact effect (see classify.ts:65-70):
+//
+//   Description behaviors INCREASE with polished artifacts
+//   Delegation behaviors INCREASE with polished artifacts
+//   Discernment behaviors DECREASE with polished artifacts
+//
+// Description and Delegation co-move; Discernment moves opposite. The
+// rare and valuable combination is therefore Description × Discernment
+// together, because it's the one that breaks the anti-correlation.
+// Polymath is the apex by virtue of resisting the artifact effect — not
+// because Delegation is a lesser virtue. The Dakan & Feller 4D framework
+// treats Description, Discernment, Delegation, and Diligence as four
+// equal pillars; this taxonomy is an empirical overlay on the artifact-
+// effect data, not a value judgment about Delegation.
+//
+// (For the same reason, the Polymath's growth path points to Diligence —
+// the off-screen 4th D — rather than back to Delegation. The in-chat
+// dimensions are foundational; mastery extends them into the world.)
 export function determineArchetype(behaviors: Record<string, BehaviorData>): string {
   function axisAvg(keys: readonly string[]): number {
     const rates = keys.map((k) => behaviors[k]?.rate ?? 0);

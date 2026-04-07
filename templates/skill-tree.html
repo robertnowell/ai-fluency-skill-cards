@@ -33,276 +33,8 @@
       margin-bottom: 2rem;
     }
 
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ══════════════════════════════════════════
-       1. TAROT CARD (with flip reveal)
-       ══════════════════════════════════════════ */
-
-    .card-wrapper {
-      max-width: 390px;
-      margin: 0 auto 2rem;
-      perspective: 1200px;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(12px);
-      animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
-    }
-    .card-inner {
-      position: relative;
-      aspect-ratio: 7 / 12;
-      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-      transform-style: preserve-3d;
-    }
-    .card-wrapper.revealed .card-inner {
-      transform: rotateY(180deg);
-    }
-    .card-wrapper.revealed {
-      cursor: pointer;
-    }
-
-    /* Card back (face-down — visible first) */
-    .card-back {
-      position: absolute; inset: 0;
-      backface-visibility: hidden;
-      border-radius: 13px;
-      border: 4px solid #2a2520;
-      background: radial-gradient(ellipse at 50% 40%, #1a1714 0%, #0e0d0b 70%);
-      box-shadow: 0 10px 42px rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      overflow: hidden;
-    }
-    /* Ornate double border */
-    .card-back::before {
-      content: '';
-      position: absolute; inset: 8px;
-      border: 1px solid rgba(160,128,64,0.3);
-      border-radius: 8px;
-      pointer-events: none;
-    }
-    .card-back::after {
-      content: '';
-      position: absolute; inset: 13px;
-      border: 1px solid rgba(160,128,64,0.15);
-      border-radius: 5px;
-      pointer-events: none;
-    }
-    /* Corner ornaments on the back */
-    .card-back .corner {
-      position: absolute; width: 26px; height: 26px; z-index: 2;
-      border-color: rgba(160,128,64,0.35); border-style: solid; border-width: 0;
-    }
-    .card-back .corner.tl { top: 16px; left: 16px; border-top-width: 1px; border-left-width: 1px; }
-    .card-back .corner.tr { top: 16px; right: 16px; border-top-width: 1px; border-right-width: 1px; }
-    .card-back .corner.bl { bottom: 16px; left: 16px; border-bottom-width: 1px; border-left-width: 1px; }
-    .card-back .corner.br { bottom: 16px; right: 16px; border-bottom-width: 1px; border-right-width: 1px; }
-    /* Decorative cross pattern */
-    .card-back-pattern {
-      position: absolute; inset: 30px;
-      border: 1px solid rgba(160,128,64,0.06);
-      border-radius: 3px;
-      pointer-events: none;
-    }
-    .card-back-pattern::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 20%; right: 20%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(160,128,64,0.1), transparent);
-    }
-    .card-back-pattern::after {
-      content: '';
-      position: absolute;
-      left: 50%; top: 25%; bottom: 25%;
-      width: 1px;
-      background: linear-gradient(180deg, transparent, rgba(160,128,64,0.1), transparent);
-    }
-    .card-back-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(232,216,176,0.85);
-      text-align: center;
-      z-index: 2;
-    }
-    .card-back-glyph {
-      width: 100px; height: 100px;
-      color: rgba(160,128,64,0.5);
-      margin-bottom: 2rem;
-      filter: drop-shadow(0 0 20px rgba(160,128,64,0.15));
-    }
-    @keyframes glyphBreathe {
-      0%, 100% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(1.03); }
-    }
-    .card-back-glyph {
-      animation: glyphBreathe 4s ease-in-out infinite;
-    }
-    .card-back-cta {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .card-back-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #e8d8b0;
-      text-shadow: 0 0 20px rgba(160,128,64,0.2);
-    }
-    .card-back-sessions {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.8rem;
-      color: rgba(160,128,64,0.5);
-    }
-    .card-back-btn {
-      margin-top: 2rem;
-      padding: 0.65rem 2.2rem;
-      border: 1px solid rgba(160,128,64,0.4);
-      border-radius: 6px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      color: #e8d8b0;
-      background: rgba(160,128,64,0.06);
-      transition: all 0.3s;
-    }
-    .card-wrapper:hover .card-back-btn {
-      background: rgba(160,128,64,0.14);
-      border-color: rgba(160,128,64,0.55);
-      box-shadow: 0 0 24px rgba(160,128,64,0.1);
-    }
-    .card-wrapper:hover .card-back {
-      border-color: #3a3020;
-    }
-    .card-wrapper:hover .card-back-glyph {
-      color: rgba(160,128,64,0.7);
-    }
-    .card-wrapper:hover .card-back-text {
-      text-shadow: 0 0 30px rgba(160,128,64,0.3);
-    }
-
-    /* Card front (revealed) */
-    .card {
-      --ap: #9e9589; --aa: #d4cec6;
-      position: absolute; inset: 0;
-      backface-visibility: hidden;
-      transform: rotateY(180deg);
-      border-radius: 13px;
-      border: 4px solid #2a2520;
-      overflow: hidden;
-      background: #0e0d0b;
-      box-shadow: 0 10px 42px rgba(0,0,0,0.5);
-    }
-
-    .card[data-archetype="catalyst"]    { --ap: #d4584a; --aa: #e8a090; }
-    .card[data-archetype="compass"]     { --ap: #4a7ba3; --aa: #a3c4db; }
-    .card[data-archetype="forgemaster"] { --ap: #b8860b; --aa: #e8d4a8; }
-    .card[data-archetype="illuminator"] { --ap: #3d8a5a; --aa: #a8d4b8; }
-    .card[data-archetype="architect"]   { --ap: #6a8094; --aa: #b0c0d0; }
-    .card[data-archetype="conductor"]   { --ap: #8b3a62; --aa: #d4a0b8; }
-    .card[data-archetype="polymath"]    { --ap: #a08040; --aa: #e8d8b0; }
-
-    .card::before {
-      content: '';
-      position: absolute; inset: 8px; z-index: 1;
-      border: 1px solid rgba(160,128,64,0.25);
-      border-radius: 8px;
-      pointer-events: none;
-    }
-    .card::after {
-      content: '';
-      position: absolute; inset: 13px; z-index: 1;
-      border: 1px solid rgba(160,128,64,0.12);
-      border-radius: 5px;
-      pointer-events: none;
-    }
-
-    .corner {
-      position: absolute; width: 26px; height: 26px; z-index: 2;
-      border-color: rgba(160,128,64,0.3); border-style: solid; border-width: 0;
-    }
-    .corner.tl { top: 16px; left: 16px; border-top-width: 1px; border-left-width: 1px; }
-    .corner.tr { top: 16px; right: 16px; border-top-width: 1px; border-right-width: 1px; }
-    .corner.bl { bottom: 16px; left: 16px; border-bottom-width: 1px; border-left-width: 1px; }
-    .corner.br { bottom: 16px; right: 16px; border-bottom-width: 1px; border-right-width: 1px; }
-
-    .card-art { position: absolute; inset: 0; z-index: 0; }
-    .card-art img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
-    }
-
-    .card-top {
-      position: relative; z-index: 2; text-align: center;
-      padding: 1.3rem 1.56rem 0.65rem;
-      background: linear-gradient(180deg, rgba(14,13,11,0.9) 0%, transparent 100%);
-    }
-    .card-header-row {
-      display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 0.3rem;
-    }
-    .card-user-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600; font-size: 0.65rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: rgba(160,128,64,0.7);
-    }
-    .card-brand {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 400; font-size: 0.55rem;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: rgba(160,128,64,0.35);
-    }
-    .card-numeral {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.845rem; color: rgba(160,128,64,0.5); letter-spacing: 0.3em;
-      margin-bottom: 0.26rem;
-    }
-    .card-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.82rem; font-weight: 600; color: #e8d8b0;
-      letter-spacing: 0.04em; text-shadow: 0 2px 12px rgba(0,0,0,0.8); line-height: 1.1;
-    }
-
-    .card-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-      text-align: center;
-      padding: 2rem 1.5rem 1.3rem;
-      background: linear-gradient(to top, rgba(14,13,11,0.98) 0%, rgba(14,13,11,0.92) 50%, rgba(14,13,11,0.5) 75%, transparent 100%);
-    }
-    .card-tagline {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1rem; color: rgba(232,228,223,0.85); line-height: 1.5; margin-bottom: 0.3rem;
-    }
-    .card-sig {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.8rem; color: rgba(160,128,64,0.5); font-style: italic;
-      letter-spacing: 0.03em;
-    }
-    .card-divider { width: 52px; height: 1px; background: rgba(160,128,64,0.3); margin: 0.52rem auto; }
-    .card-axes { display: flex; justify-content: center; gap: 1.56rem; margin-bottom: 0.65rem; }
-    .card-ax {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.845rem; color: rgba(160,128,64,0.6); letter-spacing: 0.05em;
-    }
-    .card-power {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.78rem; color: rgba(232,216,176,0.5); font-style: italic; line-height: 1.4;
-    }
+    /* __CARD_FLIP_CSS__ */
+    /* __CARD_FACE_CSS__ */
 
     /* ══════════════════════════════════════════
        2. RADAR (4-axis diamond)
@@ -334,8 +66,8 @@
 
     .radar-svg {
       width: 100%;
-      max-width: 420px;
-      aspect-ratio: 1;
+      max-width: 540px;
+      aspect-ratio: 7 / 5;
     }
 
     .sector-hit {
@@ -397,11 +129,72 @@
       border-top: 1px solid #2a2826;
       display: flex; align-items: center; gap: 0.75rem;
       width: 100%;
+      position: relative;
+      cursor: default;
+      transition: background 0.2s;
     }
+    .gateway:hover { background: rgba(255,255,255,0.015); }
     .gateway-label { font-size: 0.875rem; color: #8a8580; font-weight: 500; white-space: nowrap; }
     .gateway-bar { flex: 1; height: 4px; background: #2a2826; border-radius: 2px; overflow: hidden; }
     .gateway-fill { height: 100%; background: #4a4540; border-radius: 2px; width: 0%; transition: width 1s cubic-bezier(0.22,1,0.36,1); }
     .gateway-pct { font-size: 0.875rem; color: #8a8580; font-variant-numeric: tabular-nums; }
+    .gateway-tooltip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 2rem;
+      width: 280px;
+      background: #1e1d1b;
+      border: 1px solid #3a3530;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .gateway:hover .gateway-tooltip { display: block; }
+    .gateway-tooltip-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem; font-weight: 600; color: #e8d8b0;
+      margin-bottom: 0.3rem;
+    }
+    .gateway-tooltip-desc {
+      font-size: 0.7rem; color: #908a84; line-height: 1.55;
+      margin-bottom: 0.4rem;
+    }
+    .gateway-tooltip-source { font-size: 0.65rem; }
+    .gateway-tooltip-source a {
+      color: #6b6560; text-decoration: none;
+      border-bottom: 1px solid #3a3530;
+    }
+    .gateway-tooltip-source a:hover { color: #b0aca6; }
+
+    .behavior-row {
+      position: relative;
+      cursor: default;
+    }
+    .behavior-row-tooltip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 260px;
+      background: #1e1d1b;
+      border: 1px solid #3a3530;
+      border-radius: 0.5rem;
+      padding: 0.7rem;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .behavior-row:hover .behavior-row-tooltip { display: block; }
+    .behavior-row-tooltip-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem; font-weight: 600; color: #e8d8b0;
+      margin-bottom: 0.3rem;
+    }
+    .behavior-row-tooltip-desc {
+      font-size: 0.7rem; color: #908a84; line-height: 1.5;
+    }
 
     /* ══════════════════════════════════════════
        3. EVIDENCE DRILLDOWN
@@ -729,7 +522,7 @@
     .graph-tooltip {
       display: none;
       position: absolute;
-      width: 240px;
+      width: 280px;
       background: #1e1d1b;
       border: 1px solid #3a3530;
       border-radius: 0.5rem;
@@ -751,51 +544,38 @@
     }
     .graph-tooltip-desc {
       font-size: 0.7rem; color: #908a84; line-height: 1.5;
+      margin-bottom: 0.4rem;
     }
+    .graph-tooltip-radar {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #2a2826;
+    }
+    .graph-tooltip-radar > div { margin: 0 !important; }
+    /* Hide the radial-gradient backdrop baked into renderMiniRadar — it
+       exists to darken hero art behind the radar on the tarot card, and
+       just looks like a stray dim circle inside the tooltip. */
+    .graph-tooltip-radar > div > div:first-child { display: none !important; }
 
+    /* Prog card preview — wraps a full scaled-down .card. The fixed
+       width/height matches a 390×668 .card scaled by 0.718 so the
+       wrapper takes correct layout space (transform:scale alone wouldn't
+       collapse the surrounding flow). */
     .prog-card-preview {
-      max-width: 200px;
+      width: 280px;
+      height: 480px;
       margin: 0 auto 1rem;
-      aspect-ratio: 7 / 10;
-      border-radius: 8px;
-      border: 2px solid #2a2520;
-      overflow: hidden;
       position: relative;
-      background: #0e0d0b;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.4);
-      transition: border-color 0.3s;
-    }
-    .prog-card-preview img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
       transition: filter 0.4s;
     }
-    .prog-card-preview.is-locked img {
+    .prog-card-preview .card {
+      position: absolute;
+      top: 0; left: 0;
+      transform: scale(0.718);
+      transform-origin: top left;
+    }
+    .prog-card-preview.is-locked {
       filter: blur(8px) brightness(0.35) saturate(0.5);
-    }
-    .prog-card-preview .pcp-overlay {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      text-align: center;
-      padding: 1rem;
-      background: linear-gradient(to top, rgba(14,13,11,0.85) 0%, rgba(14,13,11,0.3) 50%, rgba(14,13,11,0.6) 100%);
-    }
-    .prog-card-preview .pcp-numeral {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.5rem; color: rgba(160,128,64,0.5);
-      letter-spacing: 0.3em; margin-bottom: 0.25rem;
-    }
-    .prog-card-preview .pcp-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; font-weight: 600; color: #e8d8b0;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-      margin-bottom: 0.2rem;
-    }
-    .prog-card-preview .pcp-tag {
-      font-size: 0.75rem; color: #8a8580;
-    }
-    .prog-card-preview.is-locked .pcp-tag {
-      color: #4a4540;
     }
 
     .g-node { cursor: pointer; }
@@ -848,7 +628,8 @@
       font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
       color: #4a4540; margin-bottom: 0.4rem;
     }
-    .prog-gap-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
+    .prog-gap-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; position: relative; cursor: default; padding: 0.15rem 0; border-radius: 0.25rem; transition: background 0.2s; }
+    .prog-gap-row:hover { background: rgba(255,255,255,0.02); }
     .prog-gap-axis { width: 100px; font-size: 0.875rem; color: #8a8580; text-align: right; flex-shrink: 0; }
     .prog-gap-bar { flex: 1; height: 5px; background: #2a2826; border-radius: 3px; position: relative; }
     .prog-gap-fill { height: 100%; border-radius: 3px; position: absolute; left: 0; top: 0; }
@@ -856,6 +637,48 @@
     .prog-gap-pct { width: 65px; font-size: 0.875rem; color: #8a8580; font-variant-numeric: tabular-nums; }
     .prog-gap-ok { color: #5a9e6f; }
     .prog-gap-need { color: #c4836e; }
+    .prog-gap-tooltip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      background: #1e1d1b;
+      border: 1px solid #3a3530;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    /* Invisible bridge across the 6px gap so the cursor can travel from
+       the row up into the tooltip without losing :hover state. Hovering
+       the ::before counts as hovering its DOM ancestors (.prog-gap-row),
+       which keeps .prog-gap-row:hover true. */
+    .prog-gap-tooltip::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      bottom: -8px;
+      height: 8px;
+    }
+    .prog-gap-row:hover .prog-gap-tooltip { display: block; }
+    /* Also keep tooltip visible while the cursor is directly over it,
+       so links inside (e.g. AI Fluency Index) are clickable. */
+    .prog-gap-tooltip:hover { display: block; }
+    .prog-gap-tooltip-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem; font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .prog-gap-tooltip-desc {
+      font-size: 0.7rem; color: #908a84; line-height: 1.55;
+    }
+    .prog-gap-tooltip-desc a {
+      color: #b0aca6; text-decoration: none;
+      border-bottom: 1px solid #3a3530;
+    }
+    .prog-gap-tooltip-desc a:hover { color: #e8d8b0; }
 
     /* ── Staged reveal ── */
     .stage {
@@ -1005,7 +828,7 @@
     <div class="about-content">
       <h1>Skill Tree</h1>
       <p>Your AI collaboration style &mdash; analyzed, visualized, and tracked.</p>
-      <p>Built on <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic&rsquo;s AI Fluency Index</a> (Dakan &amp; Feller, Feb 2026), which identified 11 observable behaviors across 9,830 conversations that distinguish how people collaborate with AI.</p>
+      <p>Built on <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic&rsquo;s AI Fluency Index</a> (Feb 2026), which identified 11 observable behaviors across 9,830 conversations that distinguish how people collaborate with AI. The 3-axis structure (Description, Discernment, Delegation) is drawn from <a href="https://aifluencyframework.org/">Dakan &amp; Feller&rsquo;s 4D AI Fluency Framework</a>.</p>
 
       <h2>The Problem</h2>
       <p>Most users iterate &mdash; 85.7% refine Claude&rsquo;s outputs across turns. But the behaviors that require critical evaluation are far less common: only 15.8% question Claude&rsquo;s reasoning, and 8.7% verify facts. The most provocative finding: when Claude produces polished artifacts, specification behaviors increase while evaluation behaviors <em>decrease</em>. The more capable the tool becomes, the less scrutiny its outputs receive.</p>
@@ -1025,6 +848,7 @@
         <li><strong>Renders</strong> this visualization with archetype card, skill radar, and narrative deep dive</li>
         <li><strong>Issues</strong> a growth quest that injects into the next session via a hook</li>
       </ul>
+      <p style="font-size:0.82rem;color:#8a8580;">The hook persists the quest across sessions in both Claude Code and Cowork. Cowork sandboxes have an ephemeral <code>$HOME</code> per session, so the quest is stored in the persistent plugin directory there &mdash; it survives across sessions but resets when the plugin is updated.</p>
 
       <h2>Design Decisions</h2>
       <p><strong>Why a plugin, not a web app.</strong> Skill Tree lives where the user already works. The visualization opens in the browser when you need it, but the growth quest persists in the session itself.</p>
@@ -1090,7 +914,7 @@
 
   <div class="page">
     <div class="page-header">
-      <div class="mark">Skill Tree &middot; AI Fluency</div>
+      <div class="mark">AI Fluency Skill Tree</div>
       <button class="about-btn" onclick="document.getElementById('about-overlay').classList.add('is-open')">About</button>
     </div>
 
@@ -1128,7 +952,7 @@
           <div class="radar-sub">4 dimensions &middot; click to explore &middot; dashed = population avg</div>
         </div>
         <div class="radar-body">
-          <svg class="radar-svg" viewBox="0 0 600 600" id="radar-svg"></svg>
+          <svg class="radar-svg" viewBox="-120 0 840 600" id="radar-svg"></svg>
         </div>
         <div class="drilldown" id="drilldown"></div>
         <div class="gateway" id="gateway"></div>
@@ -1193,90 +1017,8 @@
       Diligence: '#9b8ec4', Delegation: '#7ba3cc'
     };
 
-    // ── Mini radar for tarot card ─────────────────────────────────
-    function renderMiniRadar(descPct, discPct, delegPct, color) {
-      const cx = 70, cy = 70, r = 48;
-      function ptAt(angleDeg, pct) {
-        const rad = (angleDeg - 90) * Math.PI / 180;
-        const v = r * Math.max(pct / 100, 0.08);
-        return { x: cx + v * Math.cos(rad), y: cy + v * Math.sin(rad) };
-      }
-      const pts = [ptAt(0, descPct), ptAt(90, discPct), ptAt(180, 0), ptAt(270, delegPct)];
-      const userPoly = pts.map(p => `${p.x},${p.y}`).join(' ');
-      const grid = [ptAt(0,100), ptAt(90,100), ptAt(180,100), ptAt(270,100)];
-      const gridPoly = grid.map(p => `${p.x},${p.y}`).join(' ');
-
-      const labels = [
-        { angle: 0, label: 'Description', pct: descPct, anchor: 'middle', dx: 0, dy: -6 },
-        { angle: 90, label: 'Discernment', pct: discPct, anchor: 'start', dx: 4, dy: 4 },
-        { angle: 270, label: 'Delegation', pct: delegPct, anchor: 'end', dx: -4, dy: 4 },
-      ];
-      let labelsSvg = '';
-      for (const l of labels) {
-        const lp = ptAt(l.angle, 125);
-        labelsSvg += `<text x="${lp.x + l.dx}" y="${lp.y + l.dy}" text-anchor="${l.anchor}" font-family="'Cormorant Garamond', serif" font-size="11" fill="rgba(232,216,176,0.7)" font-weight="600">${l.label} ${l.pct}%</text>`;
-      }
-
-      return `<div style="display:flex;justify-content:center;margin:0.4rem 0;position:relative">
-        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(14,13,11,0.7) 0%,rgba(14,13,11,0.4) 50%,transparent 75%);pointer-events:none"></div>
-        <svg viewBox="0 0 140 140" width="140" height="140" style="overflow:visible;position:relative">
-          <polygon points="${gridPoly}" fill="none" stroke="rgba(232,216,176,0.12)" stroke-width="0.75"/>
-          <line x1="${cx}" y1="${cy-r}" x2="${cx}" y2="${cy+r}" stroke="rgba(232,216,176,0.08)" stroke-width="0.5"/>
-          <line x1="${cx-r}" y1="${cy}" x2="${cx+r}" y2="${cy}" stroke="rgba(232,216,176,0.08)" stroke-width="0.5"/>
-          <polygon points="${userPoly}" fill="${color}" fill-opacity="0.35" stroke="rgba(232,216,176,0.7)" stroke-width="1.5"/>
-          <circle cx="${pts[0].x}" cy="${pts[0].y}" r="2.5" fill="rgba(232,216,176,0.8)"/>
-          <circle cx="${pts[1].x}" cy="${pts[1].y}" r="2.5" fill="rgba(232,216,176,0.8)"/>
-          <circle cx="${pts[3].x}" cy="${pts[3].y}" r="2.5" fill="rgba(232,216,176,0.8)"/>
-          ${labelsSvg}
-        </svg>
-      </div>`;
-    }
-
-    // ── Axis signatures ────────────────────────────────────────────
-    const AXIS_SIGS = {
-      catalyst: 'No axes above average',
-      compass: 'High Delegation',
-      forgemaster: 'High Description',
-      illuminator: 'High Discernment',
-      conductor: 'High Description + Delegation',
-      architect: 'High Discernment + Delegation',
-      polymath: 'High Description + Discernment',
-    };
-
-    // ── 1. Tarot Card ───────────────────────────────────────────────
-    function renderCard(p) {
-      const a = p.archetype || {};
-      const el = document.getElementById('character-card');
-      const key = a.key || 'catalyst';
-      el.setAttribute('data-archetype', key);
-
-      const url = a.hero_art?.url || '';
-      const pos = a.hero_art?.position || 'center center';
-      const descPct = Math.round((a.axis_scores?.description || 0) * 100);
-      const discPct = Math.round((a.axis_scores?.discernment || 0) * 100);
-      const delegPct = Math.round((a.axis_scores?.delegation || 0) * 100);
-      const sig = AXIS_SIGS[key] || '';
-
-      el.innerHTML = `
-        <div class="corner tl"></div><div class="corner tr"></div>
-        <div class="corner bl"></div><div class="corner br"></div>
-        <div class="card-art">${url ? `<img src="${url}" alt="" style="object-position:${pos}">` : ''}</div>
-        <div class="card-top">
-          <div class="card-header-row">
-            <div class="card-user-name">${p.user_name || ''}</div>
-            <div class="card-brand">AI Fluency Card</div>
-          </div>
-          <div class="card-numeral">${NUMERALS[key] || ''}</div>
-          <div class="card-name">${a.name || 'Unknown'}</div>
-        </div>
-        <div class="card-bottom">
-          ${renderMiniRadar(descPct, discPct, delegPct, a.color || '#a08040')}
-          <div class="card-divider"></div>
-          <div class="card-tagline">${(() => { const fn = (p.user_name || '').split(' ')[0]; return (a.headline || a.tagline || '').replace('{name}', fn || 'You'); })()}</div>
-          <div class="card-sig">${sig}</div>
-        </div>
-      `;
-    }
+    /* __RENDER_MINI_RADAR_JS__ */
+    /* __RENDER_CARD_JS__ */
 
     // ── 2. Radar (4-axis diamond) ──────────────────────────────────
     const AXES_ORDER = ['Description', 'Discernment', 'Diligence', 'Delegation'];
@@ -1299,17 +1041,17 @@
     };
 
     const BEHAVIOR_TIPS = {
-      iterative_improvement: 'Refines work across turns rather than accepting the first response. 86% of users do this.',
-      clarify_goals: 'States the objective or context before requesting help. 51% of users do this.',
-      show_examples: 'Provides examples of desired output or reference material. 41% of users do this.',
-      specify_format: 'States how output should be organized or structured. 30% of users do this.',
-      set_interactive_mode: 'Requests a specific interaction style (e.g., "be concise", "ask me questions"). 30% of users do this.',
-      express_tone_style: 'Specifies communication tone or writing style preferences. 23% of users do this.',
-      identify_context_gaps: 'Notes gaps in information Claude might need, or proactively provides missing context. 20% of users do this.',
-      define_audience: 'Specifies who the deliverable is for. 18% of users do this.',
-      question_reasoning: "Challenges Claude's explanations, logic, or approach. 16% of users do this.",
-      consult_approach: 'Asks Claude to review or discuss strategy before starting execution. 10% of users do this.',
-      verify_facts: "Fact-checks critical information Claude provides. 9% of users do this — the rarest behavior.",
+      iterative_improvement: 'Refines work across turns rather than accepting the first response. 86% baseline (AI Fluency Index).',
+      clarify_goals: 'States the objective or context before requesting help. 51% baseline (AI Fluency Index).',
+      show_examples: 'Provides examples of desired output or reference material. 41% baseline (AI Fluency Index).',
+      specify_format: 'States how output should be organized or structured. 30% baseline (AI Fluency Index).',
+      set_interactive_mode: 'Requests a specific interaction style (e.g., "be concise", "ask me questions"). 30% baseline (AI Fluency Index).',
+      express_tone_style: 'Specifies communication tone or writing style preferences. 23% baseline (AI Fluency Index).',
+      identify_context_gaps: 'Notes gaps in information Claude might need, or proactively provides missing context. 20% baseline (AI Fluency Index).',
+      define_audience: 'Specifies who the deliverable is for. 18% baseline (AI Fluency Index).',
+      question_reasoning: "Challenges Claude's explanations, logic, or approach. 16% baseline (AI Fluency Index).",
+      consult_approach: 'Asks Claude to review or discuss strategy before starting execution. 10% baseline (AI Fluency Index).',
+      verify_facts: "Fact-checks critical information Claude provides. 9% baseline (AI Fluency Index) — the rarest behavior.",
     };
 
     // Find behavior key from label
@@ -1411,15 +1153,15 @@
 
         html += `<g class="axis-label-hit" data-axis="${name}" style="cursor:pointer">`;
         if (angle === 0) {
-          html += `<text x="${pt.x}" y="${pt.y - 10}" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="16" fill="#e8e4df" font-weight="500">${pctText}</text>`;
-          html += `<text x="${pt.x}" y="${pt.y + 6}" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="17" fill="${color}" font-weight="600">${name}</text>`;
+          html += `<text x="${pt.x}" y="${pt.y - 20}" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="32" fill="#e8e4df" font-weight="500">${pctText}</text>`;
+          html += `<text x="${pt.x}" y="${pt.y + 14}" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="34" fill="${color}" font-weight="600">${name}</text>`;
         } else if (angle === 180) {
-          html += `<text x="${pt.x}" y="${pt.y + 2}" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="17" fill="${color}" font-weight="600" ${isDiligence ? 'opacity="0.5"' : ''}>${name}</text>`;
-          html += `<text x="${pt.x}" y="${pt.y + 20}" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="16" fill="${isDiligence ? '#6b6560' : '#e8e4df'}" font-weight="${isDiligence ? 300 : 500}">${pctText}</text>`;
-          if (isDiligence) html += `<text x="${pt.x}" y="${pt.y + 38}" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" fill="#6b6560" font-weight="300">not observable in-chat</text>`;
+          html += `<text x="${pt.x}" y="${pt.y + 4}" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="34" fill="${color}" font-weight="600" ${isDiligence ? 'opacity="0.5"' : ''}>${name}</text>`;
+          html += `<text x="${pt.x}" y="${pt.y + 38}" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="32" fill="${isDiligence ? '#6b6560' : '#e8e4df'}" font-weight="${isDiligence ? 300 : 500}">${pctText}</text>`;
+          if (isDiligence) html += `<text x="${pt.x}" y="${pt.y + 70}" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="28" fill="#6b6560" font-weight="300">not observable in-chat</text>`;
         } else {
-          html += `<text x="${pt.x + dx}" y="${pt.y - 6}" text-anchor="${anchor}" font-family="'Cormorant Garamond', serif" font-size="17" fill="${color}" font-weight="600">${name}</text>`;
-          html += `<text x="${pt.x + dx}" y="${pt.y + 12}" text-anchor="${anchor}" font-family="'Outfit', sans-serif" font-size="16" fill="#e8e4df" font-weight="500">${pctText}</text>`;
+          html += `<text x="${pt.x + dx}" y="${pt.y - 12}" text-anchor="${anchor}" font-family="'Cormorant Garamond', serif" font-size="34" fill="${color}" font-weight="600">${name}</text>`;
+          html += `<text x="${pt.x + dx}" y="${pt.y + 22}" text-anchor="${anchor}" font-family="'Outfit', sans-serif" font-size="32" fill="#e8e4df" font-weight="500">${pctText}</text>`;
         }
         html += `</g>`;
       });
@@ -1509,6 +1251,11 @@
         <div class="gateway-label">Iteration</div>
         <div class="gateway-bar"><div class="gateway-fill" data-width="${iterPct}"></div></div>
         <div class="gateway-pct">${iterPct}%</div>
+        <div class="gateway-tooltip">
+          <div class="gateway-tooltip-title">Iterative improvement</div>
+          <div class="gateway-tooltip-desc">${BEHAVIOR_TIPS.iterative_improvement} The most common AI behavior — it's a gateway, not on any axis. Almost everyone iterates; the differentiator is what you do <em>between</em> the turns.</div>
+          <div class="gateway-tooltip-source"><a href="${FLUENCY_URL}" target="_blank" rel="noopener">Research \u2192 AI Fluency Index</a></div>
+        </div>
       `;
       requestAnimationFrame(() => requestAnimationFrame(() => {
         gw.querySelector('.gateway-fill').style.width = iterPct + '%';
@@ -1537,12 +1284,21 @@
       </div>`;
 
       if (isDiligence) {
-        ['Transparent about AI\u2019s role', 'Considers sharing consequences', 'Deploys AI responsibly'].forEach(label => {
+        const diligenceItems = [
+          { label: 'Transparent about AI\u2019s role', desc: 'Disclosing when and how AI was used in your work — to readers, collaborators, employers. The honesty layer that protects trust.' },
+          { label: 'Considers sharing consequences', desc: 'Thinking before publishing or distributing AI-generated output: who is affected, what could go wrong, what context they need.' },
+          { label: 'Deploys AI responsibly', desc: 'Applying AI in ways that respect safety, ethics, and the well-being of others. The bridge from capability to care.' },
+        ];
+        diligenceItems.forEach(item => {
           html += `<div class="behavior-row">
-            <div class="behavior-name" style="color:#4a4540">${label}</div>
+            <div class="behavior-name" style="color:#4a4540">${item.label}</div>
             <div class="bar-track"><div class="bar-fill" style="background:${color}; width:0%; opacity:0.15"></div></div>
             <div class="behavior-pct" style="color:#3a3835">\u2014</div>
             <div class="behavior-cmp at">&nbsp;</div>
+            <div class="behavior-row-tooltip">
+              <div class="behavior-row-tooltip-title" style="color:${color}">${item.label}</div>
+              <div class="behavior-row-tooltip-desc">${item.desc}</div>
+            </div>
           </div>`;
         });
         html += `<div class="diligence-note" style="margin-top:0.5rem">These behaviors happen outside the conversation and cannot be measured from chat data.</div>`;
@@ -1743,7 +1499,10 @@
         if (b.above_baseline && key !== 'iterative_improvement') {
           let color = '#a08040';
           for (const [axisName, branch] of Object.entries(p.branches || {})) {
-            if (branch.behaviors.includes(key)) { color = AXIS_COLORS[axisName]; break; }
+            // Defense-in-depth: server-side Zod validation should guarantee
+            // branch.behaviors is a string[]. Guard here in case a malformed
+            // profile slips through (e.g. legacy profile_json path).
+            if ((branch.behaviors || []).includes(key)) { color = AXIS_COLORS[axisName]; break; }
           }
           above.push({ ...b, key, color });
         }
@@ -1913,7 +1672,7 @@
             // Deselect — go back to current archetype's path
             progSelectedNode = null;
             renderProgGraph(p, null);
-            slot.innerHTML = renderProgCardPreview(p.archetype, currentKey, true);
+            slot.innerHTML = renderProgCardPreview(p.archetype, currentKey, true, p);
             detail.innerHTML = renderCurrentDetail(p);
             detail.classList.add('visible');
             return;
@@ -1926,7 +1685,7 @@
           // Update card preview — show selected archetype (obfuscated if not yours)
           const selectedArch = ARCHETYPES[key];
           if (selectedArch) {
-            slot.innerHTML = renderProgCardPreview(selectedArch, key, key === currentKey);
+            slot.innerHTML = renderProgCardPreview(selectedArch, key, key === currentKey, p);
           }
 
           if (key === currentKey) {
@@ -1938,46 +1697,97 @@
         });
       });
 
-      // Tooltips on hover
+      // Tooltips on hover (with hover-intent delay)
       const tip = document.getElementById('graph-tooltip');
+      const to3p = (s) => (s || '').replace(/\bYou\b/g,'They').replace(/\byou\b/g,'they').replace(/\bYour\b/g,'Their').replace(/\byour\b/g,'their');
+      let tipTimer = null;
       svg.querySelectorAll('.g-node').forEach(node => {
         node.addEventListener('mouseenter', () => {
-          const key = node.dataset.key;
-          const arch = ARCHETYPES[key];
-          if (!arch) return;
-          tip.innerHTML = `
-            <div class="graph-tooltip-name" style="color:${arch.color || '#e8e4df'}">${arch.name}</div>
-            <div class="graph-tooltip-tagline">${arch.tagline || ''}</div>
-            <div class="graph-tooltip-desc">${arch.description || ''}</div>
-          `;
-          // Position tooltip relative to the node's screen position
-          const svgRect = svg.getBoundingClientRect();
-          const containerRect = svg.parentElement.getBoundingClientRect();
-          const cx = parseFloat(node.dataset.cx);
-          const cy = parseFloat(node.dataset.cy);
-          // Map SVG coords to screen coords (viewBox is 600x560)
-          const x = (cx / 600) * svgRect.width + (svgRect.left - containerRect.left);
-          const y = (cy / 560) * svgRect.height + (svgRect.top - containerRect.top);
-          tip.style.left = x + 'px';
-          tip.style.top = y + 'px';
-          tip.classList.add('visible');
+          if (tipTimer) clearTimeout(tipTimer);
+          tipTimer = setTimeout(() => {
+            const key = node.dataset.key;
+            const arch = ARCHETYPES[key];
+            if (!arch) return;
+            // For your own node, show YOUR actual scores; for other archetypes,
+            // show the canonical shape from ARCHETYPES[key].axis_scores.
+            const isOwn = key === currentKey;
+            const scores = isOwn ? (p.archetype?.axis_scores || {}) : (arch.axis_scores || {});
+            const descPct = Math.round((scores.description || 0) * 100);
+            const discPct = Math.round((scores.discernment || 0) * 100);
+            const delegPct = Math.round((scores.delegation || 0) * 100);
+            const radarHtml = renderMiniRadar(descPct, discPct, delegPct, arch.color || '#a08040');
+            // Own node keeps "you/your"; other archetypes get rewritten to "they/their".
+            const tagText = isOwn ? (arch.tagline || '') : to3p(arch.tagline);
+            const descText = isOwn ? (arch.description || '') : to3p(arch.description);
+            tip.innerHTML = `
+              <div class="graph-tooltip-name" style="color:${arch.color || '#e8e4df'}">${arch.name}</div>
+              <div class="graph-tooltip-tagline">${tagText}</div>
+              <div class="graph-tooltip-desc">${descText}</div>
+              <div class="graph-tooltip-radar">${radarHtml}</div>
+            `;
+            // Position tooltip relative to the node's screen position
+            const svgRect = svg.getBoundingClientRect();
+            const containerRect = svg.parentElement.getBoundingClientRect();
+            const cx = parseFloat(node.dataset.cx);
+            const cy = parseFloat(node.dataset.cy);
+            // Map SVG coords to screen coords (viewBox is 600x560)
+            const x = (cx / 600) * svgRect.width + (svgRect.left - containerRect.left);
+            const y = (cy / 560) * svgRect.height + (svgRect.top - containerRect.top);
+            tip.style.left = x + 'px';
+            tip.style.top = y + 'px';
+            tip.classList.add('visible');
+          }, 350);
         });
         node.addEventListener('mouseleave', () => {
+          if (tipTimer) { clearTimeout(tipTimer); tipTimer = null; }
           tip.classList.remove('visible');
         });
       });
     }
 
-    function renderProgCardPreview(arch, key, isCurrent) {
+    function renderProgCardPreview(arch, key, isCurrent, p) {
+      // Build the same tarot card as the top of the report (and as /grid),
+      // sized down via .prog-card-preview .card { transform: scale(...) }.
+      // For the user's own archetype: personalized headline + their name.
+      // For other archetypes: stripped headline + 'ARCHETYPE' label, blurred.
       const url = arch.hero_art?.url || '';
       const pos = arch.hero_art?.position || 'center center';
+      const scores = arch.axis_scores || {};
+      const descPct = Math.round((scores.description || 0) * 100);
+      const discPct = Math.round((scores.discernment || 0) * 100);
+      const delegPct = Math.round((scores.delegation || 0) * 100);
+      const sig = (typeof AXIS_SIGS !== 'undefined' && AXIS_SIGS[key]) || '';
+      let userName, tagline;
+      if (isCurrent) {
+        userName = (p && p.user_name) || '';
+        const firstName = userName.split(' ')[0] || 'You';
+        tagline = (arch.headline || arch.tagline || '').replace('{name}', firstName);
+      } else {
+        userName = 'ARCHETYPE';
+        tagline = (arch.headline || arch.tagline || '')
+          .replace(/^\{name\},\s*/i, '')
+          .replace(/^\w/, c => c.toUpperCase());
+      }
       const locked = !isCurrent ? 'is-locked' : '';
       return `<div class="prog-card-preview ${locked}">
-        ${url ? `<img src="${url}" alt="" style="object-position:${pos}">` : ''}
-        <div class="pcp-overlay">
-          <div class="pcp-numeral">${NUMERALS[key] || ''}</div>
-          <div class="pcp-name">${arch.name}</div>
-          <div class="pcp-tag">${isCurrent ? 'Your archetype' : (arch.tagline || '')}</div>
+        <div class="card" data-archetype="${key}">
+          <div class="corner tl"></div><div class="corner tr"></div>
+          <div class="corner bl"></div><div class="corner br"></div>
+          <div class="card-art">${url ? `<img src="${url}" alt="" style="object-position:${pos}">` : ''}</div>
+          <div class="card-top">
+            <div class="card-header-row">
+              <div class="card-user-name">${userName}</div>
+              <div class="card-brand">AI Fluency Skills</div>
+            </div>
+            <div class="card-numeral">${NUMERALS[key] || ''}</div>
+            <div class="card-name">${arch.name || 'Unknown'}</div>
+          </div>
+          <div class="card-bottom">
+            ${renderMiniRadar(descPct, discPct, delegPct, arch.color || '#a08040')}
+            <div class="card-divider"></div>
+            <div class="card-tagline">${tagline}</div>
+            <div class="card-sig">${sig}</div>
+          </div>
         </div>
       </div>`;
     }
@@ -1988,7 +1798,7 @@
 
       // Show tarot card preview for current archetype
       const slot = document.getElementById('prog-card-slot');
-      slot.innerHTML = renderProgCardPreview(p.archetype, currentKey, true);
+      slot.innerHTML = renderProgCardPreview(p.archetype, currentKey, true, p);
 
       // Initial render with current archetype's path
       renderProgGraph(p, null);
@@ -2006,7 +1816,8 @@
         const score = p.branches?.[full]?.score || 0;
         const pct = Math.round(score*100), blPct = Math.round(bl*100);
         const color = AXIS_COLORS[full];
-        gapsHtml += `<div class="prog-gap-row"><div class="prog-gap-axis">${full}</div><div class="prog-gap-bar"><div class="prog-gap-fill" style="width:${pct}%;background:${color};border-radius:3px"></div><div class="prog-gap-threshold" style="left:${blPct}%;background:${color}"></div></div><div class="prog-gap-pct ${score>bl?'prog-gap-ok':''}">${pct}%</div></div>`;
+        const tip = AXIS_TIPS[full] || '';
+        gapsHtml += `<div class="prog-gap-row"><div class="prog-gap-axis">${full}</div><div class="prog-gap-bar"><div class="prog-gap-fill" style="width:${pct}%;background:${color};border-radius:3px"></div><div class="prog-gap-threshold" style="left:${blPct}%;background:${color}"></div></div><div class="prog-gap-pct ${score>bl?'prog-gap-ok':''}">${pct}%</div><div class="prog-gap-tooltip"><div class="prog-gap-tooltip-title" style="color:${color}">${full}</div><div class="prog-gap-tooltip-desc">${tip}</div></div></div>`;
       }
       return `<div class="prog-detail-name">${a.name}</div><div class="prog-detail-tagline">${a.tagline}</div><div class="prog-detail-desc">${a.description}</div><div class="prog-gap-label">Your current axes</div>${gapsHtml}`;
     }
@@ -2019,7 +1830,8 @@
         const score = scores[full]||0, bl = AXIS_BASELINES[full];
         const pct = Math.round(score*100), blPct = Math.round(bl*100), met = score > bl;
         const color = AXIS_COLORS[full];
-        gapsHtml += `<div class="prog-gap-row"><div class="prog-gap-axis">${full}</div><div class="prog-gap-bar"><div class="prog-gap-fill" style="width:${pct}%;background:${color};border-radius:3px"></div><div class="prog-gap-threshold" style="left:${blPct}%;background:${color}"></div></div><div class="prog-gap-pct ${met?'prog-gap-ok':'prog-gap-need'}">${met?pct+'% \u2713':pct+'% \u2192 '+blPct+'%'}</div></div>`;
+        const tip = AXIS_TIPS[full] || '';
+        gapsHtml += `<div class="prog-gap-row"><div class="prog-gap-axis">${full}</div><div class="prog-gap-bar"><div class="prog-gap-fill" style="width:${pct}%;background:${color};border-radius:3px"></div><div class="prog-gap-threshold" style="left:${blPct}%;background:${color}"></div></div><div class="prog-gap-pct ${met?'prog-gap-ok':'prog-gap-need'}">${met?pct+'% \u2713':pct+'% \u2192 '+blPct+'%'}</div><div class="prog-gap-tooltip"><div class="prog-gap-tooltip-title" style="color:${color}">${full}</div><div class="prog-gap-tooltip-desc">${tip}</div></div></div>`;
         if (!met) {
           const bh = (p.branches?.[full]?.behaviors||[]).map(k=>{const b=p.behaviors[k];if(!b)return'';const g=Math.round(b.baseline*100)-Math.round(b.rate*100);return g>0?`<span style="color:#b0aca6">${b.label}</span> <span style="color:#c4836e">(${Math.round(b.rate*100)}% → ${Math.round(b.baseline*100)}%)</span>`:'';}).filter(Boolean);
           if (bh.length) behaviorsHtml += `<div style="font-size:0.7rem;color:#6b6560;margin-top:0.3rem">Grow: ${bh.join(' \u00b7 ')}</div>`;
@@ -2098,14 +1910,33 @@
     });
 
     // ── Init ─────────────────────────────────────────────────────────
+    // Top-level error boundary: if any render function throws (e.g. a
+    // malformed profile slipped past server validation), replace the page
+    // with a visible error card instead of leaving a half-rendered page
+    // that looks superficially like it worked.
     if (PROFILE?.behaviors) {
-      renderCard(PROFILE);
-      setupCardReveal(PROFILE);
-      renderRadar(PROFILE);
-      renderDeepDive(PROFILE, NARRATIVE);
-      renderStrengths(PROFILE);
-      renderQuest(PROFILE);
-      renderProgression(PROFILE);
+      try {
+        renderCard(PROFILE);
+        setupCardReveal(PROFILE);
+        renderRadar(PROFILE);
+        renderDeepDive(PROFILE, NARRATIVE);
+        renderStrengths(PROFILE);
+        renderQuest(PROFILE);
+        renderProgression(PROFILE);
+      } catch (err) {
+        console.error('Skill tree render failed:', err);
+        document.body.innerHTML = `
+          <div style="max-width:640px;margin:80px auto;padding:32px;font-family:Georgia,serif;color:#3a342a;background:#f5f0e6;border:1px solid #b8a585;border-radius:8px;">
+            <h1 style="margin:0 0 16px;font-size:1.4rem;color:#8b3a2a;">Visualization render failed</h1>
+            <p style="margin:0 0 16px;line-height:1.55;">The profile data is missing fields required by the visualization. This usually means the profile was reconstructed manually instead of being passed by ID.</p>
+            <p style="margin:0 0 16px;line-height:1.55;"><strong>To fix:</strong> run <code style="background:#e8e0d0;padding:2px 6px;border-radius:3px;">skill tree</code> again. The current orchestration uses <code>profile_id</code> from <code>analyze</code>, which avoids this class of bug.</p>
+            <details style="margin-top:24px;font-size:0.85rem;color:#6a6258;">
+              <summary style="cursor:pointer;">Technical details</summary>
+              <pre style="margin:12px 0 0;padding:12px;background:#ede6d4;border-radius:4px;overflow:auto;font-size:0.78rem;">${String(err && err.stack || err)}</pre>
+            </details>
+          </div>
+        `;
+      }
     }
   </script>
 </body>

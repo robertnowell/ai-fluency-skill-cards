@@ -1,0 +1,23 @@
+{
+  "thesis": "You shaped Claude's output and questioned its reasoning in the same breath. The rarest combination in the data.",
+  "phaseNames": {
+    "0": "Getting Oriented",
+    "1": "Building the Prototype",
+    "2": "Hardening for Launch",
+    "3": "Polish & Refinement",
+    "4": "Phase 5",
+    "5": "Phase 6",
+    "6": "Phase 7",
+    "7": "Phase 8"
+  },
+  "phaseInsights": {
+    "0": "You shaped Claude's output AND questioned its reasoning across nearly every session. The Index documents these as anti-correlated in practice — the rarest combination in the data.",
+    "1": "Description and discernment moving together is the artifact effect inverted. You stayed critical even when polished output would have softened most users' judgment.",
+    "2": "By the end you were operating on both axes simultaneously. The frontier ahead isn't another in-chat skill — it's Diligence, the only D the research can't observe in transcripts.",
+    "3": "By the end you were operating on both axes simultaneously. The frontier ahead isn't another in-chat skill — it's Diligence, the only D the research can't observe in transcripts.",
+    "4": "By the end you were operating on both axes simultaneously. The frontier ahead isn't another in-chat skill — it's Diligence, the only D the research can't observe in transcripts.",
+    "5": "By the end you were operating on both axes simultaneously. The frontier ahead isn't another in-chat skill — it's Diligence, the only D the research can't observe in transcripts.",
+    "6": "By the end you were operating on both axes simultaneously. The frontier ahead isn't another in-chat skill — it's Diligence, the only D the research can't observe in transcripts.",
+    "7": "By the end you were operating on both axes simultaneously. The frontier ahead isn't another in-chat skill — it's Diligence, the only D the research can't observe in transcripts."
+  }
+}
