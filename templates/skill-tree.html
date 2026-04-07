@@ -33,8 +33,8 @@
       margin-bottom: 2rem;
     }
 
-    /* Plain-English orientation paragraph at the top of every report.
-       Frames what the card below actually is — eleven behaviors, the
+    /* Plain-English orientation paragraph that sits just below the
+       tarot card. Frames what the card above is — eleven behaviors, the
        index it's drawn from, the population baseline — so a first-time
        reader doesn't have to infer the methodology from the rates. */
     .intro-summary {
@@ -45,7 +45,7 @@
       text-align: center;
       line-height: 1.65;
       max-width: 460px;
-      margin: -0.4rem auto 1.8rem;
+      margin: 1.6rem auto 0.4rem;
     }
     .intro-summary a {
       color: #cca67b;
@@ -666,22 +666,64 @@
     /* Prog card preview — wraps a full scaled-down .card. The fixed
        width/height matches a 390×668 .card scaled by 0.718 so the
        wrapper takes correct layout space (transform:scale alone wouldn't
-       collapse the surrounding flow). */
+       collapse the surrounding flow). The blur filter sits on the
+       inner .prog-card-blur wrapper so the name overlay (its sibling)
+       stays unblurred when the card is locked. */
     .prog-card-preview {
       width: 280px;
       height: 480px;
       margin: 0 auto 1rem;
       position: relative;
+    }
+    .prog-card-blur {
+      position: absolute;
+      inset: 0;
       transition: filter 0.4s;
     }
-    .prog-card-preview .card {
+    .prog-card-blur .card {
       position: absolute;
       top: 0; left: 0;
       transform: scale(0.718);
       transform-origin: top left;
     }
-    .prog-card-preview.is-locked {
+    .prog-card-preview.is-locked .prog-card-blur {
       filter: blur(8px) brightness(0.35) saturate(0.5);
+    }
+    /* Name overlay — only visible on locked previews. Heavy text-shadow
+       so the cream serif type pops against the dim blurred backdrop. */
+    .prog-card-name-overlay {
+      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      pointer-events: none;
+      padding: 0 1rem;
+    }
+    .prog-card-preview.is-locked .prog-card-name-overlay {
+      display: flex;
+    }
+    .prog-card-overlay-numeral {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.35em;
+      color: rgba(160,128,64,0.7);
+      margin-bottom: 0.6rem;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.95);
+    }
+    .prog-card-overlay-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #e8d8b0;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      text-shadow:
+        0 2px 16px rgba(0,0,0,0.95),
+        0 0 32px rgba(0,0,0,0.7);
     }
 
     .g-node { cursor: pointer; }
@@ -894,8 +936,6 @@
       <button class="about-btn" onclick="document.getElementById('about-overlay').classList.add('is-open')">About</button>
     </div>
 
-    <p class="intro-summary">Built on 11 observable collaboration behaviors from <a href="https://www.anthropic.com/research/AI-fluency-index" target="_blank" rel="noopener">Anthropic&rsquo;s AI Fluency Index</a> (N&nbsp;=&nbsp;9,830). The card below reflects the patterns Skill Tree saw most often in your recent Claude sessions.</p>
-
     <div class="card-wrapper" id="card-wrapper">
       <div class="card-inner">
         <div class="card-back" id="card-back">
@@ -914,6 +954,8 @@
       </div>
     </div>
     <!-- headline is now inside the card tagline -->
+
+    <p class="intro-summary">Built on 11 observable collaboration behaviors from <a href="https://www.anthropic.com/research/AI-fluency-index" target="_blank" rel="noopener">Anthropic&rsquo;s AI Fluency Index</a> (N&nbsp;=&nbsp;9,830). The card above reflects the patterns Skill Tree saw most often in your recent Claude sessions.</p>
 
     <!-- Gate 1 → Stage 2 -->
     <div class="stage-gate" id="gate-deepdive">
@@ -1831,26 +1873,35 @@
           .replace(/^\w/, c => c.toUpperCase());
       }
       const locked = !isCurrent ? 'is-locked' : '';
+      const overlayHtml = !isCurrent
+        ? `<div class="prog-card-name-overlay">
+            <div class="prog-card-overlay-numeral">${NUMERALS[key] || ''}</div>
+            <div class="prog-card-overlay-name">${arch.name || 'Unknown'}</div>
+          </div>`
+        : '';
       return `<div class="prog-card-preview ${locked}">
-        <div class="card" data-archetype="${key}">
-          <div class="corner tl"></div><div class="corner tr"></div>
-          <div class="corner bl"></div><div class="corner br"></div>
-          <div class="card-art">${url ? `<img src="${url}" alt="" style="object-position:${pos}">` : ''}</div>
-          <div class="card-top">
-            <div class="card-header-row">
-              <div class="card-user-name">${userName}</div>
-              <div class="card-brand">AI Fluency Skills</div>
+        <div class="prog-card-blur">
+          <div class="card" data-archetype="${key}">
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
+            <div class="card-art">${url ? `<img src="${url}" alt="" style="object-position:${pos}">` : ''}</div>
+            <div class="card-top">
+              <div class="card-header-row">
+                <div class="card-user-name">${userName}</div>
+                <div class="card-brand">AI Fluency Skills</div>
+              </div>
+              <div class="card-numeral">${NUMERALS[key] || ''}</div>
+              <div class="card-name">${arch.name || 'Unknown'}</div>
             </div>
-            <div class="card-numeral">${NUMERALS[key] || ''}</div>
-            <div class="card-name">${arch.name || 'Unknown'}</div>
-          </div>
-          <div class="card-bottom">
-            ${renderMiniRadar(descPct, discPct, delegPct, arch.color || '#a08040')}
-            <div class="card-divider"></div>
-            <div class="card-tagline">${tagline}</div>
-            <div class="card-sig">${sig}</div>
+            <div class="card-bottom">
+              ${renderMiniRadar(descPct, discPct, delegPct, arch.color || '#a08040')}
+              <div class="card-divider"></div>
+              <div class="card-tagline">${tagline}</div>
+              <div class="card-sig">${sig}</div>
+            </div>
           </div>
         </div>
+        ${overlayHtml}
       </div>`;
     }
 

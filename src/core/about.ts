@@ -108,6 +108,54 @@ export const ABOUT_OVERLAY_CSS = `
     color: #c8c4bf;
     line-height: 1.55;
   }
+  /* Archetypes that lead with this axis — sit dim below the behaviors line
+     so the connection from "behaviors that drive this axis" → "people whose
+     profile is defined by this axis" is visible without competing with the
+     primary content above. Hover surfaces the axis signature. */
+  .about-behaviors-axis-archetypes {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: #6b6560;
+    line-height: 1.55;
+    margin-top: 0.3rem;
+  }
+  .about-axis-arch {
+    position: relative;
+    color: #8a8580;
+    cursor: help;
+    border-bottom: 1px dotted rgba(107,101,96,0.4);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .about-axis-arch:hover {
+    color: #cca67b;
+    border-bottom-color: rgba(204,166,123,0.55);
+  }
+  .about-axis-arch::after {
+    content: attr(data-sig);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    background: #1e1d1b;
+    color: #c8c4bf;
+    border: 1px solid #3a3530;
+    border-radius: 0.35rem;
+    padding: 0.4rem 0.65rem;
+    font-family: 'Outfit', sans-serif;
+    font-style: normal;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.55);
+  }
+  .about-axis-arch:hover::after {
+    opacity: 1;
+  }
   .about-behaviors-note {
     font-size: 0.78rem;
     color: #8a8580;
@@ -185,14 +233,29 @@ export const ABOUT_OVERLAY_HTML = `
     <div class="about-behaviors-axis">
       <div class="about-behaviors-axis-label">Description &middot; how you shape output</div>
       <div class="about-behaviors-axis-list">Provides examples (41%) &middot; Specifies format (30%) &middot; Expresses tone (23%) &middot; Defines audience (18%)</div>
+      <div class="about-behaviors-axis-archetypes">
+        <span class="about-axis-arch" data-sig="High Description">Forgemaster</span> &middot;
+        <span class="about-axis-arch" data-sig="High Description + Delegation">Conductor</span> &middot;
+        <span class="about-axis-arch" data-sig="High Description + Discernment">Polymath</span>
+      </div>
     </div>
     <div class="about-behaviors-axis">
       <div class="about-behaviors-axis-label">Discernment &middot; how you assess reasoning</div>
       <div class="about-behaviors-axis-list">Flags context gaps (20%) &middot; Questions reasoning (16%) &middot; Verifies facts (9%)</div>
+      <div class="about-behaviors-axis-archetypes">
+        <span class="about-axis-arch" data-sig="High Discernment">Illuminator</span> &middot;
+        <span class="about-axis-arch" data-sig="High Discernment + Delegation">Architect</span> &middot;
+        <span class="about-axis-arch" data-sig="High Description + Discernment">Polymath</span>
+      </div>
     </div>
     <div class="about-behaviors-axis">
       <div class="about-behaviors-axis-label">Delegation &middot; how you set up the collaboration</div>
       <div class="about-behaviors-axis-list">Clarifies goals (51%) &middot; Sets interaction style (30%) &middot; Discusses approach (10%)</div>
+      <div class="about-behaviors-axis-archetypes">
+        <span class="about-axis-arch" data-sig="High Delegation">Compass</span> &middot;
+        <span class="about-axis-arch" data-sig="High Description + Delegation">Conductor</span> &middot;
+        <span class="about-axis-arch" data-sig="High Discernment + Delegation">Architect</span>
+      </div>
     </div>
     <div class="about-behaviors-axis">
       <div class="about-behaviors-axis-label">Diligence &middot; not observable in chat</div>
@@ -201,6 +264,9 @@ export const ABOUT_OVERLAY_HTML = `
     <div class="about-behaviors-axis">
       <div class="about-behaviors-axis-label">Gateway &middot; the most common behavior</div>
       <div class="about-behaviors-axis-list">Iterates on outputs (86%)</div>
+      <div class="about-behaviors-axis-archetypes">
+        <span class="about-axis-arch" data-sig="No axes above average">Catalyst</span>
+      </div>
     </div>
     <p class="about-behaviors-note">Population baselines from the AI Fluency Index (N = 9,830 conversations). Your rates appear next to these throughout the visualization.</p>
 

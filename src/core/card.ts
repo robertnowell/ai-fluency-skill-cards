@@ -407,6 +407,40 @@ const GRAPH_EDGES: Array<[string, string]> = [
 
 const GRAPH_R = 36;
 
+// Mirrors ARCHETYPE_REQUIRES in templates/skill-tree.html (~line 1478).
+// Used to compute "what changes" between two archetypes for edge tooltips:
+// the axis the target has that the source doesn't is the one being added.
+const ARCHETYPE_REQUIRES: Record<string, { desc: boolean; disc: boolean; deleg: boolean }> = {
+  catalyst:    { desc: false, disc: false, deleg: false },
+  compass:     { desc: false, disc: false, deleg: true  },
+  forgemaster: { desc: true,  disc: false, deleg: false },
+  illuminator: { desc: false, disc: true,  deleg: false },
+  conductor:   { desc: true,  disc: false, deleg: true  },
+  architect:   { desc: false, disc: true,  deleg: true  },
+  polymath:    { desc: true,  disc: true,  deleg: false },
+};
+
+// Mirrors AXIS_COLORS in templates/skill-tree.html. Used to color the
+// "+ axis" badge on edge tooltips.
+const AXIS_COLORS: Record<string, string> = {
+  Description: "#cca67b",
+  Discernment: "#7bcc96",
+  Delegation:  "#7ba3cc",
+  Diligence:   "#9b8ec4",
+};
+
+const REQ_KEY_TO_AXIS: Array<["desc" | "disc" | "deleg", string]> = [
+  ["desc",  "Description"],
+  ["disc",  "Discernment"],
+  ["deleg", "Delegation"],
+];
+
+function transitionAdds(fromKey: string, toKey: string): string[] {
+  const from = ARCHETYPE_REQUIRES[fromKey] || { desc: false, disc: false, deleg: false };
+  const to = ARCHETYPE_REQUIRES[toKey] || { desc: false, disc: false, deleg: false };
+  return REQ_KEY_TO_AXIS.filter(([k]) => to[k] && !from[k]).map(([, label]) => label);
+}
+
 function getGraphPath(fromKey: string, toKey: string): string {
   const a = GRAPH_NODES[fromKey];
   const b = GRAPH_NODES[toKey];
@@ -649,10 +683,41 @@ export function renderProgressionMapSection(
   const hrefTemplate = opts.hrefTemplate || "/fixture/{key}";
   const byKey = new Map(entries.map((e) => [e.key, e.profile.archetype]));
 
-  // Build edges first so they sit behind the nodes.
+  // Build edges first so they sit behind the nodes. Each edge gets two
+  // <path> elements: a thin visible line with the arrow marker, and an
+  // invisible fat-stroke hit target on top that catches hover for the
+  // edge tooltip. Edge metadata (from/to names, the axis being added,
+  // and the body text) is computed server-side and embedded as data-*
+  // attributes so the client JS just reads and renders.
   const edgesSvg = GRAPH_EDGES.map(([from, to]) => {
     const d = getGraphPath(from, to);
-    return `<path d="${d}" fill="none" stroke="#3a3530" stroke-width="1.5" stroke-opacity="0.6" marker-end="url(#prog-arr)"/>`;
+    const fromArch = byKey.get(from);
+    const toArch = byKey.get(to);
+    const fromName = escapeAttr(fromArch?.name || from);
+    const toName = escapeAttr(toArch?.name || to);
+    const fromColor = fromArch?.color || "#e8e4df";
+    const toColor = toArch?.color || "#e8e4df";
+
+    // Strip the "Unlock The X's Y \u2014 " prefix from growth_unlock so
+    // the tooltip just shows the actionable change ("add description to
+    // your direction"). Sentence-case + ensure trailing period.
+    const rawUnlock = fromArch?.growth_unlock || "";
+    const stripped = rawUnlock.replace(/^Unlock[^\u2014]*\u2014\s*/i, "");
+    const bodyText = stripped
+      ? stripped.charAt(0).toUpperCase() + stripped.slice(1) + (stripped.endsWith(".") ? "" : ".")
+      : "";
+
+    const added = transitionAdds(from, to);
+    const addedAxis = added[0] || "";
+    const addedColor = AXIS_COLORS[addedAxis] || "#cca67b";
+
+    return `<path d="${d}" fill="none" stroke="#3a3530" stroke-width="1.5" stroke-opacity="0.6" marker-end="url(#prog-arr)"/>
+      <path class="prog-edge-hit" d="${d}" fill="none" stroke="transparent" stroke-width="20"
+        data-from="${from}" data-to="${to}"
+        data-from-name="${fromName}" data-to-name="${toName}"
+        data-from-color="${fromColor}" data-to-color="${toColor}"
+        data-added="${escapeAttr(addedAxis)}" data-added-color="${addedColor}"
+        data-body="${escapeAttr(bodyText)}"/>`;
   }).join("");
 
   // ClipPaths for each node's hero-art image.
@@ -760,6 +825,71 @@ export function renderProgressionMapSection(
         node.addEventListener('click', function() {
           var key = node.getAttribute('data-key');
           window.open(hrefTpl.replace('{key}', key), '_blank', 'noopener');
+        });
+      });
+
+      // Edge hover handler — mirrors the report-page edge tooltip in
+      // templates/skill-tree.html. All edge metadata is on the data-*
+      // attributes (computed server-side); the client just reads and
+      // positions. The tooltip lives at the visual midpoint of the
+      // curved edge, computed from the same Bezier formula the path uses.
+      var GRAPH_R = 36;
+      var NODE_POS = ${JSON.stringify(GRAPH_NODES)};
+      var edges = section.querySelectorAll('.prog-edge-hit');
+      edges.forEach(function(edge) {
+        edge.addEventListener('mouseenter', function() {
+          if (hoverTimer) clearTimeout(hoverTimer);
+          hoverTimer = setTimeout(function() {
+            var fromName = edge.getAttribute('data-from-name') || '';
+            var toName = edge.getAttribute('data-to-name') || '';
+            var fromColor = edge.getAttribute('data-from-color') || '#e8e4df';
+            var toColor = edge.getAttribute('data-to-color') || '#e8e4df';
+            var added = edge.getAttribute('data-added') || '';
+            var addedColor = edge.getAttribute('data-added-color') || '#cca67b';
+            var body = edge.getAttribute('data-body') || '';
+
+            var addedHtml = added
+              ? '<div class="prog-tip-edge-add" style="color:' + addedColor +
+                ';background:' + addedColor + '1a;border:1px solid ' + addedColor + '40">+ ' + added + '</div>'
+              : '';
+
+            tip.innerHTML =
+              '<div class="prog-tip-edge-header">' +
+                '<span style="color:' + fromColor + '">' + fromName + '</span>' +
+                '<span class="prog-tip-edge-arrow">\u2192</span>' +
+                '<span style="color:' + toColor + '">' + toName + '</span>' +
+              '</div>' +
+              addedHtml +
+              (body ? '<div class="prog-tip-edge-body">' + body + '</div>' : '');
+
+            // Curve midpoint: the path is M(sx,sy) Q(mx,my) (ex,ey) and
+            // for a quadratic Bezier at t=0.5 the point is
+            // (sx + 2*mx + ex)/4, (sy + 2*my + ey)/4.
+            var fromKey = edge.getAttribute('data-from');
+            var toKey = edge.getAttribute('data-to');
+            var fromPos = NODE_POS[fromKey];
+            var toPos = NODE_POS[toKey];
+            if (!fromPos || !toPos) return;
+            var dx = toPos.x - fromPos.x, dy = toPos.y - fromPos.y;
+            var dist = Math.sqrt(dx*dx + dy*dy);
+            var sx = fromPos.x + (dx/dist)*GRAPH_R, sy = fromPos.y + (dy/dist)*GRAPH_R;
+            var ex = toPos.x - (dx/dist)*(GRAPH_R+6), ey = toPos.y - (dy/dist)*(GRAPH_R+6);
+            var mx = (sx+ex)/2, my = (sy+ey)/2 - Math.abs(dx)*0.08;
+            var midx = (sx + 2*mx + ex) / 4;
+            var midy = (sy + 2*my + ey) / 4;
+
+            var svgRect = svg.getBoundingClientRect();
+            var containerRect = svg.parentElement.getBoundingClientRect();
+            var x = (midx / 600) * svgRect.width + (svgRect.left - containerRect.left);
+            var y = (midy / 560) * svgRect.height + (svgRect.top - containerRect.top);
+            tip.style.left = x + 'px';
+            tip.style.top = y + 'px';
+            tip.classList.add('visible');
+          }, 350);
+        });
+        edge.addEventListener('mouseleave', function() {
+          if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
+          tip.classList.remove('visible');
         });
       });
     })();
@@ -1219,6 +1349,48 @@ ${CARD_FACE_CSS}
      it exists to darken hero art behind the radar on the tarot card,
      and just looks like a stray dim circle inside the tooltip. */
   .prog-tip-radar > div > div:first-child { display: none !important; }
+
+  /* Edge tooltip variant — used when hovering an edge between two archetypes.
+     Mirrors .graph-tooltip-edge-* in templates/skill-tree.html so the /grid
+     tooltip and the report-page tooltip share the same visual register. */
+  .prog-tip-edge-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.55rem;
+    flex-wrap: wrap;
+  }
+  .prog-tip-edge-arrow {
+    color: #6b6560;
+    font-weight: 400;
+  }
+  .prog-tip-edge-add {
+    display: inline-block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+  }
+  .prog-tip-edge-body {
+    font-size: 0.72rem;
+    color: #b0aca6;
+    line-height: 1.55;
+  }
+
+  /* Invisible fat-stroke hover target on top of each visible edge — gives
+     the thin line a usable hit area. Pointer-events:stroke catches the
+     hover even though the stroke is transparent. */
+  .prog-edge-hit {
+    cursor: help;
+    pointer-events: stroke;
+  }
 
   .footer {
     text-align: center; margin-top: 5rem;
