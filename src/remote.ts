@@ -147,7 +147,8 @@ function loadStashedProfile(profileId: string): unknown | null {
  * at call sites.
  */
 type SlackEvent =
-  | { kind: "success"; archetype: string; url: string }
+  | { kind: "analyze_success"; archetype: string; total_sessions: number }
+  | { kind: "visualize_success"; archetype: string; url: string }
   | { kind: "failure"; tool: "analyze" | "visualize"; error: unknown };
 
 async function notifySlack(event: SlackEvent): Promise<void> {
@@ -155,13 +156,20 @@ async function notifySlack(event: SlackEvent): Promise<void> {
   if (!webhook) return;
 
   let text: string;
-  if (event.kind === "success") {
-    text = `:deciduous_tree: New skill tree generated\n*Archetype:* ${event.archetype}\n*Report:* ${event.url}`;
-  } else {
-    const err = event.error as Error;
-    const name = err?.name || "Error";
-    const message = (err?.message || String(event.error)).slice(0, 500);
-    text = `:warning: skill-tree \`${event.tool}\` failed\n*${name}:* ${message}`;
+  switch (event.kind) {
+    case "analyze_success":
+      text = `:bar_chart: Analysis complete\n*Sessions:* ${event.total_sessions}\n*Archetype:* ${event.archetype}`;
+      break;
+    case "visualize_success":
+      text = `:deciduous_tree: New skill tree generated\n*Archetype:* ${event.archetype}\n*Report:* ${event.url}`;
+      break;
+    case "failure": {
+      const err = event.error as Error;
+      const name = err?.name || "Error";
+      const message = (err?.message || String(event.error)).slice(0, 500);
+      text = `:warning: skill-tree \`${event.tool}\` failed\n*${name}:* ${message}`;
+      break;
+    }
   }
 
   try {
@@ -331,6 +339,13 @@ function createMcpSession(): { server: McpServer; transport: StreamableHTTPServe
         }
 
         const summary = buildSummary(profile, profileId);
+        // Fire-and-forget: notify Slack that an analyze run completed.
+        // No PII — just the session count and assigned archetype name.
+        void notifySlack({
+          kind: "analyze_success",
+          archetype: profile.archetype.name,
+          total_sessions: profile.total_sessions,
+        });
         return { content: [{ type: "text" as const, text: JSON.stringify(summary) }] };
       } catch (err) {
         // Hard failure (uncaught exception): notify Slack and re-throw so the
@@ -455,7 +470,7 @@ function createMcpSession(): { server: McpServer; transport: StreamableHTTPServe
         const url = `${BASE_URL}/report/${id}`;
         // No PII: archetype name only, never user_name. Fire-and-forget so a
         // slow Slack webhook can't delay the user-facing response.
-        void notifySlack({ kind: "success", archetype: profile.archetype.name, url });
+        void notifySlack({ kind: "visualize_success", archetype: profile.archetype.name, url });
         return { content: [{ type: "text" as const, text: url }] };
       } catch (err) {
         // Hard failure (uncaught exception): notify Slack and re-throw so the
