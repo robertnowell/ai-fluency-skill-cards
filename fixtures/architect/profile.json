@@ -1,0 +1,1110 @@
+{
+  "total_sessions": 30,
+  "behaviors": {
+    "iterative_improvement": {
+      "label": "Iterates on outputs",
+      "rate": 0.7,
+      "baseline": 0.857,
+      "above_baseline": false,
+      "present_count": 21,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Closer. Now address the failure mode I flagged earlier.",
+          "session_id": "architect-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Closer. Now address the failure mode I flagged earlier.",
+          "session_id": "architect-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Good first cut. The boundaries are wrong — let me explain.",
+          "session_id": "architect-02",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "clarify_goals": {
+      "label": "Clarifies goals upfront",
+      "rate": 0.867,
+      "baseline": 0.511,
+      "above_baseline": true,
+      "present_count": 26,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "I'm trying to understand whether to refactor the auth layer now or carry the debt to v2. I need a defensible answer.",
+          "session_id": "architect-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "What I actually need is a migration plan I can execute with one engineer over two weeks.",
+          "session_id": "architect-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "I'm trying to understand whether to refactor the auth layer now or carry the debt to v2. I need a defensible answer.",
+          "session_id": "architect-02",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "show_examples": {
+      "label": "Provides examples",
+      "rate": 0.2,
+      "baseline": 0.411,
+      "above_baseline": false,
+      "present_count": 6,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "This is the failure pattern I want to avoid. Here's the postmortem.",
+          "session_id": "architect-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "This is the failure pattern I want to avoid. Here's the postmortem.",
+          "session_id": "architect-13",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Look at how the standard library handles this. Same shape.",
+          "session_id": "architect-15",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "specify_format": {
+      "label": "Specifies format",
+      "rate": 0.067,
+      "baseline": 0.3,
+      "above_baseline": false,
+      "present_count": 2,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "ADR format: context, decision, consequences. One page max.",
+          "session_id": "architect-08",
+          "project": "acme-api"
+        },
+        {
+          "text": "Numbered list of steps, each with a rollback path.",
+          "session_id": "architect-15",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "set_interactive_mode": {
+      "label": "Sets interaction style",
+      "rate": 0.733,
+      "baseline": 0.3,
+      "above_baseline": true,
+      "present_count": 22,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Don't paper over the parts you're not sure about — flag them.",
+          "session_id": "architect-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Don't paper over the parts you're not sure about — flag them.",
+          "session_id": "architect-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Don't paper over the parts you're not sure about — flag them.",
+          "session_id": "architect-02",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "express_tone_style": {
+      "label": "Expresses tone prefs",
+      "rate": 0.033,
+      "baseline": 0.227,
+      "above_baseline": false,
+      "present_count": 1,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Direct. I'd rather you be wrong and clear than right and vague.",
+          "session_id": "architect-23",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "identify_context_gaps": {
+      "label": "Flags context gaps",
+      "rate": 0.667,
+      "baseline": 0.203,
+      "above_baseline": true,
+      "present_count": 20,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Heads up — the database is on a managed plan that doesn't allow extensions.",
+          "session_id": "architect-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "You don't know about the v3 deprecation — that rules out approach two.",
+          "session_id": "architect-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Important context: this service has a hard dependency on the legacy queue. Plan around it.",
+          "session_id": "architect-06",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "define_audience": {
+      "label": "Defines audience",
+      "rate": 0.133,
+      "baseline": 0.176,
+      "above_baseline": false,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "For an engineer joining the team next month who needs to understand why we picked this.",
+          "session_id": "architect-07",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Senior engineers who'll review the PR — assume they know the system.",
+          "session_id": "architect-18",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "For an engineer joining the team next month who needs to understand why we picked this.",
+          "session_id": "architect-21",
+          "project": "growth-experiments"
+        }
+      ]
+    },
+    "question_reasoning": {
+      "label": "Questions Claude's logic",
+      "rate": 0.733,
+      "baseline": 0.158,
+      "above_baseline": true,
+      "present_count": 22,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Walk me through why a queue beats a cron here. The latency math doesn't support it.",
+          "session_id": "architect-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Walk me through why a queue beats a cron here. The latency math doesn't support it.",
+          "session_id": "architect-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Walk me through why a queue beats a cron here. The latency math doesn't support it.",
+          "session_id": "architect-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "consult_approach": {
+      "label": "Discusses approach first",
+      "rate": 0.6,
+      "baseline": 0.101,
+      "above_baseline": true,
+      "present_count": 18,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Before code, talk me through the data model and where it can go wrong.",
+          "session_id": "architect-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "What's the right pattern here — queue, cron, or event-driven? Make the case for one.",
+          "session_id": "architect-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "What's the right pattern here — queue, cron, or event-driven? Make the case for one.",
+          "session_id": "architect-04",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "verify_facts": {
+      "label": "Verifies facts",
+      "rate": 0.767,
+      "baseline": 0.087,
+      "above_baseline": true,
+      "present_count": 23,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Check the version we're on actually supports that flag.",
+          "session_id": "architect-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Source? Last time you cited a syntax that didn't exist.",
+          "session_id": "architect-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Source? Last time you cited a syntax that didn't exist.",
+          "session_id": "architect-02",
+          "project": "data-pipeline"
+        }
+      ]
+    }
+  },
+  "branches": {
+    "Description": {
+      "score": 0.108,
+      "baseline": 0.278,
+      "above_baseline": false,
+      "color": "#cca67b",
+      "description": "How you shape Claude's output",
+      "behaviors": [
+        "show_examples",
+        "specify_format",
+        "express_tone_style",
+        "define_audience"
+      ]
+    },
+    "Discernment": {
+      "score": 0.722,
+      "baseline": 0.149,
+      "above_baseline": true,
+      "color": "#7bcc96",
+      "description": "How you assess Claude's reasoning",
+      "behaviors": [
+        "identify_context_gaps",
+        "question_reasoning",
+        "verify_facts"
+      ]
+    },
+    "Delegation": {
+      "score": 0.733,
+      "baseline": 0.304,
+      "above_baseline": true,
+      "color": "#7ba3cc",
+      "description": "How you set up the collaboration",
+      "behaviors": [
+        "clarify_goals",
+        "consult_approach",
+        "set_interactive_mode"
+      ]
+    }
+  },
+  "archetype": {
+    "name": "The Architect",
+    "tagline": "Delegates deliberately and discerns rigorously",
+    "headline": "{name}, you plan the approach then question every result.",
+    "description": "You combine delegation with discernment — clear goals and discussed approach, then critical evaluation of what Claude produces. Your scrutiny is targeted because your setup was intentional.",
+    "superpower": "You catch what others miss because you defined what you were looking for upfront",
+    "growth_unlock": "Unlock The Polymath's craft — add description to your discernment",
+    "growth_quest": "Next session, try showing Claude an example of exactly what you want before you start evaluating what it gives you.",
+    "target_archetype": "polymath",
+    "color": "#5a6a7a",
+    "accent": "#b0c0d0",
+    "glyph": "architect",
+    "hero_art": {
+      "url": "https://iiif.micr.io/DVZRG/full/800,/0/default.jpg",
+      "credit": "Saenredam, Sint-Bavokerk, Haarlem"
+    },
+    "axis_scores": {
+      "description": 0.108,
+      "discernment": 0.722,
+      "delegation": 0.733
+    },
+    "key": "architect"
+  },
+  "growth_edge": {
+    "behavior": "specify_format",
+    "label": "Specifies format",
+    "rate": 0.067,
+    "baseline": 0.3,
+    "gap": -0.233
+  },
+  "generated_at": "2026-04-07T07:31:56.776Z",
+  "timeline": {
+    "sessions": [
+      {
+        "sessionId": "architect-00",
+        "timestamp": "2026-02-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "architect-01",
+        "timestamp": "2026-02-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "architect-02",
+        "timestamp": "2026-02-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "architect-03",
+        "timestamp": "2026-02-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "architect-04",
+        "timestamp": "2026-02-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "architect-05",
+        "timestamp": "2026-03-02T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "architect-06",
+        "timestamp": "2026-03-03T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "identify_context_gaps",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "architect-07",
+        "timestamp": "2026-03-04T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "architect-08",
+        "timestamp": "2026-03-06T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "specify_format",
+          "set_interactive_mode",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "architect-09",
+        "timestamp": "2026-03-07T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "identify_context_gaps",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "architect-10",
+        "timestamp": "2026-03-09T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "architect-11",
+        "timestamp": "2026-03-10T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "question_reasoning"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "architect-12",
+        "timestamp": "2026-03-11T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "question_reasoning",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "architect-13",
+        "timestamp": "2026-03-13T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "architect-14",
+        "timestamp": "2026-03-14T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "architect-15",
+        "timestamp": "2026-03-16T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "architect-16",
+        "timestamp": "2026-03-17T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "architect-17",
+        "timestamp": "2026-03-18T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "architect-18",
+        "timestamp": "2026-03-20T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "define_audience",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "architect-19",
+        "timestamp": "2026-03-21T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "architect-20",
+        "timestamp": "2026-03-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "architect-21",
+        "timestamp": "2026-03-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "architect-22",
+        "timestamp": "2026-03-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "architect-23",
+        "timestamp": "2026-03-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "express_tone_style",
+          "identify_context_gaps",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "architect-24",
+        "timestamp": "2026-03-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "architect-25",
+        "timestamp": "2026-03-30T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "set_interactive_mode",
+          "question_reasoning",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "architect-26",
+        "timestamp": "2026-03-31T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "question_reasoning"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "architect-27",
+        "timestamp": "2026-04-01T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "identify_context_gaps",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "architect-28",
+        "timestamp": "2026-04-03T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "define_audience",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "architect-29",
+        "timestamp": "2026-04-04T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "question_reasoning"
+        ],
+        "project": "growth-experiments"
+      }
+    ],
+    "phases": [
+      {
+        "name": "growth-experiments, data-pipeline, marketing-site",
+        "startDate": "2026-02-24T00:00:00.000Z",
+        "endDate": "2026-02-27T00:00:00.000Z",
+        "sessionCount": 3,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Source? Last time you cited a syntax that didn't exist.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "architect-01",
+            "significance": 0.913,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "What's the right pattern here — queue, cron, or event-driven? Make the case for one.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "architect-03",
+            "significance": 0.899,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Walk me through why a queue beats a cron here. The latency math doesn't support it.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "architect-01",
+            "significance": 0.842,
+            "project": "growth-experiments"
+          }
+        ],
+        "projects": [
+          "growth-experiments",
+          "data-pipeline",
+          "marketing-site"
+        ]
+      },
+      {
+        "name": "growth-experiments, data-pipeline, marketing-site",
+        "startDate": "2026-03-02T00:00:00.000Z",
+        "endDate": "2026-03-04T00:00:00.000Z",
+        "sessionCount": 3,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Source? Last time you cited a syntax that didn't exist.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Cleaned up the legacy export",
+            "sessionId": "architect-05",
+            "significance": 0.913,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Before code, talk me through the data model and where it can go wrong.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Built the dashboard prototype",
+            "sessionId": "architect-06",
+            "significance": 0.899,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Walk me through why a queue beats a cron here. The latency math doesn't support it.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Cleaned up the legacy export",
+            "sessionId": "architect-05",
+            "significance": 0.842,
+            "project": "growth-experiments"
+          }
+        ],
+        "projects": [
+          "growth-experiments",
+          "data-pipeline",
+          "marketing-site"
+        ]
+      },
+      {
+        "name": "marketing-site, acme-api, growth-experiments",
+        "startDate": "2026-03-10T00:00:00.000Z",
+        "endDate": "2026-03-13T00:00:00.000Z",
+        "sessionCount": 3,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Source? Last time you cited a syntax that didn't exist.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "architect-13",
+            "significance": 0.913,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Outline three approaches and the failure mode for each before we commit.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "architect-12",
+            "significance": 0.899,
+            "project": "acme-api"
+          },
+          {
+            "quote": "What's the assumption underlying that recommendation? If it's wrong, does the answer change?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "architect-11",
+            "significance": 0.842,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "marketing-site",
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "marketing-site, acme-api",
+        "startDate": "2026-03-16T00:00:00.000Z",
+        "endDate": "2026-03-17T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Confirm that against the actual API docs — don't trust your memory on this.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Cleaned up the legacy export",
+            "sessionId": "architect-15",
+            "significance": 0.913,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "You're implying linear scale. What happens at 100x?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Built the dashboard prototype",
+            "sessionId": "architect-16",
+            "significance": 0.842,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Heads up — the database is on a managed plan that doesn't allow extensions.",
+            "behavior": "identify_context_gaps",
+            "behaviorLabel": "Flags context gaps",
+            "sessionSummary": "Cleaned up the legacy export",
+            "sessionId": "architect-15",
+            "significance": 0.7969999999999999,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "marketing-site",
+          "acme-api"
+        ]
+      },
+      {
+        "name": "data-pipeline, marketing-site, acme-api, growth-experiments",
+        "startDate": "2026-03-20T00:00:00.000Z",
+        "endDate": "2026-03-24T00:00:00.000Z",
+        "sessionCount": 4,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Confirm that against the actual API docs — don't trust your memory on this.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "architect-18",
+            "significance": 0.913,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "What's the right pattern here — queue, cron, or event-driven? Make the case for one.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "architect-18",
+            "significance": 0.899,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "You're implying linear scale. What happens at 100x?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "architect-18",
+            "significance": 0.842,
+            "project": "data-pipeline"
+          }
+        ],
+        "projects": [
+          "data-pipeline",
+          "marketing-site",
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "marketing-site, acme-api",
+        "startDate": "2026-03-27T00:00:00.000Z",
+        "endDate": "2026-03-28T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Check the version we're on actually supports that flag.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "architect-23",
+            "significance": 0.913,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "What's the right pattern here — queue, cron, or event-driven? Make the case for one.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "architect-23",
+            "significance": 0.899,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "You're implying linear scale. What happens at 100x?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "architect-23",
+            "significance": 0.842,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "marketing-site",
+          "acme-api"
+        ]
+      },
+      {
+        "name": "data-pipeline, marketing-site",
+        "startDate": "2026-03-31T00:00:00.000Z",
+        "endDate": "2026-04-01T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Source? Last time you cited a syntax that didn't exist.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "architect-27",
+            "significance": 0.913,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "What's the right pattern here — queue, cron, or event-driven? Make the case for one.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "architect-27",
+            "significance": 0.899,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Walk me through why a queue beats a cron here. The latency math doesn't support it.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Built the dashboard prototype",
+            "sessionId": "architect-26",
+            "significance": 0.842,
+            "project": "data-pipeline"
+          }
+        ],
+        "projects": [
+          "data-pipeline",
+          "marketing-site"
+        ]
+      },
+      {
+        "name": "acme-api, growth-experiments",
+        "startDate": "2026-04-03T00:00:00.000Z",
+        "endDate": "2026-04-04T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Delegation",
+        "axisColor": "#7ba3cc",
+        "keyMoments": [
+          {
+            "quote": "Check the version we're on actually supports that flag.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "architect-28",
+            "significance": 0.913,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Outline three approaches and the failure mode for each before we commit.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "architect-28",
+            "significance": 0.899,
+            "project": "acme-api"
+          },
+          {
+            "quote": "You're implying linear scale. What happens at 100x?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Debugged the webhook race condition",
+            "sessionId": "architect-29",
+            "significance": 0.842,
+            "project": "growth-experiments"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments"
+        ]
+      }
+    ]
+  },
+  "user_name": "Architect"
+}

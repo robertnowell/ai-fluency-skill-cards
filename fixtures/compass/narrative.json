@@ -1,0 +1,19 @@
+{
+  "thesis": "You set the destination and let Claude find the path. Clarity of intent was the through-line.",
+  "phaseNames": {
+    "0": "Getting Oriented",
+    "1": "Building the Prototype",
+    "2": "Hardening for Launch",
+    "3": "Polish & Refinement",
+    "4": "Phase 5",
+    "5": "Phase 6"
+  },
+  "phaseInsights": {
+    "0": "You opened almost every session by stating the destination. Claude knew what you wanted before it knew how — a discipline only ~half of users practice.",
+    "1": "You kept setting direction across sessions: goals, then approach, then mode of interaction. The collaboration ran smoothly because the brief was clean.",
+    "2": "By the end you were defining destinations and trusting the path. The artifact effect didn't change your habit — you stayed a director, not a specifier.",
+    "3": "By the end you were defining destinations and trusting the path. The artifact effect didn't change your habit — you stayed a director, not a specifier.",
+    "4": "By the end you were defining destinations and trusting the path. The artifact effect didn't change your habit — you stayed a director, not a specifier.",
+    "5": "By the end you were defining destinations and trusting the path. The artifact effect didn't change your habit — you stayed a director, not a specifier."
+  }
+}

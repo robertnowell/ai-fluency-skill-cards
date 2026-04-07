@@ -8,6 +8,7 @@ RUN npm ci --production=false
 COPY tsconfig.json ./
 COPY src/ src/
 COPY templates/ templates/
+COPY fixtures/ fixtures/
 RUN npm run build
 RUN mkdir -p /data/reports
 

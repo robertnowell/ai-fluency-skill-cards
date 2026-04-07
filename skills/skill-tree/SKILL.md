@@ -133,22 +133,35 @@ analyze({ sessions_json: '<contents of /tmp/sessions.json>', user_name: 'First L
 
 **If the tool call fails with a network error:** Do NOT fall back to manual analysis. Guide the user to enable network egress (see Step 0a).
 
-## Step 4: Save profile locally
+**The response is a compact summary (~2KB), not the full profile.** It contains:
+- `profile_id` — opaque ID; you MUST pass this to `visualize` in step 6
+- `archetype` — name, tagline, growth_quest, axis_scores, target_archetype
+- `growth_edge` — the behavior to grow next
+- `branches` — score and baseline for each axis
+- `notable_behaviors` — top 5 above-baseline behaviors with 1-2 evidence quotes each
+- `phases` — phase context with project names and one key moment per phase
 
-After receiving the profile JSON from the `analyze` tool, write two files:
+The full profile is stashed server-side. Do NOT try to reconstruct it.
 
-**4a. Save the growth quest** (enables the SessionStart hook to nudge you in future sessions):
+## Step 4: Save the growth quest
+
+Write the `growth_quest` field from the analyze response's `archetype` to **both** of these locations (different surfaces persist different ones):
+
 ```bash
+# Primary: $HOME — persistent in Claude Code, ephemeral in Cowork
 mkdir -p ~/.skill-tree
-```
-Then write the `growth_quest` field from `profile.archetype` to `~/.skill-tree/growth-quest.txt`.
+# write quest text to ~/.skill-tree/growth-quest.txt
 
-**4b. Save the profile** (for the visualization):
-Write the full profile JSON to `~/.skill-tree/profile.json`.
+# Plugin-dir fallback: persistent across Cowork sessions (sandbox $HOME is per-session)
+mkdir -p "${CLAUDE_PLUGIN_ROOT}/.user-state" 2>/dev/null || true
+# write quest text to "${CLAUDE_PLUGIN_ROOT}/.user-state/growth-quest.txt" (ignore failure if read-only)
+```
+
+The SessionStart hook reads from whichever location has content. Writing to both means the quest persists across sessions in both Claude Code and Cowork.
 
 ## Step 5: Synthesize narrative (YOU do this — don't skip it)
 
-Read the evidence quotes from the analyze response. Write a narrative JSON object that interprets the user's journey:
+Read the `notable_behaviors[].evidence` quotes and `phases[].keyMoment` quotes from the analyze response. Write a narrative JSON object that interprets the user's journey:
 
 ```json
 {
@@ -164,9 +177,9 @@ Read the evidence quotes from the analyze response. Write a narrative JSON objec
 }
 ```
 
-The `phaseInsights` and `phaseNames` keys ("0", "1", etc.) map to the phases in the profile's `timeline.phases` array. If there are no phases, write insights based on the evidence grouped by axis.
+The `phaseInsights` and `phaseNames` keys ("0", "1", etc.) map by index to the `phases` array in the analyze response. If there are no phases, write insights based on the `notable_behaviors` evidence grouped by axis.
 
-**Phase names MUST describe what the user was building, not behavioral abstractions.** "Building the Classifier" is good. "Delegation-dominant phase" is terrible. Look at the evidence quotes and project names to understand what was happening during each phase, then name it after the work.
+**Phase names MUST describe what the user was building, not behavioral abstractions.** "Building the Classifier" is good. "Delegation-dominant phase" is terrible. Look at each phase's `projects` and `keyMoment.quote` to understand what was happening, then name it after the work.
 
 **What makes a GOOD narrative:**
 - Ground everything in the actual work: name the projects, describe what was being built
@@ -184,11 +197,15 @@ The `phaseInsights` and `phaseNames` keys ("0", "1", etc.) map to the phases in 
 
 ## Step 6: Generate visualization
 
-Call the `visualize` MCP tool with the profile JSON from step 3 and your narrative JSON from step 5:
+Call the `visualize` MCP tool with the **`profile_id` from step 3** and your narrative JSON from step 5:
 
 ```
-visualize({ profile_json: '<the profile JSON string>', narrative_json: '{"thesis":"...","phaseNames":{"0":"..."},"phaseInsights":{"0":"..."}}' })
+visualize({ profile_id: '<profile_id from analyze response>', narrative_json: '{"thesis":"...","phaseNames":{"0":"..."},"phaseInsights":{"0":"..."}}' })
 ```
+
+**CRITICAL: Do NOT pass `profile_json`. Use the `profile_id` from the analyze response.** The full profile lives on the server. If you reconstruct it manually you will drop required fields and the visualization will be broken (empty drilldowns, missing hero art, no Your Story). The server will reject malformed reconstructions with a validation error.
+
+`profile_json` exists only as a legacy escape hatch. Always prefer `profile_id`.
 
 This renders the visualization on the server and returns a **URL**. Share the URL with the user — they can open it in their browser to see their full skill tree with archetype card, radar chart, and narrative deep dive.
 
@@ -196,11 +213,11 @@ This renders the visualization on the server and returns a **URL**. Share the UR
 
 **Do NOT reveal the archetype name, axis scores, or card details.** The visualization has a dramatic reveal — let it do its job.
 
-Present three things, in this order:
+Present three things, in this order (all sourced from the analyze response):
 
 1. **Link** — "Your skill tree is ready: [URL]"
-2. **Credibility + standout** — "Based on N sessions across [project names] — here's what stood out: [one specific behavior above baseline, with context from their actual work]."
-3. **Growth quest** — one specific action for their next session, from `profile.archetype.growth_quest`.
+2. **Credibility + standout** — "Based on N sessions (`total_sessions`) across [project names from `phases[].projects`] — here's what stood out: [one above-baseline behavior from `notable_behaviors`, with context from its evidence quote]."
+3. **Growth quest** — one specific action for their next session, from `archetype.growth_quest`.
 
 Example:
 > Your skill tree is ready: https://skill-tree-ai.fly.dev/report/abc123

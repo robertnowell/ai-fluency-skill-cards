@@ -1,0 +1,978 @@
+{
+  "total_sessions": 30,
+  "behaviors": {
+    "iterative_improvement": {
+      "label": "Iterates on outputs",
+      "rate": 0.833,
+      "baseline": 0.857,
+      "above_baseline": false,
+      "present_count": 25,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Closer to the destination — keep going.",
+          "session_id": "compass-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Right framework. Now refine the third step.",
+          "session_id": "compass-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Closer to the destination — keep going.",
+          "session_id": "compass-04",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "clarify_goals": {
+      "label": "Clarifies goals upfront",
+      "rate": 0.8,
+      "baseline": 0.511,
+      "above_baseline": true,
+      "present_count": 24,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Goal is a hiring plan I can defend at the board meeting. Help me get there.",
+          "session_id": "compass-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "I'm trying to figure out whether to hire a contractor or stretch our team to ship by Q2. Help me think it through.",
+          "session_id": "compass-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Goal is a hiring plan I can defend at the board meeting. Help me get there.",
+          "session_id": "compass-02",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "show_examples": {
+      "label": "Provides examples",
+      "rate": 0.067,
+      "baseline": 0.411,
+      "above_baseline": false,
+      "present_count": 2,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Use this old plan as a template for shape, not content.",
+          "session_id": "compass-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Here's how a peer company handled the same call.",
+          "session_id": "compass-04",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "specify_format": {
+      "label": "Specifies format",
+      "rate": 0.133,
+      "baseline": 0.3,
+      "above_baseline": false,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Decision matrix: options across the top, criteria down the side.",
+          "session_id": "compass-08",
+          "project": "acme-api"
+        },
+        {
+          "text": "Decision matrix: options across the top, criteria down the side.",
+          "session_id": "compass-11",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Bullet points with clear next steps.",
+          "session_id": "compass-15",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "set_interactive_mode": {
+      "label": "Sets interaction style",
+      "rate": 0.7,
+      "baseline": 0.3,
+      "above_baseline": true,
+      "present_count": 21,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "If you need more context, ask. Don't guess.",
+          "session_id": "compass-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "If you need more context, ask. Don't guess.",
+          "session_id": "compass-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "If you need more context, ask. Don't guess.",
+          "session_id": "compass-04",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "express_tone_style": {
+      "label": "Expresses tone prefs",
+      "rate": 0.167,
+      "baseline": 0.227,
+      "above_baseline": false,
+      "present_count": 5,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Plain language a non-specialist could follow.",
+          "session_id": "compass-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Confident, but show the alternatives we considered.",
+          "session_id": "compass-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Confident, but show the alternatives we considered.",
+          "session_id": "compass-14",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "identify_context_gaps": {
+      "label": "Flags context gaps",
+      "rate": 0.133,
+      "baseline": 0.203,
+      "above_baseline": false,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "You don't know that we already tried approach two last year.",
+          "session_id": "compass-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "FYI, the budget freeze starts next month. Plan around it.",
+          "session_id": "compass-05",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "FYI, the budget freeze starts next month. Plan around it.",
+          "session_id": "compass-06",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "define_audience": {
+      "label": "Defines audience",
+      "rate": 0.067,
+      "baseline": 0.176,
+      "above_baseline": false,
+      "present_count": 2,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "My direct reports — they need to know what decision was made and why.",
+          "session_id": "compass-12",
+          "project": "acme-api"
+        },
+        {
+          "text": "The board. Assume they're skeptical and short on time.",
+          "session_id": "compass-17",
+          "project": "growth-experiments"
+        }
+      ]
+    },
+    "question_reasoning": {
+      "label": "Questions Claude's logic",
+      "rate": 0.067,
+      "baseline": 0.158,
+      "above_baseline": false,
+      "present_count": 2,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Why this option over the others? Make the case.",
+          "session_id": "compass-13",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "What are we giving up if we pick this?",
+          "session_id": "compass-26",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "consult_approach": {
+      "label": "Discusses approach first",
+      "rate": 0.7,
+      "baseline": 0.101,
+      "above_baseline": true,
+      "present_count": 21,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Walk me through how you'd structure this before we dive in.",
+          "session_id": "compass-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "What are my options here, and how would you compare them?",
+          "session_id": "compass-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Walk me through how you'd structure this before we dive in.",
+          "session_id": "compass-04",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "verify_facts": {
+      "label": "Verifies facts",
+      "rate": 0.1,
+      "baseline": 0.087,
+      "above_baseline": true,
+      "present_count": 3,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Double-check the budget figures against last quarter's report.",
+          "session_id": "compass-08",
+          "project": "acme-api"
+        },
+        {
+          "text": "Confirm the headcount numbers with HR before I cite them.",
+          "session_id": "compass-23",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Source for that benchmark?",
+          "session_id": "compass-27",
+          "project": "marketing-site"
+        }
+      ]
+    }
+  },
+  "branches": {
+    "Description": {
+      "score": 0.109,
+      "baseline": 0.278,
+      "above_baseline": false,
+      "color": "#cca67b",
+      "description": "How you shape Claude's output",
+      "behaviors": [
+        "show_examples",
+        "specify_format",
+        "express_tone_style",
+        "define_audience"
+      ]
+    },
+    "Discernment": {
+      "score": 0.1,
+      "baseline": 0.149,
+      "above_baseline": false,
+      "color": "#7bcc96",
+      "description": "How you assess Claude's reasoning",
+      "behaviors": [
+        "identify_context_gaps",
+        "question_reasoning",
+        "verify_facts"
+      ]
+    },
+    "Delegation": {
+      "score": 0.733,
+      "baseline": 0.304,
+      "above_baseline": true,
+      "color": "#7ba3cc",
+      "description": "How you set up the collaboration",
+      "behaviors": [
+        "clarify_goals",
+        "consult_approach",
+        "set_interactive_mode"
+      ]
+    }
+  },
+  "archetype": {
+    "name": "The Compass",
+    "tagline": "Delegates with clear goals and defined approach",
+    "headline": "{name}, you define the goal and approach before the first word is written.",
+    "description": "You lead with delegation — clear goals, discussed approach, defined interaction style. You brief well, then trust the collaboration. You set the destination and let Claude find the path.",
+    "superpower": "Claude knows what you need before the first word is written — because you said so",
+    "growth_unlock": "Unlock The Conductor's precision — add description to your direction",
+    "growth_quest": "Next session, after stating your goal, try adding: 'Here's an example of what good output looks like' or 'Format this as...'",
+    "target_archetype": "conductor",
+    "color": "#4a7ba3",
+    "accent": "#a3c4db",
+    "glyph": "compass",
+    "hero_art": {
+      "url": "https://openaccess-cdn.clevelandart.org/1985.320/1985.320_web.jpg",
+      "credit": "Hiroshige, Moon-Viewing Promontory, 1857"
+    },
+    "axis_scores": {
+      "description": 0.109,
+      "discernment": 0.1,
+      "delegation": 0.733
+    },
+    "key": "compass"
+  },
+  "growth_edge": {
+    "behavior": "show_examples",
+    "label": "Provides examples",
+    "rate": 0.067,
+    "baseline": 0.411,
+    "gap": -0.344
+  },
+  "generated_at": "2026-04-07T07:31:56.781Z",
+  "timeline": {
+    "sessions": [
+      {
+        "sessionId": "compass-00",
+        "timestamp": "2026-02-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "express_tone_style"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "compass-01",
+        "timestamp": "2026-02-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "compass-02",
+        "timestamp": "2026-02-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "identify_context_gaps"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "compass-03",
+        "timestamp": "2026-02-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "show_examples",
+          "set_interactive_mode",
+          "express_tone_style",
+          "consult_approach"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "compass-04",
+        "timestamp": "2026-02-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "set_interactive_mode",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "compass-05",
+        "timestamp": "2026-03-02T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "compass-06",
+        "timestamp": "2026-03-03T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "compass-07",
+        "timestamp": "2026-03-04T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "consult_approach"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "compass-08",
+        "timestamp": "2026-03-06T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "specify_format",
+          "set_interactive_mode",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "compass-09",
+        "timestamp": "2026-03-07T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "compass-10",
+        "timestamp": "2026-03-09T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "compass-11",
+        "timestamp": "2026-03-10T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format",
+          "set_interactive_mode",
+          "consult_approach"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "compass-12",
+        "timestamp": "2026-03-11T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "define_audience"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "compass-13",
+        "timestamp": "2026-03-13T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "question_reasoning",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "compass-14",
+        "timestamp": "2026-03-14T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "express_tone_style",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "compass-15",
+        "timestamp": "2026-03-16T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "specify_format",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "consult_approach"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "compass-16",
+        "timestamp": "2026-03-17T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "compass-17",
+        "timestamp": "2026-03-18T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "define_audience"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "compass-18",
+        "timestamp": "2026-03-20T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "set_interactive_mode"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "compass-19",
+        "timestamp": "2026-03-21T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "set_interactive_mode",
+          "consult_approach"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "compass-20",
+        "timestamp": "2026-03-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "specify_format",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "compass-21",
+        "timestamp": "2026-03-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "set_interactive_mode"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "compass-22",
+        "timestamp": "2026-03-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "set_interactive_mode",
+          "express_tone_style",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "compass-23",
+        "timestamp": "2026-03-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "compass-24",
+        "timestamp": "2026-03-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "compass-25",
+        "timestamp": "2026-03-30T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "express_tone_style",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "compass-26",
+        "timestamp": "2026-03-31T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "question_reasoning"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "compass-27",
+        "timestamp": "2026-04-01T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "compass-28",
+        "timestamp": "2026-04-03T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "compass-29",
+        "timestamp": "2026-04-04T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "set_interactive_mode",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      }
+    ],
+    "phases": [
+      {
+        "name": "acme-api, growth-experiments",
+        "startDate": "2026-02-23T00:00:00.000Z",
+        "endDate": "2026-02-24T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Delegation",
+        "axisColor": "#7ba3cc",
+        "keyMoments": [
+          {
+            "quote": "Walk me through how you'd structure this before we dive in.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "compass-01",
+            "significance": 0.899,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Plain language a non-specialist could follow.",
+            "behavior": "express_tone_style",
+            "behaviorLabel": "Expresses tone prefs",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "compass-00",
+            "significance": 0.773,
+            "project": "acme-api"
+          },
+          {
+            "quote": "If you need more context, ask. Don't guess.",
+            "behavior": "set_interactive_mode",
+            "behaviorLabel": "Sets interaction style",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "compass-00",
+            "significance": 0.7,
+            "project": "acme-api"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "marketing-site, acme-api, growth-experiments, data-pipeline",
+        "startDate": "2026-02-27T00:00:00.000Z",
+        "endDate": "2026-03-10T00:00:00.000Z",
+        "sessionCount": 9,
+        "dominantAxis": "Delegation",
+        "axisColor": "#7ba3cc",
+        "keyMoments": [
+          {
+            "quote": "Double-check the budget figures against last quarter's report.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "compass-08",
+            "significance": 0.913,
+            "project": "acme-api"
+          },
+          {
+            "quote": "What are my options here, and how would you compare them?",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "compass-03",
+            "significance": 0.899,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "FYI, the budget freeze starts next month. Plan around it.",
+            "behavior": "identify_context_gaps",
+            "behaviorLabel": "Flags context gaps",
+            "sessionSummary": "Cleaned up the legacy export",
+            "sessionId": "compass-05",
+            "significance": 0.7969999999999999,
+            "project": "growth-experiments"
+          }
+        ],
+        "projects": [
+          "marketing-site",
+          "acme-api",
+          "growth-experiments",
+          "data-pipeline"
+        ]
+      },
+      {
+        "name": "growth-experiments, data-pipeline, marketing-site, acme-api",
+        "startDate": "2026-03-13T00:00:00.000Z",
+        "endDate": "2026-03-17T00:00:00.000Z",
+        "sessionCount": 4,
+        "dominantAxis": "Delegation",
+        "axisColor": "#7ba3cc",
+        "keyMoments": [
+          {
+            "quote": "Walk me through how you'd structure this before we dive in.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "compass-13",
+            "significance": 0.899,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Why this option over the others? Make the case.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "compass-13",
+            "significance": 0.842,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "FYI, the budget freeze starts next month. Plan around it.",
+            "behavior": "identify_context_gaps",
+            "behaviorLabel": "Flags context gaps",
+            "sessionSummary": "Cleaned up the legacy export",
+            "sessionId": "compass-15",
+            "significance": 0.7969999999999999,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "growth-experiments",
+          "data-pipeline",
+          "marketing-site",
+          "acme-api"
+        ]
+      },
+      {
+        "name": "data-pipeline, marketing-site, acme-api, growth-experiments",
+        "startDate": "2026-03-20T00:00:00.000Z",
+        "endDate": "2026-03-25T00:00:00.000Z",
+        "sessionCount": 5,
+        "dominantAxis": "Delegation",
+        "axisColor": "#7ba3cc",
+        "keyMoments": [
+          {
+            "quote": "What's the right way to approach this kind of decision? I want a framework first.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Debugged the webhook race condition",
+            "sessionId": "compass-19",
+            "significance": 0.899,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Plain language a non-specialist could follow.",
+            "behavior": "express_tone_style",
+            "behaviorLabel": "Expresses tone prefs",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "compass-22",
+            "significance": 0.773,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Ask me clarifying questions before answering.",
+            "behavior": "set_interactive_mode",
+            "behaviorLabel": "Sets interaction style",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "compass-18",
+            "significance": 0.7,
+            "project": "data-pipeline"
+          }
+        ],
+        "projects": [
+          "data-pipeline",
+          "marketing-site",
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "acme-api, growth-experiments",
+        "startDate": "2026-03-28T00:00:00.000Z",
+        "endDate": "2026-03-30T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Delegation",
+        "axisColor": "#7ba3cc",
+        "keyMoments": [
+          {
+            "quote": "What's the right way to approach this kind of decision? I want a framework first.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "compass-24",
+            "significance": 0.899,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Confident, but show the alternatives we considered.",
+            "behavior": "express_tone_style",
+            "behaviorLabel": "Expresses tone prefs",
+            "sessionSummary": "Cleaned up the legacy export",
+            "sessionId": "compass-25",
+            "significance": 0.773,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Be a thinking partner, not an answer machine.",
+            "behavior": "set_interactive_mode",
+            "behaviorLabel": "Sets interaction style",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "compass-24",
+            "significance": 0.7,
+            "project": "acme-api"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "marketing-site, acme-api, growth-experiments",
+        "startDate": "2026-04-01T00:00:00.000Z",
+        "endDate": "2026-04-04T00:00:00.000Z",
+        "sessionCount": 3,
+        "dominantAxis": "Delegation",
+        "axisColor": "#7ba3cc",
+        "keyMoments": [
+          {
+            "quote": "Source for that benchmark?",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "compass-27",
+            "significance": 0.913,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Walk me through how you'd structure this before we dive in.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "compass-27",
+            "significance": 0.899,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Be a thinking partner, not an answer machine.",
+            "behavior": "set_interactive_mode",
+            "behaviorLabel": "Sets interaction style",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "compass-27",
+            "significance": 0.7,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "marketing-site",
+          "acme-api",
+          "growth-experiments"
+        ]
+      }
+    ]
+  },
+  "user_name": "Compass"
+}

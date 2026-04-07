@@ -2,6 +2,12 @@ import { readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ARCHETYPES, type SkillProfile } from "./profile.js";
+import {
+  CARD_FACE_CSS,
+  CARD_FLIP_CSS,
+  RENDER_MINI_RADAR_JS,
+  RENDER_CARD_JS,
+} from "./card.js";
 
 export interface NarrativeData {
   thesis: string;
@@ -38,5 +44,9 @@ export function renderHTML(
   return template
     .replace("__PROFILE_DATA__", jsonStr)
     .replace("__ARCHETYPES_DATA__", archetypesStr)
-    .replace("__NARRATIVE_DATA__", narrativeStr);
+    .replace("__NARRATIVE_DATA__", narrativeStr)
+    .replace("/* __CARD_FLIP_CSS__ */", CARD_FLIP_CSS)
+    .replace("/* __CARD_FACE_CSS__ */", CARD_FACE_CSS)
+    .replace("/* __RENDER_MINI_RADAR_JS__ */", RENDER_MINI_RADAR_JS)
+    .replace("/* __RENDER_CARD_JS__ */", RENDER_CARD_JS);
 }

@@ -1,0 +1,753 @@
+{
+  "total_sessions": 30,
+  "behaviors": {
+    "iterative_improvement": {
+      "label": "Iterates on outputs",
+      "rate": 0.867,
+      "baseline": 0.857,
+      "above_baseline": true,
+      "present_count": 26,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Better, but the second claim still isn't sourced. Fix it.",
+          "session_id": "illuminator-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Better, but the second claim still isn't sourced. Fix it.",
+          "session_id": "illuminator-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Better, but the second claim still isn't sourced. Fix it.",
+          "session_id": "illuminator-02",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "clarify_goals": {
+      "label": "Clarifies goals upfront",
+      "rate": 0.133,
+      "baseline": 0.511,
+      "above_baseline": false,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Goal is to understand whether the framing of this report is honest or marketing.",
+          "session_id": "illuminator-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Trying to figure out whether the vendor's claim about 99.9% uptime holds up against their actual incident history.",
+          "session_id": "illuminator-13",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Trying to figure out whether the vendor's claim about 99.9% uptime holds up against their actual incident history.",
+          "session_id": "illuminator-16",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "show_examples": {
+      "label": "Provides examples",
+      "rate": 0.133,
+      "baseline": 0.411,
+      "above_baseline": false,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "This is what a well-cited claim looks like — match the standard.",
+          "session_id": "illuminator-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Here's a study with the opposite finding. How do you reconcile?",
+          "session_id": "illuminator-14",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "This is what a well-cited claim looks like — match the standard.",
+          "session_id": "illuminator-28",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "specify_format": {
+      "label": "Specifies format",
+      "rate": 0,
+      "baseline": 0.3,
+      "above_baseline": false,
+      "present_count": 0,
+      "total_sessions": 30,
+      "evidence": []
+    },
+    "set_interactive_mode": {
+      "label": "Sets interaction style",
+      "rate": 0.033,
+      "baseline": 0.3,
+      "above_baseline": false,
+      "present_count": 1,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Show your work. Don't summarize — show.",
+          "session_id": "illuminator-23",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "express_tone_style": {
+      "label": "Expresses tone prefs",
+      "rate": 0.067,
+      "baseline": 0.227,
+      "above_baseline": false,
+      "present_count": 2,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Cautious. Don't oversell.",
+          "session_id": "illuminator-13",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Sober. No 'definitely' or 'clearly' — earn those words.",
+          "session_id": "illuminator-27",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "identify_context_gaps": {
+      "label": "Flags context gaps",
+      "rate": 0.767,
+      "baseline": 0.203,
+      "above_baseline": true,
+      "present_count": 23,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "You're missing the funding-source disclosure — that changes how to read the paper.",
+          "session_id": "illuminator-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "You're missing the funding-source disclosure — that changes how to read the paper.",
+          "session_id": "illuminator-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "The 2024 follow-up study contradicts this. Have you accounted for it?",
+          "session_id": "illuminator-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "define_audience": {
+      "label": "Defines audience",
+      "rate": 0.167,
+      "baseline": 0.176,
+      "above_baseline": false,
+      "present_count": 5,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Researchers who'll check the citations. Don't fudge them.",
+          "session_id": "illuminator-04",
+          "project": "acme-api"
+        },
+        {
+          "text": "A reader who'll quote it back at me. Every line has to be defensible.",
+          "session_id": "illuminator-15",
+          "project": "marketing-site"
+        },
+        {
+          "text": "A reader who'll quote it back at me. Every line has to be defensible.",
+          "session_id": "illuminator-23",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "question_reasoning": {
+      "label": "Questions Claude's logic",
+      "rate": 0.7,
+      "baseline": 0.158,
+      "above_baseline": true,
+      "present_count": 21,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "That's a confident answer for something you can't have measured. Where's the evidence?",
+          "session_id": "illuminator-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "You're implying causation. The data only supports correlation.",
+          "session_id": "illuminator-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Why would that be true? Walk me through the mechanism.",
+          "session_id": "illuminator-04",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "consult_approach": {
+      "label": "Discusses approach first",
+      "rate": 0.1,
+      "baseline": 0.101,
+      "above_baseline": false,
+      "present_count": 3,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Walk me through how you'd falsify the claim before defending it.",
+          "session_id": "illuminator-06",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Walk me through how you'd falsify the claim before defending it.",
+          "session_id": "illuminator-08",
+          "project": "acme-api"
+        },
+        {
+          "text": "What would have to be true for this argument to fail? Start there.",
+          "session_id": "illuminator-16",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "verify_facts": {
+      "label": "Verifies facts",
+      "rate": 0.833,
+      "baseline": 0.087,
+      "above_baseline": true,
+      "present_count": 25,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Are you sure that author wrote that? It doesn't sound like them.",
+          "session_id": "illuminator-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Source for that statistic? Citation needed.",
+          "session_id": "illuminator-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Source for that statistic? Citation needed.",
+          "session_id": "illuminator-02",
+          "project": "data-pipeline"
+        }
+      ]
+    }
+  },
+  "branches": {
+    "Description": {
+      "score": 0.092,
+      "baseline": 0.278,
+      "above_baseline": false,
+      "color": "#cca67b",
+      "description": "How you shape Claude's output",
+      "behaviors": [
+        "show_examples",
+        "specify_format",
+        "express_tone_style",
+        "define_audience"
+      ]
+    },
+    "Discernment": {
+      "score": 0.767,
+      "baseline": 0.149,
+      "above_baseline": true,
+      "color": "#7bcc96",
+      "description": "How you assess Claude's reasoning",
+      "behaviors": [
+        "identify_context_gaps",
+        "question_reasoning",
+        "verify_facts"
+      ]
+    },
+    "Delegation": {
+      "score": 0.089,
+      "baseline": 0.304,
+      "above_baseline": false,
+      "color": "#7ba3cc",
+      "description": "How you set up the collaboration",
+      "behaviors": [
+        "clarify_goals",
+        "consult_approach",
+        "set_interactive_mode"
+      ]
+    }
+  },
+  "archetype": {
+    "name": "The Illuminator",
+    "tagline": "Discerns critically — questioning reasoning and facts",
+    "headline": "{name}, you question Claude's reasoning when most users accept the first answer.",
+    "description": "You lead with discernment — identifying gaps, challenging logic, checking facts. When polished AI output makes most users less critical (the artifact effect), you resist that pull.",
+    "superpower": "You catch errors and gaps before they compound — the rarest behavior in the data",
+    "growth_unlock": "Unlock The Architect's structure — add deliberate delegation to your discernment",
+    "growth_quest": "Next session, try setting a clear goal and interaction mode before you start evaluating — give Claude the context to get closer on the first try.",
+    "target_archetype": "architect",
+    "color": "#3d8a5a",
+    "accent": "#a8d4b8",
+    "glyph": "illuminator",
+    "hero_art": {
+      "url": "https://www.artic.edu/iiif/2/39018e31-6200-f4e3-7fc0-17ef919a6723/full/843,/0/default.jpg",
+      "credit": "Batoni, Time Unveiling Truth, 1740–45"
+    },
+    "axis_scores": {
+      "description": 0.092,
+      "discernment": 0.767,
+      "delegation": 0.089
+    },
+    "key": "illuminator"
+  },
+  "growth_edge": {
+    "behavior": "clarify_goals",
+    "label": "Clarifies goals upfront",
+    "rate": 0.133,
+    "baseline": 0.511,
+    "gap": -0.378
+  },
+  "generated_at": "2026-04-07T07:31:56.779Z",
+  "timeline": {
+    "sessions": [
+      {
+        "sessionId": "illuminator-00",
+        "timestamp": "2026-02-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "illuminator-01",
+        "timestamp": "2026-02-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "illuminator-02",
+        "timestamp": "2026-02-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "illuminator-03",
+        "timestamp": "2026-02-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "illuminator-04",
+        "timestamp": "2026-02-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "illuminator-05",
+        "timestamp": "2026-03-02T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "illuminator-06",
+        "timestamp": "2026-03-03T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "illuminator-07",
+        "timestamp": "2026-03-04T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "illuminator-08",
+        "timestamp": "2026-03-06T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "question_reasoning",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "illuminator-09",
+        "timestamp": "2026-03-07T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "illuminator-10",
+        "timestamp": "2026-03-09T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "illuminator-11",
+        "timestamp": "2026-03-10T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "question_reasoning"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "illuminator-12",
+        "timestamp": "2026-03-11T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "question_reasoning"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "illuminator-13",
+        "timestamp": "2026-03-13T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "express_tone_style",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "illuminator-14",
+        "timestamp": "2026-03-14T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "identify_context_gaps",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "illuminator-15",
+        "timestamp": "2026-03-16T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "define_audience",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "illuminator-16",
+        "timestamp": "2026-03-17T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "illuminator-17",
+        "timestamp": "2026-03-18T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "illuminator-18",
+        "timestamp": "2026-03-20T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "illuminator-19",
+        "timestamp": "2026-03-21T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "question_reasoning"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "illuminator-20",
+        "timestamp": "2026-03-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "illuminator-21",
+        "timestamp": "2026-03-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "illuminator-22",
+        "timestamp": "2026-03-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "illuminator-23",
+        "timestamp": "2026-03-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "illuminator-24",
+        "timestamp": "2026-03-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "define_audience",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "illuminator-25",
+        "timestamp": "2026-03-30T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "illuminator-26",
+        "timestamp": "2026-03-31T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "illuminator-27",
+        "timestamp": "2026-04-01T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "express_tone_style",
+          "identify_context_gaps",
+          "question_reasoning"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "illuminator-28",
+        "timestamp": "2026-04-03T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "illuminator-29",
+        "timestamp": "2026-04-04T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "show_examples",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      }
+    ],
+    "phases": [
+      {
+        "name": "acme-api, growth-experiments, data-pipeline, marketing-site",
+        "startDate": "2026-02-23T00:00:00.000Z",
+        "endDate": "2026-04-04T00:00:00.000Z",
+        "sessionCount": 30,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Are you sure that author wrote that? It doesn't sound like them.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "illuminator-00",
+            "significance": 0.913,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Walk me through how you'd falsify the claim before defending it.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Built the dashboard prototype",
+            "sessionId": "illuminator-06",
+            "significance": 0.899,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "That's a confident answer for something you can't have measured. Where's the evidence?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "illuminator-01",
+            "significance": 0.842,
+            "project": "growth-experiments"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments",
+          "data-pipeline",
+          "marketing-site"
+        ]
+      }
+    ]
+  },
+  "user_name": "Illuminator"
+}

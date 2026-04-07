@@ -1,0 +1,1151 @@
+{
+  "total_sessions": 30,
+  "behaviors": {
+    "iterative_improvement": {
+      "label": "Iterates on outputs",
+      "rate": 0.767,
+      "baseline": 0.857,
+      "above_baseline": false,
+      "present_count": 23,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Closer — but the second paragraph is still doing too much. Cut it in half.",
+          "session_id": "polymath-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Right shape, wrong tone. Try again — drier, less hedging.",
+          "session_id": "polymath-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Right shape, wrong tone. Try again — drier, less hedging.",
+          "session_id": "polymath-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "clarify_goals": {
+      "label": "Clarifies goals upfront",
+      "rate": 0.133,
+      "baseline": 0.511,
+      "above_baseline": false,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "I need to choose between two storage backends before end of week. That's the decision; everything else is detail.",
+          "session_id": "polymath-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "I'm trying to understand the tradeoff space well enough to defend a pick when someone pushes back.",
+          "session_id": "polymath-11",
+          "project": "marketing-site"
+        },
+        {
+          "text": "I'm trying to understand the tradeoff space well enough to defend a pick when someone pushes back.",
+          "session_id": "polymath-14",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "show_examples": {
+      "label": "Provides examples",
+      "rate": 0.8,
+      "baseline": 0.411,
+      "above_baseline": true,
+      "present_count": 24,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "This is the bar. The previous draft wasn't there yet.",
+          "session_id": "polymath-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Here — match the precision of this paragraph but lose the academic tone.",
+          "session_id": "polymath-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Here — match the precision of this paragraph but lose the academic tone.",
+          "session_id": "polymath-02",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "specify_format": {
+      "label": "Specifies format",
+      "rate": 0.733,
+      "baseline": 0.3,
+      "above_baseline": true,
+      "present_count": 22,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Three columns: claim, evidence, counterargument. Strict order.",
+          "session_id": "polymath-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Three columns: claim, evidence, counterargument. Strict order.",
+          "session_id": "polymath-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Three columns: claim, evidence, counterargument. Strict order.",
+          "session_id": "polymath-02",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "set_interactive_mode": {
+      "label": "Sets interaction style",
+      "rate": 0.1,
+      "baseline": 0.3,
+      "above_baseline": false,
+      "present_count": 3,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Tell me when you're hedging — I'd rather see the uncertainty.",
+          "session_id": "polymath-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Walk me through your reasoning before giving me the answer.",
+          "session_id": "polymath-09",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Walk me through your reasoning before giving me the answer.",
+          "session_id": "polymath-10",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "express_tone_style": {
+      "label": "Expresses tone prefs",
+      "rate": 0.7,
+      "baseline": 0.227,
+      "above_baseline": true,
+      "present_count": 21,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Like you're explaining it to a peer who'll catch you if you bluff.",
+          "session_id": "polymath-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Plainspoken. No 'leverage,' no 'unlock,' no 'ecosystem.'",
+          "session_id": "polymath-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Plainspoken. No 'leverage,' no 'unlock,' no 'ecosystem.'",
+          "session_id": "polymath-04",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "identify_context_gaps": {
+      "label": "Flags context gaps",
+      "rate": 0.8,
+      "baseline": 0.203,
+      "above_baseline": true,
+      "present_count": 24,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Heads up — the v3 deprecation kills approach two before you start.",
+          "session_id": "polymath-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Important: the original spec was wrong about the data shape. Don't trust it.",
+          "session_id": "polymath-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "You're missing that the customer reference design uses left-to-right reading order.",
+          "session_id": "polymath-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "define_audience": {
+      "label": "Defines audience",
+      "rate": 0.8,
+      "baseline": 0.176,
+      "above_baseline": true,
+      "present_count": 24,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "The reader is a skeptical PM who's seen this pitch three times before.",
+          "session_id": "polymath-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "The reader is a skeptical PM who's seen this pitch three times before.",
+          "session_id": "polymath-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Senior engineers who already know the basics — don't waste their time.",
+          "session_id": "polymath-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "question_reasoning": {
+      "label": "Questions Claude's logic",
+      "rate": 0.833,
+      "baseline": 0.158,
+      "above_baseline": true,
+      "present_count": 25,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Where did you get the 23% number? I want to see it.",
+          "session_id": "polymath-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Where did you get the 23% number? I want to see it.",
+          "session_id": "polymath-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Where did you get the 23% number? I want to see it.",
+          "session_id": "polymath-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "consult_approach": {
+      "label": "Discusses approach first",
+      "rate": 0.067,
+      "baseline": 0.101,
+      "above_baseline": false,
+      "present_count": 2,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Talk through the structure first before drafting anything.",
+          "session_id": "polymath-13",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Before you write, tell me what you'd cut.",
+          "session_id": "polymath-29",
+          "project": "growth-experiments"
+        }
+      ]
+    },
+    "verify_facts": {
+      "label": "Verifies facts",
+      "rate": 0.833,
+      "baseline": 0.087,
+      "above_baseline": true,
+      "present_count": 25,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Confirm that against the actual API docs — don't trust your memory.",
+          "session_id": "polymath-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Source for that claim?",
+          "session_id": "polymath-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Confirm that against the actual API docs — don't trust your memory.",
+          "session_id": "polymath-04",
+          "project": "acme-api"
+        }
+      ]
+    }
+  },
+  "branches": {
+    "Description": {
+      "score": 0.758,
+      "baseline": 0.278,
+      "above_baseline": true,
+      "color": "#cca67b",
+      "description": "How you shape Claude's output",
+      "behaviors": [
+        "show_examples",
+        "specify_format",
+        "express_tone_style",
+        "define_audience"
+      ]
+    },
+    "Discernment": {
+      "score": 0.822,
+      "baseline": 0.149,
+      "above_baseline": true,
+      "color": "#7bcc96",
+      "description": "How you assess Claude's reasoning",
+      "behaviors": [
+        "identify_context_gaps",
+        "question_reasoning",
+        "verify_facts"
+      ]
+    },
+    "Delegation": {
+      "score": 0.1,
+      "baseline": 0.304,
+      "above_baseline": false,
+      "color": "#7ba3cc",
+      "description": "How you set up the collaboration",
+      "behaviors": [
+        "clarify_goals",
+        "consult_approach",
+        "set_interactive_mode"
+      ]
+    }
+  },
+  "archetype": {
+    "name": "The Polymath",
+    "tagline": "Describes with precision and discerns with scrutiny",
+    "headline": "{name}, you shape Claude's output and question its reasoning — the rarest combination.",
+    "description": "You've developed fluency across both description and discernment — the two dimensions that most users specialize in, not combine. The data shows these skills are anti-correlated in practice (the artifact effect), which makes your balance genuinely unusual.",
+    "superpower": "You shift between shaping output and scrutinizing it as the task demands",
+    "growth_unlock": "The 4th D — Diligence: how you use these skills in the world",
+    "growth_quest": "You've mastered the in-chat dimensions. The real frontier is Diligence — are you transparent about AI's role in your work? Do you consider the consequences of sharing AI-generated output? Next session, notice one moment where the answer matters.",
+    "target_archetype": null,
+    "color": "#a08040",
+    "accent": "#e8d8b0",
+    "glyph": "polymath",
+    "hero_art": {
+      "url": "https://file.rendit.io/brands/jKoZ86bPYIkjeF2leO0tE/7MWjCZIkh_OHYSVwH-nZH.gif",
+      "credit": ""
+    },
+    "axis_scores": {
+      "description": 0.758,
+      "discernment": 0.822,
+      "delegation": 0.1
+    },
+    "key": "polymath"
+  },
+  "growth_edge": {
+    "behavior": "clarify_goals",
+    "label": "Clarifies goals upfront",
+    "rate": 0.133,
+    "baseline": 0.511,
+    "gap": -0.378
+  },
+  "generated_at": "2026-04-07T07:31:56.769Z",
+  "timeline": {
+    "sessions": [
+      {
+        "sessionId": "polymath-00",
+        "timestamp": "2026-02-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "polymath-01",
+        "timestamp": "2026-02-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "polymath-02",
+        "timestamp": "2026-02-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "identify_context_gaps",
+          "define_audience"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "polymath-03",
+        "timestamp": "2026-02-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "polymath-04",
+        "timestamp": "2026-02-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "polymath-05",
+        "timestamp": "2026-03-02T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "question_reasoning"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "polymath-06",
+        "timestamp": "2026-03-03T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "polymath-07",
+        "timestamp": "2026-03-04T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "polymath-08",
+        "timestamp": "2026-03-06T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "polymath-09",
+        "timestamp": "2026-03-07T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "polymath-10",
+        "timestamp": "2026-03-09T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "polymath-11",
+        "timestamp": "2026-03-10T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "show_examples",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "polymath-12",
+        "timestamp": "2026-03-11T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "show_examples",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "polymath-13",
+        "timestamp": "2026-03-13T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "polymath-14",
+        "timestamp": "2026-03-14T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "polymath-15",
+        "timestamp": "2026-03-16T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "express_tone_style",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "polymath-16",
+        "timestamp": "2026-03-17T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "polymath-17",
+        "timestamp": "2026-03-18T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "polymath-18",
+        "timestamp": "2026-03-20T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "polymath-19",
+        "timestamp": "2026-03-21T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "polymath-20",
+        "timestamp": "2026-03-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "polymath-21",
+        "timestamp": "2026-03-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "polymath-22",
+        "timestamp": "2026-03-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "polymath-23",
+        "timestamp": "2026-03-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "define_audience",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "polymath-24",
+        "timestamp": "2026-03-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "polymath-25",
+        "timestamp": "2026-03-30T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "polymath-26",
+        "timestamp": "2026-03-31T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format",
+          "identify_context_gaps",
+          "define_audience",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "polymath-27",
+        "timestamp": "2026-04-01T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "polymath-28",
+        "timestamp": "2026-04-03T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "polymath-29",
+        "timestamp": "2026-04-04T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "question_reasoning",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      }
+    ],
+    "phases": [
+      {
+        "name": "acme-api, growth-experiments, data-pipeline",
+        "startDate": "2026-02-23T00:00:00.000Z",
+        "endDate": "2026-02-25T00:00:00.000Z",
+        "sessionCount": 3,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Confirm that against the actual API docs — don't trust your memory.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "polymath-00",
+            "significance": 0.913,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Where did you get the 23% number? I want to see it.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "polymath-00",
+            "significance": 0.842,
+            "project": "acme-api"
+          },
+          {
+            "quote": "The reader is a skeptical PM who's seen this pitch three times before.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "polymath-01",
+            "significance": 0.8240000000000001,
+            "project": "growth-experiments"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments",
+          "data-pipeline"
+        ]
+      },
+      {
+        "name": "acme-api, growth-experiments",
+        "startDate": "2026-02-28T00:00:00.000Z",
+        "endDate": "2026-03-02T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Confirm that against the actual API docs — don't trust your memory.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "polymath-04",
+            "significance": 0.913,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Where did you get the 23% number? I want to see it.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "polymath-04",
+            "significance": 0.842,
+            "project": "acme-api"
+          },
+          {
+            "quote": "The reader is a skeptical PM who's seen this pitch three times before.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "polymath-04",
+            "significance": 0.8240000000000001,
+            "project": "acme-api"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "data-pipeline, marketing-site, acme-api, growth-experiments",
+        "startDate": "2026-03-09T00:00:00.000Z",
+        "endDate": "2026-03-13T00:00:00.000Z",
+        "sessionCount": 4,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Confirm that against the actual API docs — don't trust your memory.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "polymath-10",
+            "significance": 0.913,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Talk through the structure first before drafting anything.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "polymath-13",
+            "significance": 0.899,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Where did you get the 23% number? I want to see it.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "polymath-10",
+            "significance": 0.842,
+            "project": "data-pipeline"
+          }
+        ],
+        "projects": [
+          "data-pipeline",
+          "marketing-site",
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "data-pipeline, marketing-site, acme-api",
+        "startDate": "2026-03-20T00:00:00.000Z",
+        "endDate": "2026-03-23T00:00:00.000Z",
+        "sessionCount": 3,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "I've seen Wikipedia get that wrong twice this year. Check the primary source.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "polymath-18",
+            "significance": 0.913,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Walk me through why you ranked option B above A. I'm not seeing it.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "polymath-20",
+            "significance": 0.842,
+            "project": "acme-api"
+          },
+          {
+            "quote": "The reader is a skeptical PM who's seen this pitch three times before.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "polymath-18",
+            "significance": 0.8240000000000001,
+            "project": "data-pipeline"
+          }
+        ],
+        "projects": [
+          "data-pipeline",
+          "marketing-site",
+          "acme-api"
+        ]
+      },
+      {
+        "name": "growth-experiments, data-pipeline",
+        "startDate": "2026-03-24T00:00:00.000Z",
+        "endDate": "2026-03-25T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "I've seen Wikipedia get that wrong twice this year. Check the primary source.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "polymath-21",
+            "significance": 0.913,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Where did you get the 23% number? I want to see it.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "polymath-21",
+            "significance": 0.842,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "For someone who'll forward it to their boss without rereading. Make every sentence load-bearing.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "polymath-21",
+            "significance": 0.8240000000000001,
+            "project": "growth-experiments"
+          }
+        ],
+        "projects": [
+          "growth-experiments",
+          "data-pipeline"
+        ]
+      },
+      {
+        "name": "marketing-site, acme-api",
+        "startDate": "2026-03-27T00:00:00.000Z",
+        "endDate": "2026-03-28T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Source for that claim?",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "polymath-23",
+            "significance": 0.913,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Walk me through why you ranked option B above A. I'm not seeing it.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "polymath-24",
+            "significance": 0.842,
+            "project": "acme-api"
+          },
+          {
+            "quote": "For someone who'll forward it to their boss without rereading. Make every sentence load-bearing.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "polymath-23",
+            "significance": 0.8240000000000001,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "marketing-site",
+          "acme-api"
+        ]
+      },
+      {
+        "name": "growth-experiments, data-pipeline",
+        "startDate": "2026-03-30T00:00:00.000Z",
+        "endDate": "2026-03-31T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Confirm that against the actual API docs — don't trust your memory.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Built the dashboard prototype",
+            "sessionId": "polymath-26",
+            "significance": 0.913,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "That conclusion is doing a lot of work — what's the assumption it rests on?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Cleaned up the legacy export",
+            "sessionId": "polymath-25",
+            "significance": 0.842,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Senior engineers who already know the basics — don't waste their time.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Cleaned up the legacy export",
+            "sessionId": "polymath-25",
+            "significance": 0.8240000000000001,
+            "project": "growth-experiments"
+          }
+        ],
+        "projects": [
+          "growth-experiments",
+          "data-pipeline"
+        ]
+      },
+      {
+        "name": "marketing-site, acme-api",
+        "startDate": "2026-04-01T00:00:00.000Z",
+        "endDate": "2026-04-03T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Source for that claim?",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "polymath-27",
+            "significance": 0.913,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Where did you get the 23% number? I want to see it.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "polymath-27",
+            "significance": 0.842,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "For someone who'll forward it to their boss without rereading. Make every sentence load-bearing.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "polymath-27",
+            "significance": 0.8240000000000001,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "marketing-site",
+          "acme-api"
+        ]
+      }
+    ]
+  },
+  "user_name": "Polymath"
+}

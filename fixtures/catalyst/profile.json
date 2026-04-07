@@ -1,0 +1,1110 @@
+{
+  "total_sessions": 30,
+  "behaviors": {
+    "iterative_improvement": {
+      "label": "Iterates on outputs",
+      "rate": 0.867,
+      "baseline": 0.857,
+      "above_baseline": true,
+      "present_count": 26,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Yeah — try a different angle.",
+          "session_id": "catalyst-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Closer. Cut the third bullet. Keep going.",
+          "session_id": "catalyst-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Closer. Cut the third bullet. Keep going.",
+          "session_id": "catalyst-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "clarify_goals": {
+      "label": "Clarifies goals upfront",
+      "rate": 0.133,
+      "baseline": 0.511,
+      "above_baseline": false,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Let's draft something for the homepage.",
+          "session_id": "catalyst-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Let's just see what this looks like.",
+          "session_id": "catalyst-08",
+          "project": "acme-api"
+        },
+        {
+          "text": "Let's just see what this looks like.",
+          "session_id": "catalyst-11",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "show_examples": {
+      "label": "Provides examples",
+      "rate": 0.1,
+      "baseline": 0.411,
+      "above_baseline": false,
+      "present_count": 3,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Something like this — but rougher.",
+          "session_id": "catalyst-04",
+          "project": "acme-api"
+        },
+        {
+          "text": "Match this vibe.",
+          "session_id": "catalyst-23",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Use this as a starting point.",
+          "session_id": "catalyst-24",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "specify_format": {
+      "label": "Specifies format",
+      "rate": 0.1,
+      "baseline": 0.3,
+      "above_baseline": false,
+      "present_count": 3,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Bullets are fine.",
+          "session_id": "catalyst-13",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Short paragraphs.",
+          "session_id": "catalyst-16",
+          "project": "acme-api"
+        },
+        {
+          "text": "Short paragraphs.",
+          "session_id": "catalyst-19",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "set_interactive_mode": {
+      "label": "Sets interaction style",
+      "rate": 0.1,
+      "baseline": 0.3,
+      "above_baseline": false,
+      "present_count": 3,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Move fast, we'll fix it later.",
+          "session_id": "catalyst-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Just go — I'll iterate.",
+          "session_id": "catalyst-06",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Don't ask, just try.",
+          "session_id": "catalyst-22",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "express_tone_style": {
+      "label": "Expresses tone prefs",
+      "rate": 0.133,
+      "baseline": 0.227,
+      "above_baseline": false,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Make it sound like a person.",
+          "session_id": "catalyst-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Casual.",
+          "session_id": "catalyst-04",
+          "project": "acme-api"
+        },
+        {
+          "text": "Not too corporate.",
+          "session_id": "catalyst-06",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "identify_context_gaps": {
+      "label": "Flags context gaps",
+      "rate": 0.1,
+      "baseline": 0.203,
+      "above_baseline": false,
+      "present_count": 3,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Oh — forgot to mention, this is for mobile.",
+          "session_id": "catalyst-06",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Heads up, ignore the legacy code.",
+          "session_id": "catalyst-19",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Oh — forgot to mention, this is for mobile.",
+          "session_id": "catalyst-29",
+          "project": "growth-experiments"
+        }
+      ]
+    },
+    "define_audience": {
+      "label": "Defines audience",
+      "rate": 0.2,
+      "baseline": 0.176,
+      "above_baseline": true,
+      "present_count": 6,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Just for me — rough draft.",
+          "session_id": "catalyst-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "For the team chat.",
+          "session_id": "catalyst-07",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Just for me — rough draft.",
+          "session_id": "catalyst-16",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "question_reasoning": {
+      "label": "Questions Claude's logic",
+      "rate": 0.2,
+      "baseline": 0.158,
+      "above_baseline": true,
+      "present_count": 6,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Why that one?",
+          "session_id": "catalyst-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Are you sure?",
+          "session_id": "catalyst-07",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Why that one?",
+          "session_id": "catalyst-16",
+          "project": "acme-api"
+        }
+      ]
+    },
+    "consult_approach": {
+      "label": "Discusses approach first",
+      "rate": 0.133,
+      "baseline": 0.101,
+      "above_baseline": true,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "What's the fastest way to do this?",
+          "session_id": "catalyst-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Pick one and run with it.",
+          "session_id": "catalyst-06",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "What's the fastest way to do this?",
+          "session_id": "catalyst-07",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "verify_facts": {
+      "label": "Verifies facts",
+      "rate": 0.133,
+      "baseline": 0.087,
+      "above_baseline": true,
+      "present_count": 4,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Is that right?",
+          "session_id": "catalyst-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Is that right?",
+          "session_id": "catalyst-15",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Sure?",
+          "session_id": "catalyst-19",
+          "project": "marketing-site"
+        }
+      ]
+    }
+  },
+  "branches": {
+    "Description": {
+      "score": 0.133,
+      "baseline": 0.278,
+      "above_baseline": false,
+      "color": "#cca67b",
+      "description": "How you shape Claude's output",
+      "behaviors": [
+        "show_examples",
+        "specify_format",
+        "express_tone_style",
+        "define_audience"
+      ]
+    },
+    "Discernment": {
+      "score": 0.144,
+      "baseline": 0.149,
+      "above_baseline": false,
+      "color": "#7bcc96",
+      "description": "How you assess Claude's reasoning",
+      "behaviors": [
+        "identify_context_gaps",
+        "question_reasoning",
+        "verify_facts"
+      ]
+    },
+    "Delegation": {
+      "score": 0.122,
+      "baseline": 0.304,
+      "above_baseline": false,
+      "color": "#7ba3cc",
+      "description": "How you set up the collaboration",
+      "behaviors": [
+        "clarify_goals",
+        "consult_approach",
+        "set_interactive_mode"
+      ]
+    }
+  },
+  "archetype": {
+    "name": "The Catalyst",
+    "tagline": "Iterates rapidly, refining through conversation",
+    "headline": "{name}, you iterate on results faster than most — momentum is your engine.",
+    "description": "You collaborate through momentum: ask, iterate, refine, ship. You don't over-specify or over-question — you trust the loop. This works well for rapid exploration and first drafts.",
+    "superpower": "Speed to outcome — you get to a working result faster than most",
+    "growth_unlock": "Unlock The Compass's direction — try stating your destination before launching",
+    "growth_quest": "Next session, try opening with one sentence: 'My goal is [X] because [Y].' See how it changes what Claude gives you on the first try.",
+    "target_archetype": "compass",
+    "color": "#d4584a",
+    "accent": "#e8a090",
+    "glyph": "catalyst",
+    "hero_art": {
+      "url": "https://images.metmuseum.org/CRDImages/is/web-large/DP231332.jpg",
+      "credit": "Dancing Dervishes, Divan of Hafiz, Persia, c. 1480",
+      "position": "center 25%"
+    },
+    "axis_scores": {
+      "description": 0.133,
+      "discernment": 0.144,
+      "delegation": 0.122
+    },
+    "key": "catalyst"
+  },
+  "growth_edge": {
+    "behavior": "clarify_goals",
+    "label": "Clarifies goals upfront",
+    "rate": 0.133,
+    "baseline": 0.511,
+    "gap": -0.378
+  },
+  "generated_at": "2026-04-07T07:31:56.782Z",
+  "timeline": {
+    "sessions": [
+      {
+        "sessionId": "catalyst-00",
+        "timestamp": "2026-02-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "catalyst-01",
+        "timestamp": "2026-02-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "catalyst-02",
+        "timestamp": "2026-02-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "catalyst-03",
+        "timestamp": "2026-02-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "question_reasoning"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "catalyst-04",
+        "timestamp": "2026-02-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "show_examples",
+          "express_tone_style"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "catalyst-05",
+        "timestamp": "2026-03-02T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "catalyst-06",
+        "timestamp": "2026-03-03T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "set_interactive_mode",
+          "express_tone_style",
+          "identify_context_gaps",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "catalyst-07",
+        "timestamp": "2026-03-04T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "define_audience",
+          "question_reasoning",
+          "consult_approach"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "catalyst-08",
+        "timestamp": "2026-03-06T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "catalyst-09",
+        "timestamp": "2026-03-07T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "express_tone_style"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "catalyst-10",
+        "timestamp": "2026-03-09T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "catalyst-11",
+        "timestamp": "2026-03-10T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "clarify_goals"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "catalyst-12",
+        "timestamp": "2026-03-11T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "catalyst-13",
+        "timestamp": "2026-03-13T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "catalyst-14",
+        "timestamp": "2026-03-14T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "catalyst-15",
+        "timestamp": "2026-03-16T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "catalyst-16",
+        "timestamp": "2026-03-17T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format",
+          "define_audience",
+          "question_reasoning"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "catalyst-17",
+        "timestamp": "2026-03-18T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "catalyst-18",
+        "timestamp": "2026-03-20T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "define_audience",
+          "question_reasoning"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "catalyst-19",
+        "timestamp": "2026-03-21T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format",
+          "identify_context_gaps",
+          "question_reasoning",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "catalyst-20",
+        "timestamp": "2026-03-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "catalyst-21",
+        "timestamp": "2026-03-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "catalyst-22",
+        "timestamp": "2026-03-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "set_interactive_mode",
+          "define_audience"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "catalyst-23",
+        "timestamp": "2026-03-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "verify_facts"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "catalyst-24",
+        "timestamp": "2026-03-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "question_reasoning"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "catalyst-25",
+        "timestamp": "2026-03-30T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "define_audience"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "catalyst-26",
+        "timestamp": "2026-03-31T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "catalyst-27",
+        "timestamp": "2026-04-01T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "catalyst-28",
+        "timestamp": "2026-04-03T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "catalyst-29",
+        "timestamp": "2026-04-04T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Discernment",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "identify_context_gaps"
+        ],
+        "project": "growth-experiments"
+      }
+    ],
+    "phases": [
+      {
+        "name": "acme-api, growth-experiments",
+        "startDate": "2026-02-23T00:00:00.000Z",
+        "endDate": "2026-02-24T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Just for me — rough draft.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "catalyst-00",
+            "significance": 0.8240000000000001,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Make it sound like a person.",
+            "behavior": "express_tone_style",
+            "behaviorLabel": "Expresses tone prefs",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "catalyst-00",
+            "significance": 0.773,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Move fast, we'll fix it later.",
+            "behavior": "set_interactive_mode",
+            "behaviorLabel": "Sets interaction style",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "catalyst-00",
+            "significance": 0.7,
+            "project": "acme-api"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "data-pipeline, marketing-site",
+        "startDate": "2026-02-25T00:00:00.000Z",
+        "endDate": "2026-02-27T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Is that right?",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "catalyst-02",
+            "significance": 0.913,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "What's the fastest way to do this?",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "catalyst-02",
+            "significance": 0.899,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Why that one?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "catalyst-03",
+            "significance": 0.842,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "data-pipeline",
+          "marketing-site"
+        ]
+      },
+      {
+        "name": "acme-api, growth-experiments",
+        "startDate": "2026-02-28T00:00:00.000Z",
+        "endDate": "2026-03-02T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Casual.",
+            "behavior": "express_tone_style",
+            "behaviorLabel": "Expresses tone prefs",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "catalyst-04",
+            "significance": 0.773,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Something like this — but rougher.",
+            "behavior": "show_examples",
+            "behaviorLabel": "Provides examples",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "catalyst-04",
+            "significance": 0.589,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Cool. Now make it shorter.",
+            "behavior": "iterative_improvement",
+            "behaviorLabel": "Iterates on outputs",
+            "sessionSummary": "Cleaned up the legacy export",
+            "sessionId": "catalyst-05",
+            "significance": 0.14300000000000002,
+            "project": "growth-experiments"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "data-pipeline, marketing-site, acme-api",
+        "startDate": "2026-03-03T00:00:00.000Z",
+        "endDate": "2026-03-06T00:00:00.000Z",
+        "sessionCount": 3,
+        "dominantAxis": "Delegation",
+        "axisColor": "#7ba3cc",
+        "keyMoments": [
+          {
+            "quote": "Pick one and run with it.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Built the dashboard prototype",
+            "sessionId": "catalyst-06",
+            "significance": 0.899,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Are you sure?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "catalyst-07",
+            "significance": 0.842,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "For the team chat.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "catalyst-07",
+            "significance": 0.8240000000000001,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "data-pipeline",
+          "marketing-site",
+          "acme-api"
+        ]
+      },
+      {
+        "name": "growth-experiments, data-pipeline",
+        "startDate": "2026-03-07T00:00:00.000Z",
+        "endDate": "2026-03-09T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Not too corporate.",
+            "behavior": "express_tone_style",
+            "behaviorLabel": "Expresses tone prefs",
+            "sessionSummary": "Debugged the webhook race condition",
+            "sessionId": "catalyst-09",
+            "significance": 0.773,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Yeah — try a different angle.",
+            "behavior": "iterative_improvement",
+            "behaviorLabel": "Iterates on outputs",
+            "sessionSummary": "Debugged the webhook race condition",
+            "sessionId": "catalyst-09",
+            "significance": 0.14300000000000002,
+            "project": "growth-experiments"
+          }
+        ],
+        "projects": [
+          "growth-experiments",
+          "data-pipeline"
+        ]
+      },
+      {
+        "name": "acme-api, growth-experiments",
+        "startDate": "2026-03-11T00:00:00.000Z",
+        "endDate": "2026-03-13T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Bullets are fine.",
+            "behavior": "specify_format",
+            "behaviorLabel": "Specifies format",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "catalyst-13",
+            "significance": 0.7,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Cool. Now make it shorter.",
+            "behavior": "iterative_improvement",
+            "behaviorLabel": "Iterates on outputs",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "catalyst-12",
+            "significance": 0.14300000000000002,
+            "project": "acme-api"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "acme-api, growth-experiments",
+        "startDate": "2026-03-17T00:00:00.000Z",
+        "endDate": "2026-03-18T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Why that one?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Built the dashboard prototype",
+            "sessionId": "catalyst-16",
+            "significance": 0.842,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Just for me — rough draft.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Built the dashboard prototype",
+            "sessionId": "catalyst-16",
+            "significance": 0.8240000000000001,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Short paragraphs.",
+            "behavior": "specify_format",
+            "behaviorLabel": "Specifies format",
+            "sessionSummary": "Built the dashboard prototype",
+            "sessionId": "catalyst-16",
+            "significance": 0.7,
+            "project": "acme-api"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments"
+        ]
+      },
+      {
+        "name": "data-pipeline, marketing-site",
+        "startDate": "2026-03-20T00:00:00.000Z",
+        "endDate": "2026-03-21T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Sure?",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Debugged the webhook race condition",
+            "sessionId": "catalyst-19",
+            "significance": 0.913,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Why that one?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "catalyst-18",
+            "significance": 0.842,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "For the team chat.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Planned the Q2 roadmap",
+            "sessionId": "catalyst-18",
+            "significance": 0.8240000000000001,
+            "project": "data-pipeline"
+          }
+        ],
+        "projects": [
+          "data-pipeline",
+          "marketing-site"
+        ]
+      },
+      {
+        "name": "acme-api, growth-experiments, data-pipeline",
+        "startDate": "2026-03-23T00:00:00.000Z",
+        "endDate": "2026-03-25T00:00:00.000Z",
+        "sessionCount": 3,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "For the team chat.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "catalyst-22",
+            "significance": 0.8240000000000001,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Don't ask, just try.",
+            "behavior": "set_interactive_mode",
+            "behaviorLabel": "Sets interaction style",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "catalyst-22",
+            "significance": 0.7,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Closer. Cut the third bullet. Keep going.",
+            "behavior": "iterative_improvement",
+            "behaviorLabel": "Iterates on outputs",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "catalyst-20",
+            "significance": 0.14300000000000002,
+            "project": "acme-api"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments",
+          "data-pipeline"
+        ]
+      },
+      {
+        "name": "marketing-site, acme-api",
+        "startDate": "2026-03-27T00:00:00.000Z",
+        "endDate": "2026-03-28T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Discernment",
+        "axisColor": "#7bcc96",
+        "keyMoments": [
+          {
+            "quote": "Is that right?",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "catalyst-23",
+            "significance": 0.913,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Why that one?",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Designed the onboarding flow",
+            "sessionId": "catalyst-24",
+            "significance": 0.842,
+            "project": "acme-api"
+          },
+          {
+            "quote": "Match this vibe.",
+            "behavior": "show_examples",
+            "behaviorLabel": "Provides examples",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "catalyst-23",
+            "significance": 0.589,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "marketing-site",
+          "acme-api"
+        ]
+      },
+      {
+        "name": "marketing-site, acme-api",
+        "startDate": "2026-04-01T00:00:00.000Z",
+        "endDate": "2026-04-03T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Yeah — try a different angle.",
+            "behavior": "iterative_improvement",
+            "behaviorLabel": "Iterates on outputs",
+            "sessionSummary": "Reviewed the PR feedback",
+            "sessionId": "catalyst-27",
+            "significance": 0.14300000000000002,
+            "project": "marketing-site"
+          }
+        ],
+        "projects": [
+          "marketing-site",
+          "acme-api"
+        ]
+      }
+    ]
+  },
+  "user_name": "Catalyst"
+}

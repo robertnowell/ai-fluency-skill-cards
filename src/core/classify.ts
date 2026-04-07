@@ -13,7 +13,27 @@ export interface ExtractedMessage {
   cleanedLength: number;
 }
 
-// Published population baselines from the AI Fluency Index (Feb 2026)
+// Population baselines from Anthropic's AI Fluency Index (Feb 2026).
+// https://www.anthropic.com/research/AI-fluency-index
+//
+// UNIT OF ANALYSIS: per conversation, NOT per user.
+// Quoting the index methodology verbatim:
+//   "We used our privacy-preserving analysis tool to study 9,830
+//    conversations… We then measured the presence or absence of the
+//    11 behaviors; each conversation could display evidence of multiple
+//    behaviors."
+//   "85.7% of the conversations in our sample exhibited iteration and
+//    refinement."
+//
+// So 0.857 means "85.7% of conversations exhibited the behavior" — NOT
+// "85.7% of users ever did the behavior." Anthropic does not publish
+// user-level prevalence and does not disclose unique-user counts.
+//
+// This matters because src/core/profile.ts also computes the user's
+// rate per-session (rate = sessions_with_behavior / total_sessions),
+// which makes the user's rate directly comparable to these baselines.
+// If you ever change either calculation, change both — or the
+// comparison in the UI silently breaks.
 export const BASELINES: Record<string, number> = {
   iterative_improvement: 0.857,
   clarify_goals: 0.511,

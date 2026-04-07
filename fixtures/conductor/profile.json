@@ -1,0 +1,937 @@
+{
+  "total_sessions": 30,
+  "behaviors": {
+    "iterative_improvement": {
+      "label": "Iterates on outputs",
+      "rate": 0.867,
+      "baseline": 0.857,
+      "above_baseline": true,
+      "present_count": 26,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Almost there. One more pass on the opening paragraph.",
+          "session_id": "conductor-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Good first pass. Tighten the headline and rerun.",
+          "session_id": "conductor-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Good first pass. Tighten the headline and rerun.",
+          "session_id": "conductor-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "clarify_goals": {
+      "label": "Clarifies goals upfront",
+      "rate": 0.767,
+      "baseline": 0.511,
+      "above_baseline": true,
+      "present_count": 23,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "We're shipping a beta to fifty enterprise customers next Tuesday. Copy needs to land for risk-averse buyers.",
+          "session_id": "conductor-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Goal is a launch announcement that drives demo bookings — not awareness, bookings.",
+          "session_id": "conductor-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "We're shipping a beta to fifty enterprise customers next Tuesday. Copy needs to land for risk-averse buyers.",
+          "session_id": "conductor-06",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "show_examples": {
+      "label": "Provides examples",
+      "rate": 0.833,
+      "baseline": 0.411,
+      "above_baseline": true,
+      "present_count": 25,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Use this as the template — same structure, new content.",
+          "session_id": "conductor-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Look at how Stripe writes their changelog. Borrow that voice.",
+          "session_id": "conductor-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Look at how Stripe writes their changelog. Borrow that voice.",
+          "session_id": "conductor-02",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "specify_format": {
+      "label": "Specifies format",
+      "rate": 0.867,
+      "baseline": 0.3,
+      "above_baseline": true,
+      "present_count": 26,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Markdown, H2 headers, bullet lists where it helps scanning.",
+          "session_id": "conductor-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Five sections, each with a bolded one-line summary. No more than 80 words per section.",
+          "session_id": "conductor-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Markdown, H2 headers, bullet lists where it helps scanning.",
+          "session_id": "conductor-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "set_interactive_mode": {
+      "label": "Sets interaction style",
+      "rate": 0.7,
+      "baseline": 0.3,
+      "above_baseline": true,
+      "present_count": 21,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Give me the answer first, then the reasoning.",
+          "session_id": "conductor-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Give me the answer first, then the reasoning.",
+          "session_id": "conductor-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Give me the answer first, then the reasoning.",
+          "session_id": "conductor-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "express_tone_style": {
+      "label": "Expresses tone prefs",
+      "rate": 0.733,
+      "baseline": 0.227,
+      "above_baseline": true,
+      "present_count": 22,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Confident, declarative, no hedging language.",
+          "session_id": "conductor-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Warm but professional — we're not their friend, we're their vendor.",
+          "session_id": "conductor-03",
+          "project": "marketing-site"
+        },
+        {
+          "text": "Warm but professional — we're not their friend, we're their vendor.",
+          "session_id": "conductor-05",
+          "project": "growth-experiments"
+        }
+      ]
+    },
+    "identify_context_gaps": {
+      "label": "Flags context gaps",
+      "rate": 0.1,
+      "baseline": 0.203,
+      "above_baseline": false,
+      "present_count": 3,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Reminder, the launch date moved to the 18th.",
+          "session_id": "conductor-09",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Note: legal nixed 'guaranteed' last week. Don't use it.",
+          "session_id": "conductor-14",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "Note: legal nixed 'guaranteed' last week. Don't use it.",
+          "session_id": "conductor-17",
+          "project": "growth-experiments"
+        }
+      ]
+    },
+    "define_audience": {
+      "label": "Defines audience",
+      "rate": 0.9,
+      "baseline": 0.176,
+      "above_baseline": true,
+      "present_count": 27,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Heads of engineering at series-B startups. Smart, busy, allergic to fluff.",
+          "session_id": "conductor-00",
+          "project": "acme-api"
+        },
+        {
+          "text": "Marketing leads at Fortune 500s — they need an internal-defense narrative, not a feature list.",
+          "session_id": "conductor-01",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "VP-level. They've seen every pitch this year.",
+          "session_id": "conductor-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "question_reasoning": {
+      "label": "Questions Claude's logic",
+      "rate": 0.033,
+      "baseline": 0.158,
+      "above_baseline": false,
+      "present_count": 1,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Why this order? The strongest point should come first.",
+          "session_id": "conductor-03",
+          "project": "marketing-site"
+        }
+      ]
+    },
+    "consult_approach": {
+      "label": "Discusses approach first",
+      "rate": 0.733,
+      "baseline": 0.101,
+      "above_baseline": true,
+      "present_count": 22,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Outline the structure first. Then we'll fill it in.",
+          "session_id": "conductor-02",
+          "project": "data-pipeline"
+        },
+        {
+          "text": "What's your recommended order for these three points? Make a case.",
+          "session_id": "conductor-04",
+          "project": "acme-api"
+        },
+        {
+          "text": "Outline the structure first. Then we'll fill it in.",
+          "session_id": "conductor-06",
+          "project": "data-pipeline"
+        }
+      ]
+    },
+    "verify_facts": {
+      "label": "Verifies facts",
+      "rate": 0.067,
+      "baseline": 0.087,
+      "above_baseline": false,
+      "present_count": 2,
+      "total_sessions": 30,
+      "evidence": [
+        {
+          "text": "Verify that integration is actually live in production.",
+          "session_id": "conductor-21",
+          "project": "growth-experiments"
+        },
+        {
+          "text": "Double-check the customer count before we publish.",
+          "session_id": "conductor-26",
+          "project": "data-pipeline"
+        }
+      ]
+    }
+  },
+  "branches": {
+    "Description": {
+      "score": 0.833,
+      "baseline": 0.278,
+      "above_baseline": true,
+      "color": "#cca67b",
+      "description": "How you shape Claude's output",
+      "behaviors": [
+        "show_examples",
+        "specify_format",
+        "express_tone_style",
+        "define_audience"
+      ]
+    },
+    "Discernment": {
+      "score": 0.067,
+      "baseline": 0.149,
+      "above_baseline": false,
+      "color": "#7bcc96",
+      "description": "How you assess Claude's reasoning",
+      "behaviors": [
+        "identify_context_gaps",
+        "question_reasoning",
+        "verify_facts"
+      ]
+    },
+    "Delegation": {
+      "score": 0.733,
+      "baseline": 0.304,
+      "above_baseline": true,
+      "color": "#7ba3cc",
+      "description": "How you set up the collaboration",
+      "behaviors": [
+        "clarify_goals",
+        "consult_approach",
+        "set_interactive_mode"
+      ]
+    }
+  },
+  "archetype": {
+    "name": "The Conductor",
+    "tagline": "Delegates direction and describes detail",
+    "headline": "{name}, you set the direction and describe the details.",
+    "description": "You combine delegation and description — clear goals upfront, then precise specifications for format, examples, and tone. You brief both the what and the how.",
+    "superpower": "Claude gets closer on the first try because you've defined both direction and detail",
+    "growth_unlock": "Unlock The Polymath's edge — add discernment to your orchestration",
+    "growth_quest": "Next session, after Claude delivers what you specified, pick one claim and ask: 'How confident are you in this? What might be wrong?'",
+    "target_archetype": "polymath",
+    "color": "#8b3a62",
+    "accent": "#d4a0b8",
+    "glyph": "conductor",
+    "hero_art": {
+      "url": "https://www.artic.edu/iiif/2/9f08b895-4960-4bc6-5871-dc9bfab4c655/full/843,/0/default.jpg",
+      "credit": "Maharana Bhim Singh in Procession, Rajasthan, c. 1820"
+    },
+    "axis_scores": {
+      "description": 0.833,
+      "discernment": 0.067,
+      "delegation": 0.733
+    },
+    "key": "conductor"
+  },
+  "growth_edge": {
+    "behavior": "question_reasoning",
+    "label": "Questions Claude's logic",
+    "rate": 0.033,
+    "baseline": 0.158,
+    "gap": -0.125
+  },
+  "generated_at": "2026-04-07T07:31:56.774Z",
+  "timeline": {
+    "sessions": [
+      {
+        "sessionId": "conductor-00",
+        "timestamp": "2026-02-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "set_interactive_mode",
+          "define_audience"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "conductor-01",
+        "timestamp": "2026-02-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "define_audience"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "conductor-02",
+        "timestamp": "2026-02-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "conductor-03",
+        "timestamp": "2026-02-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "question_reasoning"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "conductor-04",
+        "timestamp": "2026-02-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "conductor-05",
+        "timestamp": "2026-03-02T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "conductor-06",
+        "timestamp": "2026-03-03T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "conductor-07",
+        "timestamp": "2026-03-04T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "conductor-08",
+        "timestamp": "2026-03-06T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "conductor-09",
+        "timestamp": "2026-03-07T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "conductor-10",
+        "timestamp": "2026-03-09T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "conductor-11",
+        "timestamp": "2026-03-10T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Delegation",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "set_interactive_mode",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "conductor-12",
+        "timestamp": "2026-03-11T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "conductor-13",
+        "timestamp": "2026-03-13T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "conductor-14",
+        "timestamp": "2026-03-14T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "specify_format",
+          "identify_context_gaps",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "conductor-15",
+        "timestamp": "2026-03-16T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "conductor-16",
+        "timestamp": "2026-03-17T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "conductor-17",
+        "timestamp": "2026-03-18T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "identify_context_gaps",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "conductor-18",
+        "timestamp": "2026-03-20T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "define_audience"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "conductor-19",
+        "timestamp": "2026-03-21T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "conductor-20",
+        "timestamp": "2026-03-23T00:00:00.000Z",
+        "summary": "Refactored the auth middleware",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "conductor-21",
+        "timestamp": "2026-03-24T00:00:00.000Z",
+        "summary": "Drafted the launch announcement",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach",
+          "verify_facts"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "conductor-22",
+        "timestamp": "2026-03-25T00:00:00.000Z",
+        "summary": "Investigated the latency regression",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "conductor-23",
+        "timestamp": "2026-03-27T00:00:00.000Z",
+        "summary": "Wrote the migration script",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "conductor-24",
+        "timestamp": "2026-03-28T00:00:00.000Z",
+        "summary": "Designed the onboarding flow",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "conductor-25",
+        "timestamp": "2026-03-30T00:00:00.000Z",
+        "summary": "Cleaned up the legacy export",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      },
+      {
+        "sessionId": "conductor-26",
+        "timestamp": "2026-03-31T00:00:00.000Z",
+        "summary": "Built the dashboard prototype",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "show_examples",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "verify_facts"
+        ],
+        "project": "data-pipeline"
+      },
+      {
+        "sessionId": "conductor-27",
+        "timestamp": "2026-04-01T00:00:00.000Z",
+        "summary": "Reviewed the PR feedback",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "marketing-site"
+      },
+      {
+        "sessionId": "conductor-28",
+        "timestamp": "2026-04-03T00:00:00.000Z",
+        "summary": "Planned the Q2 roadmap",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "show_examples",
+          "specify_format",
+          "set_interactive_mode",
+          "express_tone_style",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "acme-api"
+      },
+      {
+        "sessionId": "conductor-29",
+        "timestamp": "2026-04-04T00:00:00.000Z",
+        "summary": "Debugged the webhook race condition",
+        "dominantAxis": "Description",
+        "behaviorsPresent": [
+          "iterative_improvement",
+          "clarify_goals",
+          "specify_format",
+          "define_audience",
+          "consult_approach"
+        ],
+        "project": "growth-experiments"
+      }
+    ],
+    "phases": [
+      {
+        "name": "acme-api, growth-experiments, data-pipeline, marketing-site",
+        "startDate": "2026-02-23T00:00:00.000Z",
+        "endDate": "2026-03-07T00:00:00.000Z",
+        "sessionCount": 10,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Outline the structure first. Then we'll fill it in.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "conductor-02",
+            "significance": 0.899,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "Why this order? The strongest point should come first.",
+            "behavior": "question_reasoning",
+            "behaviorLabel": "Questions Claude's logic",
+            "sessionSummary": "Wrote the migration script",
+            "sessionId": "conductor-03",
+            "significance": 0.842,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Heads of engineering at series-B startups. Smart, busy, allergic to fluff.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "conductor-00",
+            "significance": 0.8240000000000001,
+            "project": "acme-api"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments",
+          "data-pipeline",
+          "marketing-site"
+        ]
+      },
+      {
+        "name": "data-pipeline, marketing-site",
+        "startDate": "2026-03-09T00:00:00.000Z",
+        "endDate": "2026-03-10T00:00:00.000Z",
+        "sessionCount": 2,
+        "dominantAxis": "Delegation",
+        "axisColor": "#7ba3cc",
+        "keyMoments": [
+          {
+            "quote": "What's your recommended order for these three points? Make a case.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "conductor-10",
+            "significance": 0.899,
+            "project": "data-pipeline"
+          },
+          {
+            "quote": "VP-level. They've seen every pitch this year.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "conductor-11",
+            "significance": 0.8240000000000001,
+            "project": "marketing-site"
+          },
+          {
+            "quote": "Warm but professional — we're not their friend, we're their vendor.",
+            "behavior": "express_tone_style",
+            "behaviorLabel": "Expresses tone prefs",
+            "sessionSummary": "Refactored the auth middleware",
+            "sessionId": "conductor-10",
+            "significance": 0.773,
+            "project": "data-pipeline"
+          }
+        ],
+        "projects": [
+          "data-pipeline",
+          "marketing-site"
+        ]
+      },
+      {
+        "name": "acme-api, growth-experiments, data-pipeline, marketing-site",
+        "startDate": "2026-03-11T00:00:00.000Z",
+        "endDate": "2026-04-04T00:00:00.000Z",
+        "sessionCount": 18,
+        "dominantAxis": "Description",
+        "axisColor": "#cca67b",
+        "keyMoments": [
+          {
+            "quote": "Verify that integration is actually live in production.",
+            "behavior": "verify_facts",
+            "behaviorLabel": "Verifies facts",
+            "sessionSummary": "Drafted the launch announcement",
+            "sessionId": "conductor-21",
+            "significance": 0.913,
+            "project": "growth-experiments"
+          },
+          {
+            "quote": "Outline the structure first. Then we'll fill it in.",
+            "behavior": "consult_approach",
+            "behaviorLabel": "Discusses approach first",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "conductor-12",
+            "significance": 0.899,
+            "project": "acme-api"
+          },
+          {
+            "quote": "VP-level. They've seen every pitch this year.",
+            "behavior": "define_audience",
+            "behaviorLabel": "Defines audience",
+            "sessionSummary": "Investigated the latency regression",
+            "sessionId": "conductor-12",
+            "significance": 0.8240000000000001,
+            "project": "acme-api"
+          }
+        ],
+        "projects": [
+          "acme-api",
+          "growth-experiments",
+          "data-pipeline",
+          "marketing-site"
+        ]
+      }
+    ]
+  },
+  "user_name": "Conductor"
+}
