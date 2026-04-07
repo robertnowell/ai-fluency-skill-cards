@@ -43,13 +43,13 @@ The user says "analyze my ai fluency" and sees themselves reflected back — wha
 
 ## The Design Process
 
-I spent 33 sessions over four days on this assignment. The arc matters.
+The arc matters.
 
-**Days 1-2: Research before building.** I read the assignment, the job description, the AI Fluency Index, the 4D Framework, the RCT paper on interaction modes and learning outcomes, and the education reports. I refused to start coding until I understood what "skill development" actually means in this team's vocabulary — and until I had a specific tension to address, not just a category to build in.
+**Research before building.** I read the assignment, the job description, the AI Fluency Index, the 4D Framework, the RCT paper on interaction modes and learning outcomes, and the education reports. I refused to start coding until I understood what "skill development" actually means in this team's vocabulary — and until I had a specific tension to address, not just a category to build in.
 
-**Day 3: De-risking before committing.** I wrote four standalone scripts to test each assumption before building the real system: Can I reliably extract clean user messages from JSONL files? Can a classifier detect these 11 behaviors accurately? Does the archetype mapping produce sensible results? What's the API cost at scale? All four passed. The classifier was accurate on 4/4 test sessions. The cost was $0.003 per session with Haiku. I committed to the architecture only after the evidence was in.
+**De-risking before committing.** I wrote four standalone scripts to test each assumption before building the real system: Can I reliably extract clean user messages from JSONL files? Can a classifier detect these 11 behaviors accurately? Does the archetype mapping produce sensible results? What's the API cost at scale? All four passed. The classifier was accurate on 4/4 test sessions. The cost was $0.003 per session with Haiku. I committed to the architecture only after the evidence was in.
 
-**Day 4: Build, deploy, observe.** TypeScript MCP server deployed to Fly.io. Plugin metadata. HTML templates with hand-curated museum art for each archetype. And then I ran my own tool on my own sessions — saw my profile across 162 sessions — and the concept locked in. The tool I was building to analyze AI collaboration was itself a product of AI collaboration. That self-referential quality isn't a gimmick; it's the proof of concept. The session transcripts *are* the design process evidence.
+**Build, deploy, observe.** TypeScript MCP server deployed to Fly.io. Plugin metadata. HTML templates with hand-curated museum art for each archetype. And then I ran my own tool on my own sessions — and the concept locked in. The tool I was building to analyze AI collaboration was itself a product of AI collaboration. That self-referential quality isn't a gimmick; it's the proof of concept. The session transcripts *are* the design process evidence.
 
 ## Learning Principles
 
