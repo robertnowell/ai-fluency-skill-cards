@@ -85,7 +85,7 @@ Remote Server (skill-tree-ai.fly.dev)
 ├── archetypes            → Lists all 7
 │
 Source
-├── src/                  → TypeScript MCP server (dual transport: HTTP + stdio)
+├── src/                  → TypeScript MCP server (HTTP)
 ├── templates/            → Self-contained HTML visualizations
 ```
 

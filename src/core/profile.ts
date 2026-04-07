@@ -263,6 +263,7 @@ export interface Timeline {
 }
 
 export interface SkillProfile {
+  user_name?: string;
   total_sessions: number;
   behaviors: Record<string, BehaviorData>;
   branches: Record<string, BranchData>;
