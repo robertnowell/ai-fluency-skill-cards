@@ -1,9 +1,6 @@
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { homedir } from "node:os";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
 import { ARCHETYPES, type SkillProfile } from "./profile.js";
 
 export interface NarrativeData {
@@ -13,30 +10,18 @@ export interface NarrativeData {
   phaseNames?: Record<number | string, string>;
 }
 
-const execFileAsync = promisify(execFile);
-
 function getTemplateDir(): string {
-  // Try relative to this file first (works in dev and dist)
+  // Both src/core/render.ts and dist/core/render.js are two levels deep,
+  // so ../../templates resolves correctly in dev and production.
   const thisDir = dirname(fileURLToPath(import.meta.url));
-
-  // In dist/core/render.js → templates is at ../../templates
-  const distPath = join(thisDir, "..", "..", "templates");
-  if (existsSync(distPath)) return distPath;
-
-  // In src/core/render.ts → templates is at ../../templates
-  const srcPath = join(thisDir, "..", "..", "templates");
-  if (existsSync(srcPath)) return srcPath;
+  const relPath = join(thisDir, "..", "..", "templates");
+  if (existsSync(relPath)) return relPath;
 
   // Fallback: look in cwd
   const cwdPath = join(process.cwd(), "templates");
   if (existsSync(cwdPath)) return cwdPath;
 
   throw new Error("Cannot find templates directory");
-}
-
-function getOutputDir(): string {
-  const dir = join(homedir(), ".skill-tree");
-  return dir;
 }
 
 export function renderHTML(
@@ -55,32 +40,3 @@ export function renderHTML(
     .replace("__ARCHETYPES_DATA__", archetypesStr)
     .replace("__NARRATIVE_DATA__", narrativeStr);
 }
-
-export function writeAndOpen(
-  profile: SkillProfile,
-  templateName = "skill-tree.html",
-  narrative?: NarrativeData | null,
-): string {
-  const html = renderHTML(profile, templateName, narrative);
-  const baseName = templateName.replace(".html", "");
-  const outputPath = join(getOutputDir(), `${baseName}.html`);
-  writeFileSync(outputPath, html);
-  return outputPath;
-}
-
-export async function openInBrowser(filePath: string): Promise<void> {
-  const platform = process.platform;
-  try {
-    if (platform === "darwin") {
-      await execFileAsync("open", [filePath]);
-    } else if (platform === "linux") {
-      await execFileAsync("xdg-open", [filePath]);
-    } else if (platform === "win32") {
-      await execFileAsync("cmd", ["/c", "start", filePath]);
-    }
-  } catch {
-    // Silent — caller has the path
-  }
-}
-// Narrative injection: thesis and phase insights into template
-// Phase names: derived from actual project work, not generic labels

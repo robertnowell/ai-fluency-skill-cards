@@ -18,6 +18,13 @@ import { buildProfile, ARCHETYPES } from "./core/profile.js";
 import { renderHTML } from "./core/render.js";
 import { MCP_INSTRUCTIONS } from "./shared.js";
 import { randomUUID } from "node:crypto";
+import { writeFileSync, readFileSync, existsSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
+
+const REPORTS_DIR = process.env.REPORTS_DIR || "/data/reports";
+if (!existsSync(REPORTS_DIR)) mkdirSync(REPORTS_DIR, { recursive: true });
+
+const BASE_URL = process.env.BASE_URL || "https://skill-tree-ai.fly.dev";
 
 const PORT = parseInt(process.env.PORT || "3000", 10);
 
@@ -26,7 +33,7 @@ const activeSessions = new Map<string, { server: McpServer; transport: Streamabl
 
 function createMcpSession(): { server: McpServer; transport: StreamableHTTPServerTransport } {
   const server = new McpServer(
-    { name: "skill-tree-ai", version: "1.0.0" },
+    { name: "skill-tree-ai", version: "1.0.1" },
     { instructions: MCP_INSTRUCTIONS },
   );
 
@@ -39,8 +46,9 @@ function createMcpSession(): { server: McpServer; transport: StreamableHTTPServe
       sessions_json: z.string().describe(
         'JSON array of sessions: [{"id":"...","messages":["msg1","msg2",...]}]'
       ),
+      user_name: z.string().optional().describe("User's display name for the card (e.g. 'Robert Nowell')"),
     },
-    async ({ sessions_json }) => {
+    async ({ sessions_json, user_name }) => {
       const apiKey = process.env.ANTHROPIC_API_KEY;
       if (!apiKey) {
         return { content: [{ type: "text" as const, text: "Error: Server API key not configured." }] };
@@ -66,12 +74,13 @@ function createMcpSession(): { server: McpServer; transport: StreamableHTTPServe
           rawLength: String(text).length,
           cleanedLength: Math.min(String(text).length, 2000),
         })),
-        ...(s.timestamp ? { sessionTimestamp: s.timestamp } : {}),
-        ...(s.project ? { project: s.project } : {}),
+        sessionTimestamp: s.timestamp || "",
+        project: s.project || "",
       }));
 
       const classifications = await classifySessions(client, sessionsForClassifier, 50);
       const profile = buildProfile(classifications);
+      if (user_name) profile.user_name = user_name;
 
       return { content: [{ type: "text" as const, text: JSON.stringify(profile) }] };
     },
@@ -79,18 +88,26 @@ function createMcpSession(): { server: McpServer; transport: StreamableHTTPServe
 
   server.tool(
     "visualize",
-    "Generate HTML skill tree visualization. Pass narrative_json from your narrative synthesis to enrich the deep dive section.",
+    "Render a skill tree visualization and return a URL to view it. Pass the profile JSON from analyze and your narrative JSON.",
     {
       profile_json: z.string().describe("Profile JSON from analyze"),
-      narrative_json: z.string().optional().describe('Optional narrative JSON: {"thesis":"...","phaseInsights":{"0":"...","1":"..."}}'),
+      narrative_json: z.string().optional().describe('Narrative JSON: {"thesis":"...","phaseNames":{"0":"..."},"phaseInsights":{"0":"..."}}'),
     },
     async ({ profile_json, narrative_json }) => {
-      let narrative = null;
+      let profile, narrative = null;
+      try { profile = JSON.parse(profile_json); } catch {
+        return { content: [{ type: "text" as const, text: "Error: Invalid profile JSON." }] };
+      }
       if (narrative_json) {
         try { narrative = JSON.parse(narrative_json); } catch { /* render without */ }
       }
-      const html = renderHTML(JSON.parse(profile_json), "skill-tree.html", narrative);
-      return { content: [{ type: "text" as const, text: html }] };
+
+      const html = renderHTML(profile, "skill-tree.html", narrative);
+      const id = randomUUID().slice(0, 12);
+      writeFileSync(join(REPORTS_DIR, `${id}.html`), html);
+
+      const url = `${BASE_URL}/report/${id}`;
+      return { content: [{ type: "text" as const, text: url }] };
     },
   );
 
@@ -173,6 +190,19 @@ const httpServer = createServer(async (req, res) => {
 
   if (url.pathname === "/mcp" && req.method === "POST") {
     await handleMcp(req, res);
+    return;
+  }
+
+  if (url.pathname.startsWith("/report/") && req.method === "GET") {
+    const id = url.pathname.slice(8).replace(/[^a-z0-9-]/gi, "");
+    const filePath = join(REPORTS_DIR, `${id}.html`);
+    if (id && existsSync(filePath)) {
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(readFileSync(filePath));
+    } else {
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Report not found. It may have expired — run 'skill tree' again to generate a new one.");
+    }
     return;
   }
 

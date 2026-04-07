@@ -9,8 +9,8 @@ COPY tsconfig.json ./
 COPY src/ src/
 COPY templates/ templates/
 RUN npm run build
+RUN mkdir -p /data/reports
 
-ENV SKILL_TREE_REMOTE=1
 ENV PORT=3000
 EXPOSE 3000
 

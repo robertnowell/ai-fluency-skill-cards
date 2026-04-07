@@ -16,7 +16,7 @@ Most people have no visibility into how they collaborate with AI. They don't kno
 
 ## What I Built
 
-Skill Tree is a Claude Code plugin (also available via npm and as a remote MCP server on Fly.io). It:
+Skill Tree is a Claude Code plugin backed by a remote MCP server on Fly.io. It:
 
 1. **Extracts** user messages from Claude Code and Cowork session files on disk
 2. **Classifies** 11 behaviors from the 4D AI Fluency Framework against each session, using Claude Haiku as the classifier
@@ -47,7 +47,7 @@ I spent 33 sessions over four days on this assignment. The arc matters.
 
 **Day 3: De-risking before committing.** I wrote four standalone scripts to test each assumption before building the real system: Can I reliably extract clean user messages from JSONL files? Can a classifier detect these 11 behaviors accurately? Does the archetype mapping produce sensible results? What's the API cost at scale? All four passed. The classifier was accurate on 4/4 test sessions. The cost was $0.003 per session with Haiku. I committed to the architecture only after the evidence was in.
 
-**Day 4: Build, deploy, observe.** TypeScript MCP server with dual transport (stdio for local, HTTP for Fly.io). Plugin metadata. HTML templates with hand-curated museum art for each archetype. And then I ran my own tool on my own sessions — saw my profile across 162 sessions — and the concept locked in. The tool I was building to analyze AI collaboration was itself a product of AI collaboration. That self-referential quality isn't a gimmick; it's the proof of concept. The session transcripts *are* the design process evidence.
+**Day 4: Build, deploy, observe.** TypeScript MCP server deployed to Fly.io. Plugin metadata. HTML templates with hand-curated museum art for each archetype. And then I ran my own tool on my own sessions — saw my profile across 162 sessions — and the concept locked in. The tool I was building to analyze AI collaboration was itself a product of AI collaboration. That self-referential quality isn't a gimmick; it's the proof of concept. The session transcripts *are* the design process evidence.
 
 ## Learning Principles
 
@@ -76,7 +76,7 @@ The artifact evaluation gap — discernment dropping when outputs look polished 
 
 ## Scaling
 
-Skill Tree works today for any Claude Code or Cowork user — install the plugin, or run via npx. The remote classifier (Fly.io) scales horizontally; classification is stateless and uses Haiku. The 4D framework is platform-agnostic — the same 11 behaviors apply whether someone uses Code, Cowork, or claude.ai. Session metadata already exists server-side, so classification could run as a native feature without requiring local file access.
+Skill Tree works today for any Claude Code or Cowork user — install the plugin. The remote classifier (Fly.io) scales horizontally; classification is stateless and uses Haiku. The 4D framework is platform-agnostic — the same 11 behaviors apply whether someone uses Code, Cowork, or claude.ai. Session metadata already exists server-side, so classification could run as a native feature without requiring local file access.
 
 ## What I'd Do Next
 

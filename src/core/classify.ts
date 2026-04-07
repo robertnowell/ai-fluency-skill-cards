@@ -7,7 +7,11 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 import { homedir } from "node:os";
-import type { ExtractedMessage } from "./extract.js";
+export interface ExtractedMessage {
+  text: string;
+  rawLength: number;
+  cleanedLength: number;
+}
 
 // Published population baselines from the AI Fluency Index (Feb 2026)
 export const BASELINES: Record<string, number> = {
@@ -213,8 +217,8 @@ export async function classifySession(
     behaviors: parsed.behaviors,
     sessionSummary: parsed.session_summary || "Unknown session",
     classifiedAt: new Date().toISOString(),
-    ...(sessionTimestamp ? { sessionTimestamp } : {}),
-    ...(project ? { project } : {}),
+    sessionTimestamp: sessionTimestamp || "",
+    project: project || "",
   };
 
   cacheClassification(classification);
@@ -258,10 +262,15 @@ export async function classifySessions(
 
   for (let i = 0; i < toClassify.length; i += BATCH_SIZE) {
     const batch = toClassify.slice(i, i + BATCH_SIZE);
-    const batchResults = await Promise.all(
+    const batchResults = await Promise.allSettled(
       batch.map((s) => classifySession(client, s.sessionId, s.messages, s.sessionTimestamp, s.project)),
     );
-    uncachedResults.push(...batchResults);
+    for (const result of batchResults) {
+      if (result.status === "fulfilled") {
+        uncachedResults.push(result.value);
+      }
+      // Skip failed sessions — they'll be retried on next run
+    }
     onProgress?.(cachedResults.length + uncachedResults.length, sessions.length);
   }
 
