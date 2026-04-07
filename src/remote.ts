@@ -139,6 +139,43 @@ function loadStashedProfile(profileId: string): unknown | null {
 }
 
 /**
+ * Fire-and-forget Slack notification. No PII — never includes user_name.
+ *
+ * Silent no-op if SLACK_WEBHOOK_URL is unset (local dev, fixtures script, tests).
+ * All errors are swallowed to console.error so Slack downtime can never crash
+ * a tool call or delay a user response. Always called as `void notifySlack(...)`
+ * at call sites.
+ */
+type SlackEvent =
+  | { kind: "success"; archetype: string; url: string }
+  | { kind: "failure"; tool: "analyze" | "visualize"; error: unknown };
+
+async function notifySlack(event: SlackEvent): Promise<void> {
+  const webhook = process.env.SLACK_WEBHOOK_URL;
+  if (!webhook) return;
+
+  let text: string;
+  if (event.kind === "success") {
+    text = `:deciduous_tree: New skill tree generated\n*Archetype:* ${event.archetype}\n*Report:* ${event.url}`;
+  } else {
+    const err = event.error as Error;
+    const name = err?.name || "Error";
+    const message = (err?.message || String(event.error)).slice(0, 500);
+    text = `:warning: skill-tree \`${event.tool}\` failed\n*${name}:* ${message}`;
+  }
+
+  try {
+    await fetch(webhook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+  } catch (err) {
+    console.error("notifySlack: webhook POST failed:", err);
+  }
+}
+
+/**
  * Bundled archetype fixtures. Lives at FIXTURES_DIR (path inside the
  * Docker container — the Dockerfile COPYs ./fixtures into /app/fixtures).
  *
@@ -246,54 +283,61 @@ function createMcpSession(): { server: McpServer; transport: StreamableHTTPServe
       user_name: z.string().optional().describe("User's display name for the card (e.g. 'Robert Nowell')"),
     },
     async ({ sessions_json, user_name }) => {
-      const apiKey = process.env.ANTHROPIC_API_KEY;
-      if (!apiKey) {
-        return { content: [{ type: "text" as const, text: "Error: Server API key not configured." }] };
-      }
-
-      let parsed: Array<{ id: string; messages: string[]; timestamp?: string; project?: string }>;
       try {
-        parsed = JSON.parse(sessions_json);
-      } catch {
-        return { content: [{ type: "text" as const, text: "Error: Invalid JSON." }] };
-      }
+        const apiKey = process.env.ANTHROPIC_API_KEY;
+        if (!apiKey) {
+          return { content: [{ type: "text" as const, text: "Error: Server API key not configured." }] };
+        }
 
-      if (!Array.isArray(parsed) || parsed.length === 0) {
-        return { content: [{ type: "text" as const, text: "No sessions provided." }] };
-      }
+        let parsed: Array<{ id: string; messages: string[]; timestamp?: string; project?: string }>;
+        try {
+          parsed = JSON.parse(sessions_json);
+        } catch {
+          return { content: [{ type: "text" as const, text: "Error: Invalid JSON." }] };
+        }
 
-      const client = new Anthropic({ apiKey });
+        if (!Array.isArray(parsed) || parsed.length === 0) {
+          return { content: [{ type: "text" as const, text: "No sessions provided." }] };
+        }
 
-      const sessionsForClassifier = parsed.map((s) => ({
-        sessionId: s.id || randomUUID().slice(0, 8),
-        messages: (s.messages || []).map((text: string) => ({
-          text: String(text).slice(0, 2000),
-          rawLength: String(text).length,
-          cleanedLength: Math.min(String(text).length, 2000),
-        })),
-        sessionTimestamp: s.timestamp || "",
-        project: s.project || "",
-      }));
+        const client = new Anthropic({ apiKey });
 
-      const classifications = await classifySessions(client, sessionsForClassifier, 50);
-      const profile = buildProfile(classifications);
-      if (user_name) profile.user_name = user_name;
+        const sessionsForClassifier = parsed.map((s) => ({
+          sessionId: s.id || randomUUID().slice(0, 8),
+          messages: (s.messages || []).map((text: string) => ({
+            text: String(text).slice(0, 2000),
+            rawLength: String(text).length,
+            cleanedLength: Math.min(String(text).length, 2000),
+          })),
+          sessionTimestamp: s.timestamp || "",
+          project: s.project || "",
+        }));
 
-      // Stash the full profile server-side. Claude only ever sees the summary.
-      const profileId = randomUUID().slice(0, 12);
-      try {
-        writeFileSync(join(PROFILES_DIR, `${profileId}.json`), JSON.stringify(profile));
+        const classifications = await classifySessions(client, sessionsForClassifier, 50);
+        const profile = buildProfile(classifications);
+        if (user_name) profile.user_name = user_name;
+
+        // Stash the full profile server-side. Claude only ever sees the summary.
+        const profileId = randomUUID().slice(0, 12);
+        try {
+          writeFileSync(join(PROFILES_DIR, `${profileId}.json`), JSON.stringify(profile));
+        } catch (err) {
+          return {
+            content: [{
+              type: "text" as const,
+              text: `Error: Failed to stash profile server-side: ${(err as Error).message}`,
+            }],
+          };
+        }
+
+        const summary = buildSummary(profile, profileId);
+        return { content: [{ type: "text" as const, text: JSON.stringify(summary) }] };
       } catch (err) {
-        return {
-          content: [{
-            type: "text" as const,
-            text: `Error: Failed to stash profile server-side: ${(err as Error).message}`,
-          }],
-        };
+        // Hard failure (uncaught exception): notify Slack and re-throw so the
+        // MCP transport returns its normal error response to the client.
+        void notifySlack({ kind: "failure", tool: "analyze", error: err });
+        throw err;
       }
-
-      const summary = buildSummary(profile, profileId);
-      return { content: [{ type: "text" as const, text: JSON.stringify(summary) }] };
     },
   );
 
@@ -309,106 +353,116 @@ function createMcpSession(): { server: McpServer; transport: StreamableHTTPServe
       narrative_json: z.string().optional().describe('Narrative JSON: {"thesis":"...","phaseNames":{"0":"..."},"phaseInsights":{"0":"..."}}'),
     },
     async ({ profile_id, profile_json, narrative_json }) => {
-      // Exactly one of profile_id / profile_json must be provided.
-      if (!profile_id && !profile_json) {
-        return {
-          content: [{
-            type: "text" as const,
-            text: "Error: visualize requires either profile_id (preferred — from analyze) or profile_json (legacy).",
-          }],
-        };
-      }
-      if (profile_id && profile_json) {
-        return {
-          content: [{
-            type: "text" as const,
-            text: "Error: pass either profile_id OR profile_json, not both. Prefer profile_id from analyze.",
-          }],
-        };
-      }
-
-      // Load the profile from whichever source was provided.
-      let rawProfile: unknown;
-      if (profile_id) {
-        rawProfile = loadStashedProfile(profile_id);
-        if (rawProfile === null) {
+      try {
+        // Exactly one of profile_id / profile_json must be provided.
+        if (!profile_id && !profile_json) {
           return {
             content: [{
               type: "text" as const,
-              text: `Error: profile_id "${profile_id}" not found on server. The stash may have expired or the ID is malformed. Re-run analyze to get a fresh profile_id.`,
+              text: "Error: visualize requires either profile_id (preferred — from analyze) or profile_json (legacy).",
             }],
           };
         }
-      } else {
-        try {
-          rawProfile = JSON.parse(profile_json!);
-        } catch (err) {
+        if (profile_id && profile_json) {
           return {
             content: [{
               type: "text" as const,
-              text: `Error: profile_json is not valid JSON: ${(err as Error).message}`,
+              text: "Error: pass either profile_id OR profile_json, not both. Prefer profile_id from analyze.",
             }],
           };
         }
-      }
 
-      // Strict validation. This is the boundary that catches reconstructed/trimmed
-      // profiles before they reach the template and produce a broken visualization.
-      const parsed = SkillProfileSchema.safeParse(rawProfile);
-      if (!parsed.success) {
-        const issues = parsed.error.issues
-          .slice(0, 5)
-          .map((iss) => `  - ${iss.path.join(".") || "(root)"}: ${iss.message}`)
-          .join("\n");
-        return {
-          content: [{
-            type: "text" as const,
-            text:
-              "Error: profile validation failed. The profile is missing required fields. " +
-              "If you reconstructed it manually, stop — pass the profile_id from analyze instead.\n" +
-              `Validation issues:\n${issues}`,
-          }],
-        };
-      }
-      const profile = parsed.data as SkillProfile;
+        // Load the profile from whichever source was provided.
+        let rawProfile: unknown;
+        if (profile_id) {
+          rawProfile = loadStashedProfile(profile_id);
+          if (rawProfile === null) {
+            return {
+              content: [{
+                type: "text" as const,
+                text: `Error: profile_id "${profile_id}" not found on server. The stash may have expired or the ID is malformed. Re-run analyze to get a fresh profile_id.`,
+              }],
+            };
+          }
+        } else {
+          try {
+            rawProfile = JSON.parse(profile_json!);
+          } catch (err) {
+            return {
+              content: [{
+                type: "text" as const,
+                text: `Error: profile_json is not valid JSON: ${(err as Error).message}`,
+              }],
+            };
+          }
+        }
 
-      // Content sanity: even if the shape is valid, refuse to render an
-      // empty-looking shell. Real analyze runs always produce coherent
-      // profiles; this catches stub/placeholder data.
-      const meaninglessReason = checkProfileMeaningful(profile);
-      if (meaninglessReason) {
-        return {
-          content: [{
-            type: "text" as const,
-            text:
-              "Error: profile is structurally valid but lacks meaningful content — " +
-              "refusing to render a hollow visualization. " +
-              `Reason: ${meaninglessReason}`,
-          }],
-        };
-      }
-
-      // Narrative is optional but if provided must parse cleanly. No more silent swallow.
-      let narrative = null;
-      if (narrative_json) {
-        try {
-          narrative = JSON.parse(narrative_json);
-        } catch (err) {
+        // Strict validation. This is the boundary that catches reconstructed/trimmed
+        // profiles before they reach the template and produce a broken visualization.
+        const parsed = SkillProfileSchema.safeParse(rawProfile);
+        if (!parsed.success) {
+          const issues = parsed.error.issues
+            .slice(0, 5)
+            .map((iss) => `  - ${iss.path.join(".") || "(root)"}: ${iss.message}`)
+            .join("\n");
           return {
             content: [{
               type: "text" as const,
-              text: `Error: narrative_json is not valid JSON: ${(err as Error).message}`,
+              text:
+                "Error: profile validation failed. The profile is missing required fields. " +
+                "If you reconstructed it manually, stop — pass the profile_id from analyze instead.\n" +
+                `Validation issues:\n${issues}`,
             }],
           };
         }
+        const profile = parsed.data as SkillProfile;
+
+        // Content sanity: even if the shape is valid, refuse to render an
+        // empty-looking shell. Real analyze runs always produce coherent
+        // profiles; this catches stub/placeholder data.
+        const meaninglessReason = checkProfileMeaningful(profile);
+        if (meaninglessReason) {
+          return {
+            content: [{
+              type: "text" as const,
+              text:
+                "Error: profile is structurally valid but lacks meaningful content — " +
+                "refusing to render a hollow visualization. " +
+                `Reason: ${meaninglessReason}`,
+            }],
+          };
+        }
+
+        // Narrative is optional but if provided must parse cleanly. No more silent swallow.
+        let narrative = null;
+        if (narrative_json) {
+          try {
+            narrative = JSON.parse(narrative_json);
+          } catch (err) {
+            return {
+              content: [{
+                type: "text" as const,
+                text: `Error: narrative_json is not valid JSON: ${(err as Error).message}`,
+              }],
+            };
+          }
+        }
+
+        const html = renderHTML(profile, "skill-tree.html", narrative);
+        const id = randomUUID().slice(0, 12);
+        writeFileSync(join(REPORTS_DIR, `${id}.html`), html);
+
+        const url = `${BASE_URL}/report/${id}`;
+        // No PII: archetype name only, never user_name. Fire-and-forget so a
+        // slow Slack webhook can't delay the user-facing response.
+        void notifySlack({ kind: "success", archetype: profile.archetype.name, url });
+        return { content: [{ type: "text" as const, text: url }] };
+      } catch (err) {
+        // Hard failure (uncaught exception): notify Slack and re-throw so the
+        // MCP transport returns its normal error response to the client.
+        void notifySlack({ kind: "failure", tool: "visualize", error: err });
+        throw err;
       }
-
-      const html = renderHTML(profile, "skill-tree.html", narrative);
-      const id = randomUUID().slice(0, 12);
-      writeFileSync(join(REPORTS_DIR, `${id}.html`), html);
-
-      const url = `${BASE_URL}/report/${id}`;
-      return { content: [{ type: "text" as const, text: url }] };
     },
   );
 
