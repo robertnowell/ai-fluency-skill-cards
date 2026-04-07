@@ -155,9 +155,14 @@ async function handleMcp(req: IncomingMessage, res: ServerResponse) {
       activeSessions.set(newSid, session);
     }
   } else {
-    // Session ID provided but not found — stale session
-    res.writeHead(400, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32000, message: "Session expired" }, id: null }));
+    // Stale session ID (machine restarted) — create a new session transparently.
+    // Our tools are stateless so this is safe.
+    const session = createMcpSession();
+    await session.transport.handleRequest(req, res, await readBody(req));
+    const newSid = session.transport.sessionId;
+    if (newSid) {
+      activeSessions.set(newSid, session);
+    }
   }
 }
 

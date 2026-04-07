@@ -36,6 +36,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
   polymath: {
     name: "The Polymath",
     tagline: "Describes with precision and discerns with scrutiny",
+    headline: "{name}, you shape Claude's output AND question its reasoning — the rarest combination.",
     description:
       "You've developed fluency across both description and discernment — " +
       "the two dimensions that most users specialize in, not combine. " +
@@ -52,13 +53,14 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
     accent: "#e8d8b0",
     glyph: "polymath",
     hero_art: {
-      url: "https://images.metmuseum.org/CRDImages/ep/web-large/DP-27908-001.jpg",
-      credit: "Van Dyck, Lucas van Uffel, c. 1622",
+      url: "https://file.rendit.io/brands/jKoZ86bPYIkjeF2leO0tE/7MWjCZIkh_OHYSVwH-nZH.gif",
+      credit: "",
     },
   },
   conductor: {
     name: "The Conductor",
     tagline: "Delegates direction and describes detail",
+    headline: "{name}, you set the goal AND describe the output — Claude gets it right the first time.",
     description:
       "You combine delegation and description — clear goals upfront, " +
       "then precise specifications for format, examples, and tone. " +
@@ -80,6 +82,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
   architect: {
     name: "The Architect",
     tagline: "Delegates deliberately and discerns rigorously",
+    headline: "{name}, you plan the approach then question every result.",
     description:
       "You combine delegation with discernment — " +
       "clear goals and discussed approach, then critical evaluation " +
@@ -102,6 +105,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
   forgemaster: {
     name: "The Forgemaster",
     tagline: "Describes output precisely — format, tone, audience",
+    headline: "{name}, you specify format, tone, and examples that most users leave to chance.",
     description:
       "You lead with description — examples of desired output, " +
       "format requirements, tone preferences, audience awareness. " +
@@ -124,6 +128,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
   illuminator: {
     name: "The Illuminator",
     tagline: "Discerns critically — questioning reasoning and facts",
+    headline: "{name}, you question Claude's reasoning when most users accept the first answer.",
     description:
       "You lead with discernment — identifying gaps, challenging logic, " +
       "checking facts. When polished AI output makes most users less critical " +
@@ -145,6 +150,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
   compass: {
     name: "The Compass",
     tagline: "Delegates with clear goals and defined approach",
+    headline: "{name}, you define the goal and approach before the first word is written.",
     description:
       "You lead with delegation — clear goals, discussed approach, " +
       "defined interaction style. You brief well, then trust the collaboration. " +
@@ -166,6 +172,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
   catalyst: {
     name: "The Catalyst",
     tagline: "Iterates rapidly, refining through conversation",
+    headline: "{name}, you iterate on results faster than most — momentum is your engine.",
     description:
       "You collaborate through momentum: ask, iterate, refine, ship. " +
       "You don't over-specify or over-question — you trust the loop. " +
@@ -192,6 +199,7 @@ export const ARCHETYPES: Record<string, ArchetypeData> = {
 interface ArchetypeData {
   name: string;
   tagline: string;
+  headline: string;
   description: string;
   superpower: string;
   growth_unlock: string;
@@ -589,10 +597,13 @@ export function buildProfile(
     },
   };
 
-  // Growth edge: behavior with largest negative gap vs baseline
+  // Growth edge: axis behavior with largest negative gap vs baseline
+  // Exclude iterative_improvement — it's a gateway behavior, not on any axis,
+  // and shouldn't compete with axis behaviors for the growth edge slot.
   let growthEdgeKey = Object.keys(BASELINES)[0];
   let worstGap = Infinity;
   for (const key of Object.keys(BASELINES)) {
+    if (key === "iterative_improvement") continue;
     const gap = behaviors[key].rate - BASELINES[key];
     if (gap < worstGap) {
       worstGap = gap;
