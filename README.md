@@ -84,6 +84,8 @@ The visualization includes:
 
 The classifier uses the exact 11 behavior definitions from the AI Fluency Index and the same per-conversation unit of analysis, so your rates are directly comparable to Anthropic's population baselines. Each detection includes an evidence quote — which matters because the report's most counterintuitive finding is that polished AI outputs reduce users' tendency to question reasoning, and the card you get is itself a polished output. Treat the classification as a hypothesis the evidence quotes let you test, not a verdict.
 
+One more methodology caveat: rates are computed per-conversation as an unweighted frequency, matching the AI Fluency Index's own approach. This means a user with three sessions and one discerning moment displays the same 33% discernment rate as a seasoned user with 100 sessions and 33 discerning ones — even though the seasoned user has ~33× more evidence. Small-N runs carry high variance and shouldn't be over-interpreted; the rates become reliable once your session history exceeds ~15–20 conversations.
+
 ## The 7 Archetypes
 
 <p align="center">

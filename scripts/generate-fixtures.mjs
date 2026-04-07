@@ -708,11 +708,7 @@ for (const key of archetypeKeys) {
 // Cards link to local report.html files (relative path) instead of /fixture/<key>.
 const indexHtml = renderGridPage(
   results.map((r) => ({ key: r.key, profile: r.profile })),
-  {
-    title: "The 7 Archetypes",
-    subtitle: "Click any card to open the full report",
-    hrefTemplate: "{key}/report.html",
-  },
+  { hrefTemplate: "{key}/report.html" },
 );
 
 writeFileSync(join(FIXTURES_DIR, "index.html"), indexHtml);

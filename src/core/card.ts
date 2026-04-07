@@ -597,10 +597,6 @@ export interface GridCardEntry {
 }
 
 export interface RenderGridPageOptions {
-  /** Page title shown above the grid. */
-  title?: string;
-  /** Subtitle shown below the title. */
-  subtitle?: string;
   /** href template — `{key}` is replaced with the archetype key for each card. */
   hrefTemplate?: string;
 }
@@ -926,8 +922,6 @@ export function renderGridPage(
   entries: GridCardEntry[],
   opts: RenderGridPageOptions = {},
 ): string {
-  const title = opts.title || "The Seven Archetypes";
-  const subtitle = opts.subtitle || "Click any card to open the full report";
   const hrefTemplate = opts.hrefTemplate || "/fixture/{key}";
 
   return `<!DOCTYPE html>
@@ -970,23 +964,13 @@ export function renderGridPage(
     font-size: 0.85em;
     opacity: 0.7;
   }
-  .deck-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem; font-weight: 700;
-    margin-bottom: 0.4rem; text-align: center;
-    color: #e8d8b0;
-  }
-  .sub {
-    text-align: center; font-size: 0.85rem;
-    color: #6b6560; margin-bottom: 3rem;
-  }
 
   /* Hero — page-level framing for /grid. Borrows the type voice of the
      CTA section so the hero and CTA bookend the page in the same register
      (Cormorant italic, gold). */
   .hero {
     max-width: 760px;
-    margin: 0 auto 4rem;
+    margin: 0 auto 2.5rem;
     padding: 0 1rem;
     text-align: center;
   }
@@ -1397,15 +1381,16 @@ ${CARD_FACE_CSS}
     <h1 class="hero-headline">A topology for AI fluency</h1>
     <p class="hero-sub">Seven character archetypes &mdash; observable patterns in how people collaborate with Claude, drawn from Anthropic&rsquo;s AI Fluency Index.</p>
   </section>
-  <h2 class="deck-title">${title}</h2>
-  <div class="sub">${subtitle}</div>
   ${(() => {
     // Lay out the deck as: Catalyst alone in a hero row, then the remaining
     // 6 archetypes in a 2-column grid (which divides evenly, no orphan).
     // The Catalyst is the entry point of the progression — putting it first
     // and alone signals "start here" rather than burying it in the grid.
+    // The remaining 6 are reversed from source order so the grid reads
+    // simple-to-complex top-to-bottom: Compass near the top, Polymath at
+    // the bottom as the rarest combination.
     const catalyst = entries.find((e) => e.key === "catalyst");
-    const others = entries.filter((e) => e.key !== "catalyst");
+    const others = entries.filter((e) => e.key !== "catalyst").reverse();
     const renderCardLink = (e: GridCardEntry) => {
       const href = hrefTemplate.replace("{key}", e.key);
       const name = e.profile.archetype.name;
