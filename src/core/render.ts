@@ -8,6 +8,7 @@ import {
   RENDER_MINI_RADAR_JS,
   RENDER_CARD_JS,
 } from "./card.js";
+import { ABOUT_OVERLAY_CSS, ABOUT_OVERLAY_HTML } from "./about.js";
 
 export interface NarrativeData {
   thesis: string;
@@ -48,5 +49,7 @@ export function renderHTML(
     .replace("/* __CARD_FLIP_CSS__ */", CARD_FLIP_CSS)
     .replace("/* __CARD_FACE_CSS__ */", CARD_FACE_CSS)
     .replace("/* __RENDER_MINI_RADAR_JS__ */", RENDER_MINI_RADAR_JS)
-    .replace("/* __RENDER_CARD_JS__ */", RENDER_CARD_JS);
+    .replace("/* __RENDER_CARD_JS__ */", RENDER_CARD_JS)
+    .replace("/* __ABOUT_OVERLAY_CSS__ */", ABOUT_OVERLAY_CSS)
+    .replace("<!-- __ABOUT_OVERLAY_HTML__ -->", ABOUT_OVERLAY_HTML);
 }

@@ -8,14 +8,20 @@ The behavior taxonomy and three measurable axes — Description, Discernment, De
 Browse the deck to see what's possible. Install to run it on your own sessions.
 
 <p align="center">
-  <a href="https://skill-tree-ai.fly.dev/grid">
-    <img src="https://img.shields.io/badge/Browse%20the%20Cards-cca67b?style=for-the-badge&labelColor=2a2520&color=cca67b" alt="Browse the Cards">
+  <a href="https://skill-tree-ai.fly.dev/fixture/illuminator">
+    <img src="https://img.shields.io/badge/See%20an%20Example-cca67b?style=for-the-badge&labelColor=2a2520&color=cca67b" alt="See an Example">
+  </a>
+  &nbsp;
+  <a href="docs/design-rationale.md">
+    <img src="https://img.shields.io/badge/Design%20Rationale-cca67b?style=for-the-badge&labelColor=2a2520&color=cca67b" alt="Design Rationale">
   </a>
   &nbsp;
   <a href="#install">
     <img src="https://img.shields.io/badge/Install-cca67b?style=for-the-badge&labelColor=2a2520&color=cca67b" alt="Install">
   </a>
 </p>
+
+> **For evaluators:** the full design thinking — problem framing, learning principles, trade-offs, and what's still uncertain — lives in [`docs/design-rationale.md`](docs/design-rationale.md).
 
 ## What it does
 
@@ -54,7 +60,7 @@ In a Claude Code session, run these two slash commands. **Send each as a separat
 /plugin install skill-tree-ai@ai-fluency-skill-cards
 ```
 
-Then say "skill tree" or run `/skill-tree`.
+Then say "skill tree" or run `/fluency`.
 
 ### Cowork
 
@@ -79,7 +85,15 @@ The visualization includes:
 - **Your Story** — narrative deep dive with timeline phases
 - **Growth quest** — one specific behavior to try next session
 
+The classifier uses the exact 11 behavior definitions from the AI Fluency Index and the same per-conversation unit of analysis, so your rates are directly comparable to Anthropic's population baselines. Each detection includes an evidence quote — which matters because the report's most counterintuitive finding is that polished AI outputs reduce users' tendency to question reasoning, and the card you get is itself a polished output. Treat the classification as a hypothesis the evidence quotes let you test, not a verdict.
+
 ## The 7 Archetypes
+
+<p align="center">
+  <a href="https://skill-tree-ai.fly.dev/grid">
+    <img src="https://img.shields.io/badge/See%20All%20Cards-cca67b?style=for-the-badge&labelColor=2a2520&color=cca67b" alt="See All Cards">
+  </a>
+</p>
 
 | # | Archetype | Pattern |
 |---|-----------|---------|
@@ -106,6 +120,8 @@ The visualization includes:
 | Delegation | Discusses approach first | 10% |
 | Delegation | Sets interaction style | 30% |
 | (Gateway) | Iterates on outputs | 86% |
+
+*Iteration is the gateway: iterative conversations exhibit ~2.67 of the other 10 behaviors on average, vs. ~1.33 for non-iterative. It's the strongest single predictor of every other behavior in the table.*
 
 Baselines from [Anthropic's AI Fluency Index](https://www.anthropic.com/research/AI-fluency-index) (Feb 2026, N=9,830).
 

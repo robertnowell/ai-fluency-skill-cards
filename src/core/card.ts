@@ -324,121 +324,11 @@ export const CARD_FLIP_CSS = `
 `;
 
 // ─── About overlay (modal) ────────────────────────────────────────────────
-//
-// CSS + HTML for the About modal. Duplicated literally from
-// templates/skill-tree.html lines 783–918 — keep the two in sync if you
-// edit either. Used by renderGridPage so /grid has its own self-contained
-// About modal without needing a separate /about route.
-
-export const ABOUT_OVERLAY_CSS = `
-  .about-btn {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: #8a8580; background: none; border: 1px solid #3a3530;
-    padding: 0.3rem 0.8rem; border-radius: 3px; cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .about-btn:hover { color: #cca67b; border-color: #cca67b; }
-
-  .about-overlay {
-    display: none; position: fixed; inset: 0; z-index: 9000;
-    background: rgba(10,9,8,0.92); overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .about-overlay.is-open { display: block; }
-  .about-content {
-    max-width: 640px; margin: 0 auto; padding: 3rem 2rem 4rem;
-    font-family: 'Outfit', sans-serif; font-weight: 300;
-    color: #e8e4df; line-height: 1.7;
-  }
-  .about-content h1 {
-    font-family: 'Cormorant Garamond', serif; font-weight: 400;
-    font-size: 1.8rem; color: #cca67b; margin-bottom: 0.5rem;
-    text-align: left;
-  }
-  .about-content h2 {
-    font-family: 'Cormorant Garamond', serif; font-weight: 400;
-    font-size: 1.2rem; color: #cca67b; margin-top: 2rem; margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
-  }
-  .about-content p { margin-bottom: 1rem; font-size: 0.88rem; color: #c8c4bf; }
-  .about-content strong { color: #e8e4df; font-weight: 500; }
-  .about-content ul { margin: 0.5rem 0 1rem 1.2rem; font-size: 0.88rem; color: #c8c4bf; }
-  .about-content li { margin-bottom: 0.4rem; }
-  .about-content a { color: #cca67b; text-decoration: underline; text-underline-offset: 2px; }
-  .about-content code { font-family: 'SF Mono', Consolas, monospace; font-size: 0.82rem; color: #cca67b; }
-  .about-close {
-    position: fixed; top: 1.5rem; right: 1.5rem; z-index: 9001;
-    font-family: 'Outfit', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em;
-    color: #8a8580; background: rgba(10,9,8,0.8); border: 1px solid #3a3530;
-    padding: 0.4rem 1rem; border-radius: 3px; cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .about-close:hover { color: #cca67b; border-color: #cca67b; }
-  .about-divider { border: none; border-top: 1px solid #2a2520; margin: 2rem 0; }
-`;
-
-export const ABOUT_OVERLAY_HTML = `
-<div class="about-overlay" id="about-overlay">
-  <button class="about-close" onclick="document.getElementById('about-overlay').classList.remove('is-open')">Close</button>
-  <div class="about-content">
-    <h1>Skill Tree</h1>
-    <p>Your AI collaboration style &mdash; analyzed, visualized, and tracked.</p>
-    <p>Built on <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic&rsquo;s AI Fluency Index</a> (Feb 2026), which identified 11 observable behaviors across 9,830 conversations that distinguish how people collaborate with AI. The 3-axis structure (Description, Discernment, Delegation) is drawn from <a href="https://aifluencyframework.org/">Dakan &amp; Feller&rsquo;s 4D AI Fluency Framework</a>.</p>
-
-    <h2>The Problem</h2>
-    <p>Most users iterate &mdash; 85.7% refine Claude&rsquo;s outputs across turns. But the behaviors that require critical evaluation are far less common: only 15.8% question Claude&rsquo;s reasoning, and 8.7% verify facts. The most provocative finding: when Claude produces polished artifacts, specification behaviors increase while evaluation behaviors <em>decrease</em>. The more capable the tool becomes, the less scrutiny its outputs receive.</p>
-    <p>This is not an engagement problem. It&rsquo;s a discernment problem &mdash; and it gets worse as the product improves.</p>
-
-    <h2>Core Insight</h2>
-    <p><strong>You can&rsquo;t improve what you can&rsquo;t see.</strong></p>
-    <p>Most people have no visibility into how they collaborate with AI. They don&rsquo;t know whether they&rsquo;re iterating or evaluating, specifying or scrutinizing. Skill Tree makes these patterns visible, measurable, and actionable &mdash; not through instruction, but through reflection on real work the user has already done.</p>
-
-    <h2>How It Works</h2>
-    <p>Skill Tree is a Claude Code plugin backed by a remote MCP server. It:</p>
-    <ul>
-      <li><strong>Extracts</strong> user messages from Claude Code and Cowork session files</li>
-      <li><strong>Classifies</strong> 11 behaviors from the 4D AI Fluency Framework using Claude Haiku</li>
-      <li><strong>Compares</strong> rates against population baselines from 9,830 conversations</li>
-      <li><strong>Assigns</strong> a character archetype deterministically &mdash; no LLM in the loop</li>
-      <li><strong>Renders</strong> this visualization with archetype card, skill radar, and narrative deep dive</li>
-      <li><strong>Issues</strong> a growth quest that injects into the next session via a hook</li>
-    </ul>
-
-    <h2>Design Decisions</h2>
-    <p><strong>Why a plugin, not a web app.</strong> Skill Tree lives where the user already works. The visualization opens in the browser when you need it, but the growth quest persists in the session itself.</p>
-    <p><strong>Why behaviors, not engagement.</strong> Not session count, not message volume. The 11 behaviors are the atoms of AI fluency, and the three observable axes derive from the artifact effect data.</p>
-    <p><strong>Why archetypes, not scores.</strong> &ldquo;You&rsquo;re a Polymath&rdquo; is more motivating than &ldquo;your discernment score is 39%.&rdquo; Identity creates narrative. These are styles of working &mdash; any one might suit you best. Some are more unique than others, and some resist the artifact effect. There is a path through them, but you don&rsquo;t have to climb it: many people stay at one stage and do excellent work there.</p>
-    <p><strong>Why growth quests, not badges.</strong> One quest at a time, tied to the user&rsquo;s archetype and growth edge. Gentle (&ldquo;if a natural opportunity arises&rdquo;) rather than prescriptive.</p>
-    <p><strong>Why deterministic assignment.</strong> The profile builder uses no LLM call. Axis averages, baseline comparison, priority ordering. Reproducible, inspectable, cheap.</p>
-
-    <h2>Learning Principles</h2>
-    <p><strong>Metacognition.</strong> Surfaces patterns the user can&rsquo;t see themselves &mdash; a prerequisite for deliberate practice. You can&rsquo;t intentionally develop discernment if you don&rsquo;t know your current discernment rate is 12% against a 15% baseline.</p>
-    <p><strong>Zone of Proximal Development.</strong> Growth quests target the behavior just outside current practice. The Catalyst&rsquo;s quest isn&rsquo;t &ldquo;do everything differently&rdquo; &mdash; it&rsquo;s &ldquo;try opening with one sentence.&rdquo; One step. The target archetype system (Catalyst &rarr; Compass &rarr; Conductor &rarr; Polymath) creates a progression path, not a demand.</p>
-    <p><strong>Identity-based motivation.</strong> Archetypes create narrative identity around collaboration style. &ldquo;I&rsquo;m a Forgemaster working on strategic setup&rdquo; is more generative than &ldquo;my Setup score is low.&rdquo; The cards use museum art &mdash; hand-curated, not generated &mdash; because aesthetic quality signals the system takes your identity seriously.</p>
-    <p><strong>Spaced reflection.</strong> One quest per session, injected via hook. Not a one-time assessment, not a daily digest. The natural unit of AI collaboration is the session, so that&rsquo;s when the nudge appears.</p>
-
-    <h2>The 11 Behaviors</h2>
-    <ul>
-      <li><strong>Description axis:</strong> Provides examples (41%), Specifies format (30%), Expresses tone (23%), Defines audience (18%)</li>
-      <li><strong>Discernment axis:</strong> Flags context gaps (20%), Questions reasoning (16%), Verifies facts (9%)</li>
-      <li><strong>Delegation axis:</strong> Clarifies goals (51%), Discusses approach (10%), Sets interaction style (30%)</li>
-      <li><strong>Diligence axis:</strong> Transparent about AI&rsquo;s role, Considers sharing consequences, Deploys AI responsibly &mdash; not observable in chat</li>
-      <li><strong>Gateway:</strong> Iterates on outputs (86%)</li>
-    </ul>
-    <p style="font-size:0.78rem;color:#8a8580;">Baselines from <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic&rsquo;s AI Fluency Index</a> (Feb 2026, N=9,830).</p>
-
-    <hr class="about-divider">
-
-    <h2>Research Basis</h2>
-    <p><a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic AI Fluency Index</a> &mdash; behavioral taxonomy and population baselines</p>
-    <p><a href="https://aifluencyframework.org/">4D AI Fluency Framework</a> &mdash; Dakan &amp; Feller&rsquo;s framework (Description, Discernment, Delegation, Diligence)</p>
-
-    <hr class="about-divider">
-    <p style="font-size:0.78rem;color:#6a6560;">Built by Robert Nowell &middot; <a href="https://github.com/robertnowell/ai-fluency-skill-cards" style="color:#6a6560;">Source</a></p>
-  </div>
-</div>
-`;
+// Single source of truth lives in src/core/about.ts.
+// Imported here for use in renderGridPage; re-exported for any external
+// consumer that previously imported from this module.
+import { ABOUT_OVERLAY_CSS, ABOUT_OVERLAY_HTML } from "./about.js";
+export { ABOUT_OVERLAY_CSS, ABOUT_OVERLAY_HTML };
 
 // ─── Constants used by both browser and Node renderers ────────────────────
 
@@ -467,6 +357,29 @@ const AXIS_SIGS: Record<string, string> = {
   conductor: "High Description + Delegation",
   architect: "High Discernment + Delegation",
   polymath: "High Description + Discernment",
+};
+
+// Card tooltips for /grid. Audience: a researcher who knows the AI Fluency
+// Index inside-out. Each tooltip names the framework axis, the specific
+// behaviors that drive it (with population baselines from the paper), and
+// where relevant, the artifact-effect dynamic the archetype represents.
+// Kept terse — the audience doesn't need behavior definitions, only the
+// link from the framework's measurement structure to this archetype.
+const ARCHETYPE_TOOLTIPS: Record<string, string> = {
+  catalyst:
+    "Iterates above the 86% population rate but doesn't cross any of the three observable thresholds. The modal user — engaged with the loop, not yet specifying, evaluating, or delegating intentionally.",
+  compass:
+    "Crosses Delegation via <em>clarifies goals</em> (51%), <em>discusses approach</em> (10%), and <em>sets interaction style</em> (30%). Briefs well, then trusts the loop. Stays at baseline on Description and Discernment.",
+  forgemaster:
+    "Crosses Description — <em>provides examples</em> (41%), <em>specifies format</em> (30%), <em>expresses tone</em> (23%), <em>defines audience</em> (18%). Shapes the artifact rather than steering the conversation.",
+  illuminator:
+    "Crosses Discernment via the three rarest population behaviors — <em>flags context gaps</em> (20%), <em>questions reasoning</em> (16%), <em>verifies facts</em> (9%). The pattern that resists the artifact effect.",
+  conductor:
+    "Description × Delegation. The two axes co-move in the artifact-effect data, so this is the natural attractor for users who specify well <em>and</em> brief well. Stays at baseline on Discernment.",
+  architect:
+    "Discernment × Delegation. Plans deliberately, then evaluates rigorously. Resists the artifact effect on the evaluation side without leaning on Description.",
+  polymath:
+    "Description × Discernment — the anti-correlated pair. Description behaviors <em>rise</em> with polished artifacts; Discernment behaviors <em>fall</em>. Holding both above baseline simultaneously is the rarest pattern in the dataset.",
 };
 
 // ─── Progression graph layout ─────────────────────────────────────────────
@@ -927,7 +840,7 @@ export function renderGridPage(
     font-size: 0.85em;
     opacity: 0.7;
   }
-  h1 {
+  .deck-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2rem; font-weight: 700;
     margin-bottom: 0.4rem; text-align: center;
@@ -937,7 +850,85 @@ export function renderGridPage(
     text-align: center; font-size: 0.85rem;
     color: #6b6560; margin-bottom: 3rem;
   }
+
+  /* Hero — page-level framing for /grid. Borrows the type voice of the
+     CTA section so the hero and CTA bookend the page in the same register
+     (Cormorant italic, gold). The .hero-sources row is literally the same
+     markup as the page footer below — that's the "mirrors the footer" the
+     ask called for. */
+  .hero {
+    max-width: 760px;
+    margin: 0 auto 4rem;
+    padding: 0 1rem;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(160,128,64,0.6);
+    margin-bottom: 1.2rem;
+  }
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 600;
+    font-style: italic;
+    color: #e8d8b0;
+    line-height: 1.05;
+    letter-spacing: 0.005em;
+    margin: 0 0 1.2rem;
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: #8a8580;
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 auto 1.8rem;
+  }
+  .hero-sources {
+    margin-top: 1.4rem;
+  }
+  @media (max-width: 600px) {
+    .hero { margin-bottom: 3rem; }
+    .hero-headline { font-size: 2.2rem; }
+    .hero-sub { font-size: 0.95rem; }
+  }
 ${ABOUT_OVERLAY_CSS}
+  .grid-hero {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 40px;
+  }
+  /* Card hover tooltip — researcher-targeted explanation of how each
+     archetype maps from the AI Fluency Index framework. Reuses the
+     palette from .prog-tooltip but is page-level (one element shared
+     by all cards). */
+  .card-tip {
+    display: none;
+    position: absolute;
+    width: 320px;
+    background: #1e1d1b;
+    border: 1px solid #3a3530;
+    border-radius: 0.5rem;
+    padding: 0.85rem 1rem;
+    z-index: 1000;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+    pointer-events: none;
+    transform: translate(-50%, calc(-100% - 14px));
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: #b0aca6;
+  }
+  .card-tip.visible { display: block; }
+  .card-tip em {
+    color: #cca67b;
+    font-style: italic;
+  }
+  @media (max-width: 480px) {
+    .card-tip { display: none !important; }
+  }
   .grid {
     display: flex;
     flex-wrap: wrap;
@@ -1230,11 +1221,11 @@ ${CARD_FACE_CSS}
   .prog-tip-radar > div > div:first-child { display: none !important; }
 
   .footer {
-    text-align: center; margin-top: 3rem;
-    font-size: 0.75rem; color: #4a4540;
+    text-align: center; margin-top: 5rem;
   }
-  .footer a { color: #4a4540; text-decoration: none; }
-  .footer a:hover { color: #6b6560; }
+  .footer-text { font-size: 0.75rem; color: #4a4540; }
+  .footer-text a { color: #4a4540; text-decoration: none; }
+  .footer-text a:hover { color: #6b6560; }
 </style>
 </head>
 <body>
@@ -1242,20 +1233,45 @@ ${CARD_FACE_CSS}
     <a class="header-link" href="https://www.anthropic.com/research/AI-fluency-index" target="_blank" rel="noopener">Anthropic AI Fluency Index<span class="arrow">↗</span></a>
     <button class="about-btn" onclick="document.getElementById('about-overlay').classList.add('is-open')">About</button>
   </header>
-  <h1>${title}</h1>
+  <section class="hero">
+    <div class="hero-eyebrow">&#9670; AI Fluency &middot; Observable Behaviors</div>
+    <h1 class="hero-headline">A topology for AI fluency</h1>
+    <p class="hero-sub">Seven character archetypes &mdash; observable patterns in how people collaborate with Claude, drawn from Anthropic&rsquo;s AI Fluency Index.</p>
+    <div class="hero-sources">
+      <div class="footer-text">
+        <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic AI Fluency Index</a>
+        &middot; <a href="https://aifluencyframework.org/">Dakan &amp; Feller</a>
+        &middot; <a href="https://github.com/robertnowell">Robert Nowell</a>
+      </div>
+    </div>
+  </section>
+  <h2 class="deck-title">${title}</h2>
   <div class="sub">${subtitle}</div>
-  <div class="grid">
-    ${entries
-      .map((e) => {
-        const href = hrefTemplate.replace("{key}", e.key);
-        const name = e.profile.archetype.name;
-        return `
-      <a class="card-link" href="${href}" title="${name}" target="_blank" rel="noopener">
+  ${(() => {
+    // Lay out the deck as: Catalyst alone in a hero row, then the remaining
+    // 6 archetypes in a 2-column grid (which divides evenly, no orphan).
+    // The Catalyst is the entry point of the progression — putting it first
+    // and alone signals "start here" rather than burying it in the grid.
+    const catalyst = entries.find((e) => e.key === "catalyst");
+    const others = entries.filter((e) => e.key !== "catalyst");
+    const renderCardLink = (e: GridCardEntry) => {
+      const href = hrefTemplate.replace("{key}", e.key);
+      const name = e.profile.archetype.name;
+      const tip = ARCHETYPE_TOOLTIPS[e.key] || "";
+      return `
+      <a class="card-link" href="${href}" data-tip="${escapeAttr(tip)}" data-name="${escapeAttr(name)}" target="_blank" rel="noopener">
         ${renderCardHtml(e.profile, { userNameOverride: "ARCHETYPE" })}
       </a>`;
-      })
-      .join("")}
-  </div>
+    };
+    const heroHtml = catalyst
+      ? `<div class="grid-hero">${renderCardLink(catalyst)}</div>`
+      : "";
+    return `${heroHtml}
+  <div class="grid">
+    ${others.map(renderCardLink).join("")}
+  </div>`;
+  })()}
+  <div class="card-tip" id="card-tip"></div>
   ${renderProgressionMapSection(entries, { hrefTemplate })}
   ${renderAnatomySection(entries, { hrefTemplate })}
   <section class="cta-section">
@@ -1264,6 +1280,48 @@ ${CARD_FACE_CSS}
     <p class="cta-sub">Skill Tree is a Claude Code plugin. Run it on your own conversations to discover which of these seven archetypes you collaborate as.</p>
     <a class="cta-link" href="https://github.com/robertnowell/ai-fluency-skill-cards" target="_blank" rel="noopener">Install via GitHub<span class="arrow">&#8599;</span></a>
   </section>
+  <div class="footer">
+    <div class="footer-text">
+      <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic AI Fluency Index</a>
+      &middot; <a href="https://aifluencyframework.org/">Dakan &amp; Feller</a>
+      &middot; <a href="https://github.com/robertnowell">Robert Nowell</a>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var tip = document.getElementById('card-tip');
+      if (!tip) return;
+      var links = document.querySelectorAll('.card-link[data-tip]');
+      var hoverTimer = null;
+      links.forEach(function(link) {
+        link.addEventListener('mouseenter', function() {
+          if (hoverTimer) clearTimeout(hoverTimer);
+          hoverTimer = setTimeout(function() {
+            tip.innerHTML = link.getAttribute('data-tip') || '';
+            var rect = link.getBoundingClientRect();
+            // Position centered above the card, in document coordinates so
+            // it stays anchored when the page hasn't scrolled.
+            var x = rect.left + window.scrollX + rect.width / 2;
+            var y = rect.top + window.scrollY;
+            tip.style.left = x + 'px';
+            tip.style.top = y + 'px';
+            tip.classList.add('visible');
+          }, 350);
+        });
+        link.addEventListener('mouseleave', function() {
+          if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
+          tip.classList.remove('visible');
+        });
+      });
+      // Hide on scroll — tooltip is positioned in document coords, so if the
+      // user scrolls without moving the cursor it would visually drift away
+      // from its anchor card. Cleaner to just hide.
+      window.addEventListener('scroll', function() {
+        if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
+        tip.classList.remove('visible');
+      }, { passive: true });
+    })();
+  </script>
   ${ABOUT_OVERLAY_HTML}
 </body>
 </html>`;

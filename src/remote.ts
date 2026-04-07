@@ -226,9 +226,6 @@ const BASE_URL = process.env.BASE_URL || "https://skill-tree-ai.fly.dev";
 
 const PORT = parseInt(process.env.PORT || "3000", 10);
 
-// Map from transport session ID → { server, transport }
-const activeSessions = new Map<string, { server: McpServer; transport: StreamableHTTPServerTransport }>();
-
 function createMcpSession(): { server: McpServer; transport: StreamableHTTPServerTransport } {
   const server = new McpServer(
     { name: "skill-tree-ai", version: "1.0.2" },
@@ -427,14 +424,15 @@ function createMcpSession(): { server: McpServer; transport: StreamableHTTPServe
     },
   );
 
+  // Stateless mode: every request stands alone, no initialize handshake required.
+  // Why: Fly.io auto_stop_machines wipes any in-memory session map on cold start,
+  // and the SDK's stateful transport rejects post-restart tool calls with
+  // "Server not initialized" because a fresh transport never saw the original
+  // initialize. All three of our tools (analyze, visualize, archetypes) are
+  // already stateless, so there's nothing to lose by dropping session tracking.
   const transport = new StreamableHTTPServerTransport({
-    sessionIdGenerator: () => randomUUID(),
+    sessionIdGenerator: undefined,
   });
-
-  transport.onclose = () => {
-    const sid = transport.sessionId;
-    if (sid) activeSessions.delete(sid);
-  };
 
   server.connect(transport);
 
@@ -442,32 +440,11 @@ function createMcpSession(): { server: McpServer; transport: StreamableHTTPServe
 }
 
 async function handleMcp(req: IncomingMessage, res: ServerResponse) {
-  const sessionId = req.headers["mcp-session-id"] as string | undefined;
-
-  if (sessionId && activeSessions.has(sessionId)) {
-    // Existing session
-    const { transport } = activeSessions.get(sessionId)!;
-    await transport.handleRequest(req, res, await readBody(req));
-  } else if (!sessionId) {
-    // New session — create server + transport, let transport assign session ID
-    const session = createMcpSession();
-    // Handle the request — transport will set mcp-session-id header in response
-    await session.transport.handleRequest(req, res, await readBody(req));
-    // After handling, get the session ID the transport assigned
-    const newSid = session.transport.sessionId;
-    if (newSid) {
-      activeSessions.set(newSid, session);
-    }
-  } else {
-    // Stale session ID (machine restarted) — create a new session transparently.
-    // Our tools are stateless so this is safe.
-    const session = createMcpSession();
-    await session.transport.handleRequest(req, res, await readBody(req));
-    const newSid = session.transport.sessionId;
-    if (newSid) {
-      activeSessions.set(newSid, session);
-    }
-  }
+  // Stateless: spin up a fresh server+transport per request. The SDK transport
+  // handles the request without requiring a prior initialize, and any
+  // mcp-session-id header from the client is simply ignored.
+  const session = createMcpSession();
+  await session.transport.handleRequest(req, res, await readBody(req));
 }
 
 function readBody(req: IncomingMessage): Promise<any> {
@@ -493,7 +470,7 @@ const httpServer = createServer(async (req, res) => {
 
   if (url.pathname === "/health") {
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ status: "ok", sessions: activeSessions.size }));
+    res.end(JSON.stringify({ status: "ok" }));
     return;
   }
 
