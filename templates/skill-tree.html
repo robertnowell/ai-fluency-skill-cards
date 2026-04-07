@@ -128,13 +128,14 @@
     .drilldown-name { font-weight: 500; font-size: 1rem; color: #e8e4df; }
     .drilldown-desc { font-size: 0.875rem; color: #6b6560; margin-left: 0.2rem; }
     /* Inline legend explaining what the percentages and the small baseline
-       tick on each bar mean. Sits at the top of every drilldown so a reader
-       doesn't have to hover the arrows to learn how to read the row. */
+       tick on each bar mean. Sits at the bottom of every drilldown — under
+       the behavior rows, just above the gateway iteration bar — so the
+       reader sees the data first and the methodology second. */
     .drilldown-explainer {
       font-size: 0.72rem;
       color: #6b6560;
       line-height: 1.55;
-      margin: 0 0 0.85rem;
+      margin: 0.85rem 0 0;
       padding: 0.5rem 0.7rem;
       background: rgba(160,128,64,0.04);
       border-left: 2px solid rgba(160,128,64,0.25);
@@ -1305,10 +1306,6 @@
         <span class="drilldown-desc">\u2014 ${AXIS_DESCS[axisName]}</span>
       </div>`;
 
-      if (!isDiligence) {
-        html += `<div class="drilldown-explainer">Each <strong>%</strong> is the share of your sessions where the behavior appeared. The small tick on each bar marks the population average from the AI Fluency Index (N&nbsp;=&nbsp;9,830).</div>`;
-      }
-
       if (isDiligence) {
         const diligenceItems = [
           { label: 'Transparent about AI\u2019s role', desc: 'Disclosing when and how AI was used in your work — to readers, collaborators, employers. The honesty layer that protects trust.' },
@@ -1356,6 +1353,7 @@
             </div>`;
           });
         }
+        html += `<div class="drilldown-explainer">Each <strong>%</strong> is the share of your sessions where the behavior appeared. The small tick on each bar marks the population average from the AI Fluency Index (N&nbsp;=&nbsp;9,830).</div>`;
       }
 
       drilldown.innerHTML = html;

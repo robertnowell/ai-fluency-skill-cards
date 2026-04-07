@@ -1,0 +1,38 @@
+# Dockerfile.nux-test — clean-room test of the plugin install NUX.
+#
+# This is NOT the production Dockerfile (that's `Dockerfile`, which builds
+# the Fly.io MCP server). This image exists only to simulate what a brand
+# new user experiences when they run the README install commands against
+# an empty $HOME.
+#
+# Usage:
+#   docker build -f Dockerfile.nux-test -t skill-tree-nux-test .
+#   docker run --rm -e ANTHROPIC_API_KEY skill-tree-nux-test \
+#       bash -c "claude plugin marketplace add robertnowell/ai-fluency-skill-cards && \
+#                claude plugin install skill-tree-ai@ai-fluency-skill-cards && \
+#                claude plugin list"
+
+FROM node:22-slim
+
+# git: plugin marketplace add pulls from GitHub
+# ca-certificates: HTTPS to api.anthropic.com and skill-tree-ai.fly.dev
+# Everything else (curl, etc.) is just for human debugging if you docker exec in.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        git \
+        ca-certificates \
+        curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Pin to the same version a developer would get today.
+RUN npm install -g @anthropic-ai/claude-code@2.1.92
+
+# Run as root with /root as $HOME — fully empty Claude state.
+# Each `docker run` is a fresh container, so there's no cross-run pollution.
+WORKDIR /root
+ENV HOME=/root
+
+# Sanity check baked into the image so build failures surface early.
+RUN claude --version
+
+CMD ["bash"]
