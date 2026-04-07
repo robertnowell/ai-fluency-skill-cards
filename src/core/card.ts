@@ -983,21 +983,12 @@ export function renderGridPage(
 
   /* Hero — page-level framing for /grid. Borrows the type voice of the
      CTA section so the hero and CTA bookend the page in the same register
-     (Cormorant italic, gold). The .hero-sources row is literally the same
-     markup as the page footer below — that's the "mirrors the footer" the
-     ask called for. */
+     (Cormorant italic, gold). */
   .hero {
     max-width: 760px;
     margin: 0 auto 4rem;
     padding: 0 1rem;
     text-align: center;
-  }
-  .hero-eyebrow {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.75rem; font-weight: 600;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: rgba(160,128,64,0.6);
-    margin-bottom: 1.2rem;
   }
   .hero-headline {
     font-family: 'Cormorant Garamond', serif;
@@ -1015,10 +1006,7 @@ export function renderGridPage(
     color: #8a8580;
     line-height: 1.65;
     max-width: 520px;
-    margin: 0 auto 1.8rem;
-  }
-  .hero-sources {
-    margin-top: 1.4rem;
+    margin: 0 auto;
   }
   @media (max-width: 600px) {
     .hero { margin-bottom: 3rem; }
@@ -1406,16 +1394,8 @@ ${CARD_FACE_CSS}
     <button class="about-btn" onclick="document.getElementById('about-overlay').classList.add('is-open')">About</button>
   </header>
   <section class="hero">
-    <div class="hero-eyebrow">&#9670; AI Fluency &middot; Observable Behaviors</div>
     <h1 class="hero-headline">A topology for AI fluency</h1>
     <p class="hero-sub">Seven character archetypes &mdash; observable patterns in how people collaborate with Claude, drawn from Anthropic&rsquo;s AI Fluency Index.</p>
-    <div class="hero-sources">
-      <div class="footer-text">
-        <a href="https://www.anthropic.com/research/AI-fluency-index">Anthropic AI Fluency Index</a>
-        &middot; <a href="https://aifluencyframework.org/">Dakan &amp; Feller</a>
-        &middot; <a href="https://github.com/robertnowell">Robert Nowell</a>
-      </div>
-    </div>
   </section>
   <h2 class="deck-title">${title}</h2>
   <div class="sub">${subtitle}</div>

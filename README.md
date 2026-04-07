@@ -46,21 +46,18 @@ Works in **Claude Code** and **Cowork**.
 
 ### Claude Code
 
-In a Claude Code session, run these two slash commands. **Send each as a separate message** — slash commands don't chain on newlines, and pasting both at once will fail with a malformed URL.
+In your terminal (not inside a Claude Code session), copy-paste this:
 
-**1. Add the marketplace:**
-
-```
-/plugin marketplace add robertnowell/ai-fluency-skill-cards
-```
-
-**2. Then install the plugin:**
-
-```
-/plugin install skill-tree-ai@ai-fluency-skill-cards
+```bash
+claude plugin marketplace add robertnowell/ai-fluency-skill-cards && \
+claude plugin install skill-tree-ai@ai-fluency-skill-cards
 ```
 
-Then say "skill tree" or run `/fluency`.
+Then start Claude Code and say "skill tree" or run `/fluency`:
+
+```bash
+claude
+```
 
 ### Cowork
 

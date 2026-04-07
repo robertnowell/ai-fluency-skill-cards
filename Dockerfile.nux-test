@@ -27,10 +27,13 @@ RUN apt-get update \
 # Pin to the same version a developer would get today.
 RUN npm install -g @anthropic-ai/claude-code@2.1.92
 
-# Run as root with /root as $HOME — fully empty Claude state.
-# Each `docker run` is a fresh container, so there's no cross-run pollution.
-WORKDIR /root
-ENV HOME=/root
+# Non-root user. `claude -p --permission-mode bypassPermissions` refuses to run
+# as root, so a real end-to-end test of the plugin needs a normal user account.
+# Each `docker run` is still a fresh container, so there's no cross-run pollution.
+RUN useradd -m -s /bin/bash newuser
+USER newuser
+WORKDIR /home/newuser
+ENV HOME=/home/newuser
 
 # Sanity check baked into the image so build failures surface early.
 RUN claude --version
