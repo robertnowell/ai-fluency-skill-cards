@@ -84,6 +84,8 @@ Skill Tree's per-behavior rate in `src/core/profile.ts` is computed as `sessions
 
 This was caught and corrected on 2026-04-06 after a user flagged the misleading "X% of users do this" framing in the behavior tooltips. The numbers were always right; the words around them weren't. A small but real Diligence win — and a reminder that the units of analysis behind a number matter as much as the number itself.
 
+A second comparability caveat: the formal unit is the same (binary present/absent per container), but Anthropic's "conversation" container is presumably a focused claude.ai thread, while Skill Tree's "session" container is a Claude Code session file that can run for hours and contain hundreds of user messages across multiple topics. Longer containers are mechanically more likely to contain any given behavior at least once, so Skill Tree's per-session rates are likely *inflated* relative to Anthropic's per-conversation rates. The direction is known; the magnitude isn't. The rates remain reliable for tracking change *within* a user over time, and for relative ordering across the 11 behaviors. They should be read with caution as cross-platform comparisons. Caught and named on 2026-04-08.
+
 ## Scaling
 
 Skill Tree works today for any Claude Code or Cowork user — install the plugin. The remote classifier (Fly.io) scales horizontally; classification is stateless and uses Haiku. The 4D framework is platform-agnostic — the same 11 behaviors apply whether someone uses Code, Cowork, or claude.ai. Session metadata already exists server-side, so classification could run as a native feature without requiring local file access.
