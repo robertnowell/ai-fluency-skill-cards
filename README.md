@@ -96,13 +96,13 @@ One more methodology caveat: rates are computed per-conversation as an unweighte
 
 | # | Archetype | Pattern |
 |---|-----------|---------|
-| I | The Catalyst | Pure momentum — iterates rapidly |
-| II | The Compass | Sets clear direction with goals and approach |
-| III | The Forgemaster | Shapes output precisely — format, tone, examples |
-| IV | The Conductor | Directs AND specifies every detail |
-| V | The Illuminator | Questions and probes Claude's reasoning |
-| VI | The Architect | Plans deliberately AND evaluates rigorously |
-| VII | The Polymath | Shapes AND evaluates — the rarest combination |
+| I | The Catalyst | no index above average |
+| II | The Compass | high delegation |
+| III | The Forgemaster | high description |
+| IV | The Conductor | high delegation + high description  |
+| V | The Illuminator | high discernment |
+| VI | The Architect | high discernment + high delegation |
+| VII | The Polymath | high description + high discernment |
 
 ## The 11 Behaviors
 
