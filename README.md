@@ -21,7 +21,7 @@ Browse the deck to see what's possible. Install to run it on your own sessions.
   </a>
 </p>
 
-> **For evaluators:** the full design thinking — problem framing, learning principles, trade-offs, and what's still uncertain — lives in [`docs/design-rationale.md`](docs/design-rationale.md). The story of *how the idea formed* — exploration, the Konid → Skill Tree structural carry-over, and the verbatim moments from the build — is in [`docs/design-process.md`](docs/design-process.md). The full Claude Code session transcripts for the build phase live in a separate companion repo: [robertnowell/ai-fluency-skill-cards-transcripts](https://github.com/robertnowell/ai-fluency-skill-cards-transcripts).
+> **For evaluators:** the full design thinking — problem framing, learning principles, trade-offs, and what's still uncertain — lives in [`docs/design-rationale.md`](docs/design-rationale.md).
 
 ## What it does
 
