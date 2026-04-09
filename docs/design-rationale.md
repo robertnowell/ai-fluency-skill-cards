@@ -29,7 +29,7 @@ The user says "analyze my ai fluency" and sees themselves reflected back — wha
 
 ## Design Decisions
 
-**Why a plugin, not a web app.** The assignment says "you can build features on any Claude product, not just Claude.ai." I took that literally. The chat UI already exists — Claude Code, Cowork. Building a separate surface for reflection would mean competing for attention with the place where the actual work happens. Skill Tree lives where the user already works. The visualization opens in the browser when you need it, but the growth quest persists in the session itself.
+**Why a plugin, not a web app.** Skill Tree lives where the user already works. The visualization opens in the browser when you need it, but the growth quest persists in the session itself.
 
 **Why behaviors, not engagement.** Skill Tree measures Description, Discernment, and Delegation behaviors — the dimensions from the 4D AI Fluency Framework. Not session count, not message volume, not time spent. The 11 behaviors are the atoms of AI fluency, and the three observable axes derive from the artifact effect data: Description behaviors increase with polished artifacts, Discernment behaviors decrease. This empirical grouping shapes the entire archetype system.
 
@@ -42,8 +42,6 @@ The user says "analyze my ai fluency" and sees themselves reflected back — wha
 **Why no "all three high" archetype.** The deterministic assignment stops at two-axis combinations. A user who scores high on Description, Discernment, and Delegation simultaneously is routed to Polymath — the third axis is never checked. This is intentional and empirical, not editorial-by-omission. The AI Fluency Index's artifact effect finding shows Description and Delegation behaviors both *increase* with polished outputs, while Discernment *decreases* — Description and Delegation co-move, Discernment moves opposite. The rare and valuable combination is therefore Description × Discernment together, because it's the one that breaks the anti-correlation. Polymath is the apex by virtue of resisting the artifact effect, not by treating Delegation as a lesser virtue. The 4D framework itself (Dakan & Feller) presents Delegation, Description, Discernment, and Diligence as four equal pillars; this taxonomy is an empirical overlay on the Index's behavioral data, not a hierarchy of skills. Polymath's growth path then points to Diligence — the off-screen 4th D — for the same reason: the in-chat dimensions are foundational, and mastery extends them into the world.
 
 ## The Design Process
-
-The arc matters.
 
 **Research before building.** I read the assignment, the job description, the AI Fluency Index, the 4D Framework, the RCT paper on interaction modes and learning outcomes, and the education reports. I refused to start coding until I understood what "skill development" actually means in this team's vocabulary — and until I had a specific tension to address, not just a category to build in.
 
@@ -84,7 +82,7 @@ Skill Tree's per-behavior rate in `src/core/profile.ts` is computed as `sessions
 
 This was caught and corrected on 2026-04-06 after a user flagged the misleading "X% of users do this" framing in the behavior tooltips. The numbers were always right; the words around them weren't. A small but real Diligence win — and a reminder that the units of analysis behind a number matter as much as the number itself.
 
-A second comparability caveat: the formal unit is the same (binary present/absent per container), but Anthropic's "conversation" container is presumably a focused claude.ai thread, while Skill Tree's "session" container is a Claude Code session file that can run for hours and contain hundreds of user messages across multiple topics. Longer containers are mechanically more likely to contain any given behavior at least once, so Skill Tree's per-session rates are likely *inflated* relative to Anthropic's per-conversation rates. The direction is known; the magnitude isn't. The rates remain reliable for tracking change *within* a user over time, and for relative ordering across the 11 behaviors. They should be read with caution as cross-platform comparisons. Caught and named on 2026-04-08.
+A second comparability caveat: the formal unit is the same (binary present/absent per container), but Anthropic's "conversation" container is presumably a focused claude.ai thread, while Skill Tree's "session" container is a Claude Code session file that can run for hours and contain hundreds of user messages across multiple topics. Longer containers are mechanically more likely to contain any given behavior at least once, so Skill Tree's per-session rates are possibly *inflated* relative to Anthropic's per-conversation rates. The rates remain reliable for tracking change *within* a user over time, and for relative ordering across the 11 behaviors. They should be read with caution as cross-platform comparisons. Caught and named on 2026-04-08.
 
 ## Scaling
 
@@ -96,8 +94,6 @@ Skill Tree works today for any Claude Code or Cowork user — install the plugin
 
 **Classifier calibration.** I noticed variance between classification runs — a session might show 7/11 behaviors detected on one pass and 10/11 on another, depending on how the classifier interprets edge cases. Production would need confidence thresholds, ensemble passes, or a fine-tuned classifier to stabilize.
 
-**Privacy.** Reading session files raises real privacy questions. The plugin accesses `~/.claude/projects/` and Cowork's local storage. A production feature would need explicit opt-in, clear data handling, and probably server-side classification that never exports raw conversation text.
+**Privacy.** Reading session files raises real privacy questions. The plugin accesses `~/.claude/projects/` and Cowork's local storage. Ideally this would all happen locally similar to the built-in /insights claude code command.
 
-**Causality.** I can't yet prove that seeing your profile causes behavior change. I believe it does — the metacognition literature suggests it should — but confirming this would require a longitudinal study. Which, notably, is exactly the kind of research this team does.
-
-More to learn.
+**Causality.** I can't prove that seeing your profile causes behavior change.
