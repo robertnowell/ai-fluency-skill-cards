@@ -150,3 +150,11 @@ Source
 ## License
 
 MIT
+
+## Privacy & Data
+
+A take-home prototype on my personal Fly.io. **Except for the final report — which embeds a few short paraphrased evidence quotes — no user data is stored on my server or observable by me at any point.** Messages transit Anthropic's Haiku API for classification under Anthropic's standard data handling. Reports are URL-gated; the URL is the credential.
+
+![The question I asked Claude before submitting: should the Anthropic education labs team hesitate to install this plugin on their own personal conversations?](docs/images/privacy-audit-question.png)
+
+![Server-side audit findings: only profile JSON and HTML report written, ~33 max evidence strings per profile, no logging of message content, no debug endpoints, only two third-party call sites (Anthropic and optional Slack)](docs/images/privacy-audit-findings.png)
