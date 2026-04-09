@@ -21,7 +21,7 @@ Browse the deck to see what's possible. Install to run it on your own sessions.
   </a>
 </p>
 
-> **For evaluators:** the full design thinking — problem framing, learning principles, trade-offs, and what's still uncertain — lives in [`docs/design-rationale.md`](docs/design-rationale.md).
+> **For evaluators:** start with the **[video walkthrough](https://www.youtube.com/watch?v=3q3FyQpdX9A)**. The full design thinking — problem framing, learning principles, trade-offs, and what's still uncertain — lives in [`docs/design-rationale.md`](docs/design-rationale.md).
 
 ## What it does
 
